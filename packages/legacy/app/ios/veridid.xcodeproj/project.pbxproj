@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* AriesBifoldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AriesBifoldTests.m */; };
+		00E356F31AD99517003FC87E /* VeriDIDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* VeriDIDTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		43857C042720ABB4004F54E0 /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43857C032720ABB4004F54E0 /* libswiftWebKit.tbd */; };
 		566FB1F2273B158E003E9BEE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566FB1F1273B158E003E9BEE /* Media.xcassets */; };
-		65EAB2B23C0BCEA1E81EB956 /* libPods-AriesBifold-AriesBifoldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57081478B918413A680FFD54 /* libPods-AriesBifold-AriesBifoldTests.a */; };
+		7F9438A241415D91FE03E672 /* libPods-VeriDID-VeriDIDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC619872BBA37072A5639EB2 /* libPods-VeriDID-VeriDIDTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		986E1B7D509D20881DAEAB42 /* libPods-AriesBifold.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A91991D468E784A336F27BA9 /* libPods-AriesBifold.a */; };
+		B3323260BEE4FC72AE872472 /* libPods-VeriDID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BF87D79D79E6F4258D6916 /* libPods-VeriDID.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,7 +24,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = AriesBifold;
+			remoteInfo = VeriDID;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -42,25 +42,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* AriesBifoldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AriesBifoldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* VeriDIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VeriDIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* AriesBifoldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AriesBifoldTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* AriesBifold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AriesBifold.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = AriesBifold/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = AriesBifold/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AriesBifold/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AriesBifold/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AriesBifold/main.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* VeriDIDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeriDIDTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* VeriDID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeriDID.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = VeriDID/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = VeriDID/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VeriDID/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = VeriDID/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = VeriDID/main.m; sourceTree = "<group>"; };
+		415816A04BCC050DC9A49323 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID-VeriDIDTests.debug.xcconfig"; path = "Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests.debug.xcconfig"; sourceTree = "<group>"; };
 		433E773D26557E1B00F569EE /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Indy.framework; path = Pods/Frameworks/Indy.framework; sourceTree = "<group>"; };
 		43857C032720ABB4004F54E0 /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
 		566FB1F1273B158E003E9BEE /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		57081478B918413A680FFD54 /* libPods-AriesBifold-AriesBifoldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AriesBifold-AriesBifoldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65B4BCEABB8190F24B4588BC /* Pods-AriesBifold-AriesBifoldTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AriesBifold-AriesBifoldTests.release.xcconfig"; path = "Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AriesBifold/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9337C17A2E512FDE0E677F2E /* Pods-AriesBifold-AriesBifoldTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AriesBifold-AriesBifoldTests.debug.xcconfig"; path = "Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests.debug.xcconfig"; sourceTree = "<group>"; };
-		97101C31E12D9FCCD8A1F5D8 /* Pods-AriesBifold.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AriesBifold.debug.xcconfig"; path = "Target Support Files/Pods-AriesBifold/Pods-AriesBifold.debug.xcconfig"; sourceTree = "<group>"; };
-		98C87CBACEFC6A66CC93DC56 /* Pods-AriesBifold.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AriesBifold.release.xcconfig"; path = "Target Support Files/Pods-AriesBifold/Pods-AriesBifold.release.xcconfig"; sourceTree = "<group>"; };
-		A91991D468E784A336F27BA9 /* libPods-AriesBifold.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AriesBifold.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64726A7B47B6D572FD093F8E /* Pods-VeriDID.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID.debug.xcconfig"; path = "Target Support Files/Pods-VeriDID/Pods-VeriDID.debug.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = VeriDID/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B2BF87D79D79E6F4258D6916 /* libPods-VeriDID.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeriDID.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC619872BBA37072A5639EB2 /* libPods-VeriDID-VeriDIDTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeriDID-VeriDIDTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7495224647186AC6DB45AAD /* Pods-VeriDID.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID.release.xcconfig"; path = "Target Support Files/Pods-VeriDID/Pods-VeriDID.release.xcconfig"; sourceTree = "<group>"; };
+		E7B4CE8865FE7A1ACD281C63 /* Pods-VeriDID-VeriDIDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID-VeriDIDTests.release.xcconfig"; path = "Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65EAB2B23C0BCEA1E81EB956 /* libPods-AriesBifold-AriesBifoldTests.a in Frameworks */,
+				7F9438A241415D91FE03E672 /* libPods-VeriDID-VeriDIDTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,20 +78,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				43857C042720ABB4004F54E0 /* libswiftWebKit.tbd in Frameworks */,
-				986E1B7D509D20881DAEAB42 /* libPods-AriesBifold.a in Frameworks */,
+				B3323260BEE4FC72AE872472 /* libPods-VeriDID.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* AriesBifoldTests */ = {
+		00E356EF1AD99517003FC87E /* VeriDIDTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* AriesBifoldTests.m */,
+				00E356F21AD99517003FC87E /* VeriDIDTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = AriesBifoldTests;
+			path = VeriDIDTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -102,7 +102,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* AriesBifold */ = {
+		13B07FAE1A68108700A75B9A /* VeriDID */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -112,7 +112,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = AriesBifold;
+			name = VeriDID;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -121,8 +121,8 @@
 				43857C032720ABB4004F54E0 /* libswiftWebKit.tbd */,
 				433E773D26557E1B00F569EE /* Indy.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				A91991D468E784A336F27BA9 /* libPods-AriesBifold.a */,
-				57081478B918413A680FFD54 /* libPods-AriesBifold-AriesBifoldTests.a */,
+				B2BF87D79D79E6F4258D6916 /* libPods-VeriDID.a */,
+				BC619872BBA37072A5639EB2 /* libPods-VeriDID-VeriDIDTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,8 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				566FB1F1273B158E003E9BEE /* Media.xcassets */,
-				13B07FAE1A68108700A75B9A /* AriesBifold */,
-				00E356EF1AD99517003FC87E /* AriesBifoldTests */,
+				13B07FAE1A68108700A75B9A /* VeriDID */,
+				00E356EF1AD99517003FC87E /* VeriDIDTests */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
@@ -161,8 +161,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* AriesBifold.app */,
-				00E356EE1AD99517003FC87E /* AriesBifoldTests.xctest */,
+				13B07F961A680F5B00A75B9A /* VeriDID.app */,
+				00E356EE1AD99517003FC87E /* VeriDIDTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,10 +170,10 @@
 		8ACF6F3B2962FE31C0EE5408 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				97101C31E12D9FCCD8A1F5D8 /* Pods-AriesBifold.debug.xcconfig */,
-				98C87CBACEFC6A66CC93DC56 /* Pods-AriesBifold.release.xcconfig */,
-				9337C17A2E512FDE0E677F2E /* Pods-AriesBifold-AriesBifoldTests.debug.xcconfig */,
-				65B4BCEABB8190F24B4588BC /* Pods-AriesBifold-AriesBifoldTests.release.xcconfig */,
+				64726A7B47B6D572FD093F8E /* Pods-VeriDID.debug.xcconfig */,
+				C7495224647186AC6DB45AAD /* Pods-VeriDID.release.xcconfig */,
+				415816A04BCC050DC9A49323 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */,
+				E7B4CE8865FE7A1ACD281C63 /* Pods-VeriDID-VeriDIDTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -181,48 +181,48 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* AriesBifoldTests */ = {
+		00E356ED1AD99517003FC87E /* VeriDIDTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AriesBifoldTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "VeriDIDTests" */;
 			buildPhases = (
-				C64F25E3BC180AF0A72EEE79 /* [CP] Check Pods Manifest.lock */,
+				8EB4976DD63495D9749DAC78 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				04A23698871F60D02E13ACB0 /* [CP] Embed Pods Frameworks */,
-				6EAC9B2DA29E0D3640C5AA2B /* [CP] Copy Pods Resources */,
+				C76D9CD45F97D0D184B10CD4 /* [CP] Embed Pods Frameworks */,
+				CAC9B3BBED48D5539BDBAB3C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = AriesBifoldTests;
-			productName = AriesBifoldTests;
-			productReference = 00E356EE1AD99517003FC87E /* AriesBifoldTests.xctest */;
+			name = VeriDIDTests;
+			productName = VeriDIDTests;
+			productReference = 00E356EE1AD99517003FC87E /* VeriDIDTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* AriesBifold */ = {
+		13B07F861A680F5B00A75B9A /* VeriDID */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AriesBifold" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "VeriDID" */;
 			buildPhases = (
-				64443235396365BBEA692462 /* [CP] Check Pods Manifest.lock */,
+				CDA35C59FCC1282C888E8420 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				433E774026557E1B00F569EE /* Embed Frameworks */,
-				0EC47AB21748CE1D6DB62238 /* [CP] Embed Pods Frameworks */,
-				24DAC3EA9BEC3C769C0C0DE2 /* [CP] Copy Pods Resources */,
+				1729053FB685E4E95BB93B42 /* [CP] Embed Pods Frameworks */,
+				BCCD7B77F36887DDE1BF5EC6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = AriesBifold;
-			productName = AriesBifold;
-			productReference = 13B07F961A680F5B00A75B9A /* AriesBifold.app */;
+			name = VeriDID;
+			productName = VeriDID;
+			productReference = 13B07F961A680F5B00A75B9A /* VeriDID.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -242,7 +242,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ariesbifold" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "veridid" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -255,8 +255,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* AriesBifold */,
-				00E356ED1AD99517003FC87E /* AriesBifoldTests */,
+				13B07F861A680F5B00A75B9A /* VeriDID */,
+				00E356ED1AD99517003FC87E /* VeriDIDTests */,
 			);
 		};
 /* End PBXProject section */
@@ -296,58 +296,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=/Users/uy/.nvm/versions/node/v18.18.2/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		04A23698871F60D02E13ACB0 /* [CP] Embed Pods Frameworks */ = {
+		1729053FB685E4E95BB93B42 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0EC47AB21748CE1D6DB62238 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold/Pods-AriesBifold-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold/Pods-AriesBifold-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AriesBifold/Pods-AriesBifold-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		24DAC3EA9BEC3C769C0C0DE2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold/Pods-AriesBifold-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold/Pods-AriesBifold-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AriesBifold/Pods-AriesBifold-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		64443235396365BBEA692462 /* [CP] Check Pods Manifest.lock */ = {
+		8EB4976DD63495D9749DAC78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -362,31 +328,65 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AriesBifold-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VeriDID-VeriDIDTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6EAC9B2DA29E0D3640C5AA2B /* [CP] Copy Pods Resources */ = {
+		BCCD7B77F36887DDE1BF5EC6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AriesBifold-AriesBifoldTests/Pods-AriesBifold-AriesBifoldTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C64F25E3BC180AF0A72EEE79 /* [CP] Check Pods Manifest.lock */ = {
+		C76D9CD45F97D0D184B10CD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAC9B3BBED48D5539BDBAB3C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDA35C59FCC1282C888E8420 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -401,7 +401,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AriesBifold-AriesBifoldTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VeriDID-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -434,7 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* AriesBifoldTests.m in Sources */,
+				00E356F31AD99517003FC87E /* VeriDIDTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +452,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* AriesBifold */;
+			target = 13B07F861A680F5B00A75B9A /* VeriDID */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -460,7 +460,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9337C17A2E512FDE0E677F2E /* Pods-AriesBifold-AriesBifoldTests.debug.xcconfig */;
+			baseConfigurationReference = 415816A04BCC050DC9A49323 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
@@ -468,7 +468,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AriesBifoldTests/Info.plist;
+				INFOPLIST_FILE = VeriDIDTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,18 +482,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AriesBifold.app/AriesBifold";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriDID.app/VeriDID";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65B4BCEABB8190F24B4588BC /* Pods-AriesBifold-AriesBifoldTests.release.xcconfig */;
+			baseConfigurationReference = E7B4CE8865FE7A1ACD281C63 /* Pods-VeriDID-VeriDIDTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = AriesBifoldTests/Info.plist;
+				INFOPLIST_FILE = VeriDIDTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -507,13 +507,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AriesBifold.app/AriesBifold";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriDID.app/VeriDID";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97101C31E12D9FCCD8A1F5D8 /* Pods-AriesBifold.debug.xcconfig */;
+			baseConfigurationReference = 64726A7B47B6D572FD093F8E /* Pods-VeriDID.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -521,7 +521,7 @@
 				DEVELOPMENT_TEAM = J87Z93D379;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = AriesBifold/Info.plist;
+				INFOPLIST_FILE = VeriDID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -536,7 +536,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "veridid-u";
-				PRODUCT_NAME = AriesBifold;
+				PRODUCT_NAME = VeriDID;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -549,7 +549,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98C87CBACEFC6A66CC93DC56 /* Pods-AriesBifold.release.xcconfig */;
+			baseConfigurationReference = C7495224647186AC6DB45AAD /* Pods-VeriDID.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -557,7 +557,7 @@
 				DEVELOPMENT_TEAM = J87Z93D379;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = AriesBifold/Info.plist;
+				INFOPLIST_FILE = VeriDID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -572,7 +572,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "veridid-u";
-				PRODUCT_NAME = AriesBifold;
+				PRODUCT_NAME = VeriDID;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -729,7 +729,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AriesBifoldTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "VeriDIDTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -738,7 +738,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AriesBifold" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "VeriDID" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -747,7 +747,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ariesbifold" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "veridid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
