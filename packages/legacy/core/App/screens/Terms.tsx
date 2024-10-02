@@ -7,7 +7,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { ButtonType } from '../components/buttons/Button-api'
 import CheckBoxRow from '../components/inputs/CheckBoxRow'
-import HighlightTextBox from '../components/texts/HighlightTextBox'
 import InfoTextBox from '../components/texts/InfoTextBox'
 import { TOKENS, useServices } from '../container-api'
 import { DispatchAction } from '../contexts/reducers/store'
@@ -76,23 +75,22 @@ const Terms: React.FC = () => {
       <ScrollView style={style.container}>
         <InfoTextBox>Please agree to the terms and conditions below before using this application.</InfoTextBox>
         <Text style={[style.bodyText, { marginTop: 20, marginBottom: 20 }]}>
-          <Text style={[style.bodyText, { fontWeight: TextTheme.bold.fontWeight }]}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Text>{' '}
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-          in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <Text style={[style.bodyText, { fontWeight: TextTheme.bold.fontWeight }]}>Terms and Conditions</Text> These
+          Terms and Conditions (Terms) govern your use of the VeriDID Mobile Wallet (“App”), developed by VeriDID
+          (“Developer”). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do
+          not agree to these Terms, do not use this App.
         </Text>
-        <HighlightTextBox>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui</HighlightTextBox>
-        <Text style={[style.bodyText, { marginTop: 20 }]}>
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-          in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Tempor incididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+        {/* <HighlightTextBox>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui</HighlightTextBox> */}
+        <Text style={[style.bodyText, { marginTop: 20 }]}>Definitions</Text>
+        <Text style={[style.bodyText]}>
+          “User” refers to any person who downloads, installs, or uses the App. “Content” refers to any text, images, or
+          other media through the App.
+        </Text>
+        <Text style={[style.bodyText, { marginTop: 20 }]}>License</Text>
+        <Text style={[style.bodyText]}>
+          Subject to your compliance with these Terms, the Developer grants you a limited, non-exclusive,
+          non-transferrable, revocable license to download, install, and use the App for your personal, non-commercial
+          purposes.
         </Text>
         <View style={style.controlsContainer}>
           {!agreedToPreviousTerms && (

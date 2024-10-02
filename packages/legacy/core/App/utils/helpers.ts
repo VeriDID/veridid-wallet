@@ -1010,12 +1010,12 @@ export const connectFromScanOrDeepLink = async (
     if (isOpenIDInvitation) {
       navigation.navigate(Stacks.ConnectionStack as any, {
         screen: Screens.Connection,
-        params: { oobRecordId: "", openIDUri: uri },
+        params: { oobRecordId: '', openIDUri: uri },
       })
 
       return
     }
-    
+
     const aUrl = processBetaUrlIfRequired(uri)
     const receivedInvitation = await connectFromInvitation(aUrl, agent, implicitInvitations, reuseConnection)
 
@@ -1166,7 +1166,7 @@ export function getMessageEventRole(record: BasicMessageRecord) {
 }
 
 export function generateRandomWalletName() {
-  let name = 'My Wallet - '
+  let name = 'VeriDID Wallet'
   for (let i = 0; i < 4; i++) {
     name = name.concat(Math.floor(Math.random() * 10).toString())
   }

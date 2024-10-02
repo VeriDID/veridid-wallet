@@ -2292,9 +2292,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@credo-ts/react-hooks@patch:@credo-ts/react-hooks@npm%3A0.6.0#./.yarn/patches/@credo-ts-react-hooks-npm-0.6.0-3c59ce13d2.patch::locator=aries-bifold-root%40workspace%3A.":
+"@credo-ts/react-hooks@patch:@credo-ts/react-hooks@npm%3A0.6.0#./.yarn/patches/@credo-ts-react-hooks-npm-0.6.0-3c59ce13d2.patch::locator=veridid-wallet-root%40workspace%3A.":
   version: 0.6.0
-  resolution: "@credo-ts/react-hooks@patch:@credo-ts/react-hooks@npm%3A0.6.0#./.yarn/patches/@credo-ts-react-hooks-npm-0.6.0-3c59ce13d2.patch::version=0.6.0&hash=6057a5&locator=aries-bifold-root%40workspace%3A."
+  resolution: "@credo-ts/react-hooks@patch:@credo-ts/react-hooks@npm%3A0.6.0#./.yarn/patches/@credo-ts-react-hooks-npm-0.6.0-3c59ce13d2.patch::version=0.6.0&hash=6057a5&locator=veridid-wallet-root%40workspace%3A."
   dependencies:
     rxjs: ^7.2.0
   peerDependencies:
@@ -3128,9 +3128,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hyperledger/indy-vdr-react-native@patch:@hyperledger/indy-vdr-react-native@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-react-native-npm-0.2.2-627d424b96.patch::locator=aries-bifold-root%40workspace%3A.":
+"@hyperledger/indy-vdr-react-native@patch:@hyperledger/indy-vdr-react-native@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-react-native-npm-0.2.2-627d424b96.patch::locator=veridid-wallet-root%40workspace%3A.":
   version: 0.2.2
-  resolution: "@hyperledger/indy-vdr-react-native@patch:@hyperledger/indy-vdr-react-native@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-react-native-npm-0.2.2-627d424b96.patch::version=0.2.2&hash=28418c&locator=aries-bifold-root%40workspace%3A."
+  resolution: "@hyperledger/indy-vdr-react-native@patch:@hyperledger/indy-vdr-react-native@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-react-native-npm-0.2.2-627d424b96.patch::version=0.2.2&hash=28418c&locator=veridid-wallet-root%40workspace%3A."
   dependencies:
     "@hyperledger/indy-vdr-shared": 0.2.2
     "@mapbox/node-pre-gyp": ^1.0.10
@@ -3148,9 +3148,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hyperledger/indy-vdr-shared@patch:@hyperledger/indy-vdr-shared@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-shared-npm-0.2.2-b989282fc6.patch::locator=aries-bifold-root%40workspace%3A.":
+"@hyperledger/indy-vdr-shared@patch:@hyperledger/indy-vdr-shared@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-shared-npm-0.2.2-b989282fc6.patch::locator=veridid-wallet-root%40workspace%3A.":
   version: 0.2.2
-  resolution: "@hyperledger/indy-vdr-shared@patch:@hyperledger/indy-vdr-shared@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-shared-npm-0.2.2-b989282fc6.patch::version=0.2.2&hash=4d1d6e&locator=aries-bifold-root%40workspace%3A."
+  resolution: "@hyperledger/indy-vdr-shared@patch:@hyperledger/indy-vdr-shared@npm%3A0.2.2#./.yarn/patches/@hyperledger-indy-vdr-shared-npm-0.2.2-b989282fc6.patch::version=0.2.2&hash=4d1d6e&locator=veridid-wallet-root%40workspace%3A."
   checksum: c9b0576703be02428c3d0a0b39474ebca3b2f49c5402f7450003b72157d0bd010fd4dff436d4de422f9b6ea4de05361fa41dc8c470e462eaecb9407474dc4391
   languageName: node
   linkType: hard
@@ -5233,9 +5233,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sphereon/pex@patch:@sphereon/pex@npm%3A3.3.3#./.yarn/patches/@sphereon-pex-npm-3.3.3-144d9252ec.patch::locator=aries-bifold-root%40workspace%3A.":
+"@sphereon/pex@patch:@sphereon/pex@npm%3A3.3.3#./.yarn/patches/@sphereon-pex-npm-3.3.3-144d9252ec.patch::locator=veridid-wallet-root%40workspace%3A.":
   version: 3.3.3
-  resolution: "@sphereon/pex@patch:@sphereon/pex@npm%3A3.3.3#./.yarn/patches/@sphereon-pex-npm-3.3.3-144d9252ec.patch::version=3.3.3&hash=be3141&locator=aries-bifold-root%40workspace%3A."
+  resolution: "@sphereon/pex@patch:@sphereon/pex@npm%3A3.3.3#./.yarn/patches/@sphereon-pex-npm-3.3.3-144d9252ec.patch::version=3.3.3&hash=be3141&locator=veridid-wallet-root%40workspace%3A."
   dependencies:
     "@astronautlabs/jsonpath": ^1.1.2
     "@sd-jwt/decode": ^0.6.1
@@ -6884,133 +6884,6 @@ __metadata:
   checksum: 83644b56493e89a254bae05702abf3a1101b4fa4d0ca31df1c9985275a5a5bd47b3c27b7fa0b71098d41114d8ca000e6ed90cad764b306f8a503665e4d517ced
   languageName: node
   linkType: hard
-
-"aries-bifold-app@workspace:packages/legacy/app":
-  version: 0.0.0-use.local
-  resolution: "aries-bifold-app@workspace:packages/legacy/app"
-  dependencies:
-    "@babel/core": ^7.20.0
-    "@babel/preset-env": ^7.20.0
-    "@babel/runtime": ^7.20.0
-    "@credo-ts/anoncreds": 0.5.9
-    "@credo-ts/askar": 0.5.9
-    "@credo-ts/core": 0.5.9
-    "@credo-ts/indy-sdk-to-askar-migration": 0.5.9
-    "@credo-ts/indy-vdr": 0.5.9
-    "@credo-ts/openid4vc": 0.5.9
-    "@credo-ts/push-notifications": ^0.7.0
-    "@credo-ts/question-answer": 0.5.9
-    "@credo-ts/react-hooks": ^0.6.0
-    "@credo-ts/react-native": 0.5.9
-    "@formatjs/intl-datetimeformat": 4.2.4
-    "@formatjs/intl-displaynames": 5.2.4
-    "@formatjs/intl-getcanonicallocales": 1.7.3
-    "@formatjs/intl-listformat": 6.3.4
-    "@formatjs/intl-locale": 2.4.38
-    "@formatjs/intl-numberformat": 7.2.4
-    "@formatjs/intl-pluralrules": 4.1.4
-    "@formatjs/intl-relativetimeformat": 9.3.1
-    "@hyperledger/anoncreds-react-native": 0.2.2
-    "@hyperledger/aries-askar-react-native": 0.2.3
-    "@hyperledger/aries-bifold-core": ^1.0.0
-    "@hyperledger/aries-oca": ^1.0.0
-    "@hyperledger/indy-vdr-react-native": 0.2.2
-    "@react-native-async-storage/async-storage": 1.15.11
-    "@react-native-community/masked-view": 0.1.11
-    "@react-native-community/netinfo": ^9.3.0
-    "@react-native/eslint-config": ^0.72.2
-    "@react-native/metro-config": ^0.72.11
-    "@react-navigation/bottom-tabs": 6.0.9
-    "@react-navigation/core": 6.1.0
-    "@react-navigation/devtools": ^6.0.8
-    "@react-navigation/native": 6.0.6
-    "@react-navigation/stack": 6.0.11
-    "@tsconfig/react-native": ^3.0.0
-    "@types/lodash.flatten": ^4.4.6
-    "@types/lodash.merge": ^4.6.6
-    "@types/lodash.startcase": ^4.4.7
-    "@types/react": ^18.0.24
-    "@types/react-native": 0.71.5
-    axios: ^1.4.0
-    babel-plugin-module-resolver: ^5.0.0
-    eslint: ^8.48.0
-    eslint-import-resolver-typescript: ^2.5.0
-    i18next: ^21.4.0
-    lodash.flatten: ^4.4.0
-    lodash.startcase: ^4.4.0
-    metro-react-native-babel-preset: ^0.77.0
-    moment: ^2.29.4
-    patch-package: ^6.4.4
-    pod-install: 0.1.38
-    prettier: ^2.8.4
-    query-string: ^7.0.1
-    react: "*"
-    react-i18next: 11.13.0
-    react-native: "*"
-    react-native-animated-pagination-dots: ^0.1.72
-    react-native-argon2: ^2.0.1
-    react-native-bouncy-checkbox: ^3.0.5
-    react-native-collapsible: ^1.6.1
-    react-native-config: ^1.4.2
-    react-native-confirmation-code-field: ^7.3.0
-    react-native-device-info: ^8.4.9
-    react-native-encrypted-storage: ^4.0.2
-    react-native-fs: ^2.16.6
-    react-native-gesture-handler: ^1.10.3
-    react-native-get-random-values: ^1.7.0
-    react-native-gifted-chat: "*"
-    react-native-keychain: ^8.1.1
-    react-native-localize: ^2.2.4
-    react-native-logs: ^5.1.0
-    react-native-orientation-locker: ^1.6.0
-    react-native-permissions: ^4.0.1
-    react-native-qrcode-svg: ^6.2.0
-    react-native-reanimated: ^3.4.2
-    react-native-safe-area-context: ^3.2.0
-    react-native-scalable-image: ^1.1.0
-    react-native-screens: ^3.24.0
-    react-native-splash-screen: ^3.3.0
-    react-native-svg: ^12.1.1
-    react-native-svg-transformer: ^0.14.3
-    react-native-tcp-socket: ^6.0.6
-    react-native-toast-message: ^2.1.6
-    react-native-uuid: ^2.0.1
-    react-native-vector-icons: ^10.0.0
-    react-native-vision-camera: 4.3.1
-    react-native-webview: ^11.22.3
-    tsyringe: ^4.7.0
-    typescript: ^5.0.4
-    uuid: ^9.0.0
-  languageName: unknown
-  linkType: soft
-
-"aries-bifold-root@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "aries-bifold-root@workspace:."
-  dependencies:
-    "@eslint/js": ^8.56.0
-    "@react-native-community/eslint-config": ^3.2.0
-    "@types/conventional-recommended-bump": ^6.1.0
-    "@types/eslint__js": ^8.42.3
-    "@typescript-eslint/eslint-plugin": ^7.18.0
-    "@typescript-eslint/parser": ^7.18.0
-    conventional-changelog-conventionalcommits: ^5.0.0
-    conventional-recommended-bump: ^6.1.0
-    eslint: ^8.56.0
-    eslint-import-resolver-typescript: ^3.6.1
-    eslint-plugin-import: ^2.29.1
-    eslint-plugin-jest: ^28.8.0
-    eslint-plugin-prettier: ^5.2.1
-    eslint-plugin-react: ^7.35.0
-    eslint-plugin-react-hooks: ^4.6.2
-    lerna: ^6.6.2
-    npm-run-all: ^4.1.5
-    prettier: ^2.8.4
-    ts-node: ^10.0.0
-    typescript: ^5.5.4
-    typescript-eslint: ^7.18.0
-  languageName: unknown
-  linkType: soft
 
 "arr-union@npm:^3.1.0":
   version: 3.1.0
@@ -21380,6 +21253,133 @@ __metadata:
   checksum: ae0123222c6df65b437669d63dfa8c36cee20a504101b2fcd97b8bf76f91259c17f9f2b4d70a1e3c6bbcee7f51b28392833adb6b2770b23b01abec84e369660b
   languageName: node
   linkType: hard
+
+"veridid-wallet-mobile-app@workspace:packages/legacy/app":
+  version: 0.0.0-use.local
+  resolution: "veridid-wallet-mobile-app@workspace:packages/legacy/app"
+  dependencies:
+    "@babel/core": ^7.20.0
+    "@babel/preset-env": ^7.20.0
+    "@babel/runtime": ^7.20.0
+    "@credo-ts/anoncreds": 0.5.9
+    "@credo-ts/askar": 0.5.9
+    "@credo-ts/core": 0.5.9
+    "@credo-ts/indy-sdk-to-askar-migration": 0.5.9
+    "@credo-ts/indy-vdr": 0.5.9
+    "@credo-ts/openid4vc": 0.5.9
+    "@credo-ts/push-notifications": ^0.7.0
+    "@credo-ts/question-answer": 0.5.9
+    "@credo-ts/react-hooks": ^0.6.0
+    "@credo-ts/react-native": 0.5.9
+    "@formatjs/intl-datetimeformat": 4.2.4
+    "@formatjs/intl-displaynames": 5.2.4
+    "@formatjs/intl-getcanonicallocales": 1.7.3
+    "@formatjs/intl-listformat": 6.3.4
+    "@formatjs/intl-locale": 2.4.38
+    "@formatjs/intl-numberformat": 7.2.4
+    "@formatjs/intl-pluralrules": 4.1.4
+    "@formatjs/intl-relativetimeformat": 9.3.1
+    "@hyperledger/anoncreds-react-native": 0.2.2
+    "@hyperledger/aries-askar-react-native": 0.2.3
+    "@hyperledger/aries-bifold-core": ^1.0.0
+    "@hyperledger/aries-oca": ^1.0.0
+    "@hyperledger/indy-vdr-react-native": 0.2.2
+    "@react-native-async-storage/async-storage": 1.15.11
+    "@react-native-community/masked-view": 0.1.11
+    "@react-native-community/netinfo": ^9.3.0
+    "@react-native/eslint-config": ^0.72.2
+    "@react-native/metro-config": ^0.72.11
+    "@react-navigation/bottom-tabs": 6.0.9
+    "@react-navigation/core": 6.1.0
+    "@react-navigation/devtools": ^6.0.8
+    "@react-navigation/native": 6.0.6
+    "@react-navigation/stack": 6.0.11
+    "@tsconfig/react-native": ^3.0.0
+    "@types/lodash.flatten": ^4.4.6
+    "@types/lodash.merge": ^4.6.6
+    "@types/lodash.startcase": ^4.4.7
+    "@types/react": ^18.0.24
+    "@types/react-native": 0.71.5
+    axios: ^1.4.0
+    babel-plugin-module-resolver: ^5.0.0
+    eslint: ^8.48.0
+    eslint-import-resolver-typescript: ^2.5.0
+    i18next: ^21.4.0
+    lodash.flatten: ^4.4.0
+    lodash.startcase: ^4.4.0
+    metro-react-native-babel-preset: ^0.77.0
+    moment: ^2.29.4
+    patch-package: ^6.4.4
+    pod-install: 0.1.38
+    prettier: ^2.8.4
+    query-string: ^7.0.1
+    react: "*"
+    react-i18next: 11.13.0
+    react-native: "*"
+    react-native-animated-pagination-dots: ^0.1.72
+    react-native-argon2: ^2.0.1
+    react-native-bouncy-checkbox: ^3.0.5
+    react-native-collapsible: ^1.6.1
+    react-native-config: ^1.4.2
+    react-native-confirmation-code-field: ^7.3.0
+    react-native-device-info: ^8.4.9
+    react-native-encrypted-storage: ^4.0.2
+    react-native-fs: ^2.16.6
+    react-native-gesture-handler: ^1.10.3
+    react-native-get-random-values: ^1.7.0
+    react-native-gifted-chat: "*"
+    react-native-keychain: ^8.1.1
+    react-native-localize: ^2.2.4
+    react-native-logs: ^5.1.0
+    react-native-orientation-locker: ^1.6.0
+    react-native-permissions: ^4.0.1
+    react-native-qrcode-svg: ^6.2.0
+    react-native-reanimated: ^3.4.2
+    react-native-safe-area-context: ^3.2.0
+    react-native-scalable-image: ^1.1.0
+    react-native-screens: ^3.24.0
+    react-native-splash-screen: ^3.3.0
+    react-native-svg: ^12.1.1
+    react-native-svg-transformer: ^0.14.3
+    react-native-tcp-socket: ^6.0.6
+    react-native-toast-message: ^2.1.6
+    react-native-uuid: ^2.0.1
+    react-native-vector-icons: ^10.0.0
+    react-native-vision-camera: 4.3.1
+    react-native-webview: ^11.22.3
+    tsyringe: ^4.7.0
+    typescript: ^5.0.4
+    uuid: ^9.0.0
+  languageName: unknown
+  linkType: soft
+
+"veridid-wallet-root@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "veridid-wallet-root@workspace:."
+  dependencies:
+    "@eslint/js": ^8.56.0
+    "@react-native-community/eslint-config": ^3.2.0
+    "@types/conventional-recommended-bump": ^6.1.0
+    "@types/eslint__js": ^8.42.3
+    "@typescript-eslint/eslint-plugin": ^7.18.0
+    "@typescript-eslint/parser": ^7.18.0
+    conventional-changelog-conventionalcommits: ^5.0.0
+    conventional-recommended-bump: ^6.1.0
+    eslint: ^8.56.0
+    eslint-import-resolver-typescript: ^3.6.1
+    eslint-plugin-import: ^2.29.1
+    eslint-plugin-jest: ^28.8.0
+    eslint-plugin-prettier: ^5.2.1
+    eslint-plugin-react: ^7.35.0
+    eslint-plugin-react-hooks: ^4.6.2
+    lerna: ^6.6.2
+    npm-run-all: ^4.1.5
+    prettier: ^2.8.4
+    ts-node: ^10.0.0
+    typescript: ^5.5.4
+    typescript-eslint: ^7.18.0
+  languageName: unknown
+  linkType: soft
 
 "vlq@npm:^1.0.0":
   version: 1.0.1

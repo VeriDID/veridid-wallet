@@ -1,5 +1,5 @@
 {
-  "name": "aries-bifold-root",
+  "name": "veridid-wallet-root",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
