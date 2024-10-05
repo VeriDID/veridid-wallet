@@ -228,21 +228,21 @@ const GrayscaleColors: IGrayscaleColors = {
 const BrandColors: IBrandColors = {
   primary: '#42803E',
   primaryDisabled: `rgba(53, 130, 63, ${lightOpacity})`,
-  secondary: '#FFFFFFFF',
+  secondary: '#b8b8b8',
   secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
   primaryLight: `rgba(53, 130, 63, ${lightOpacity})`,
   highlight: '#FCBA19',
-  primaryBackground: '#000000',
-  secondaryBackground: '#313132',
+  primaryBackground: '#f5f5f5',
+  secondaryBackground: '#D3D3D3',
   modalPrimary: '#42803E',
-  modalSecondary: '#FFFFFFFF',
-  modalPrimaryBackground: '#000000',
-  modalSecondaryBackground: '#313132',
+  modalSecondary: '#e5e7eb',
+  modalPrimaryBackground: '#D3D3D3',
+  modalSecondaryBackground: '#D3D3D3',
   modalIcon: GrayscaleColors.white,
   unorderedList: GrayscaleColors.white,
   unorderedListModal: GrayscaleColors.white,
-  link: GrayscaleColors.white,
-  text: GrayscaleColors.white,
+  link: GrayscaleColors.darkGrey,
+  text: GrayscaleColors.darkGrey,
   icon: GrayscaleColors.white,
   headerIcon: GrayscaleColors.white,
   headerText: GrayscaleColors.white,
@@ -353,22 +353,22 @@ export const TextTheme: ITextTheme = {
   modalNormal: {
     fontSize: 18,
     fontWeight: 'normal',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   modalTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   modalHeadingOne: {
     fontSize: 38,
     fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   modalHeadingThree: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.grayscale.darkGrey,
   },
   popupModalText: {
     fontSize: 18,
@@ -391,7 +391,7 @@ export const Inputs: IInputs = StyleSheet.create({
     borderRadius,
     fontSize: 16,
     backgroundColor: ColorPallet.brand.primaryBackground,
-    color: ColorPallet.notification.infoText,
+    color: ColorPallet.brand.primary,
     borderWidth: 2,
     borderColor: ColorPallet.brand.secondary,
   },
@@ -476,6 +476,7 @@ export const Buttons = StyleSheet.create({
   },
   modalPrimaryText: {
     ...TextTheme.bold,
+    color: ColorPallet.grayscale.white,
     textAlign: 'center',
   },
   modalSecondary: {
@@ -502,7 +503,8 @@ export const ListItems = StyleSheet.create({
     ...TextTheme.caption,
   },
   credentialOfferBackground: {
-    backgroundColor: ColorPallet.brand.modalPrimaryBackground,
+    // backgroundColor: ColorPallet.brand.modalPrimaryBackground,
+    backgroundColor: ColorPallet.grayscale.white,
   },
   credentialOfferTitle: {
     ...TextTheme.modalHeadingThree,
@@ -703,30 +705,30 @@ export const ChatTheme = {
     marginRight: 16,
   },
   timeStyleLeft: {
-    color: ColorPallet.grayscale.lightGrey,
+    color: ColorPallet.grayscale.white,
     fontSize: 12,
     marginTop: 8,
   },
   timeStyleRight: {
-    color: ColorPallet.grayscale.lightGrey,
+    color: ColorPallet.grayscale.white,
     fontSize: 12,
     marginTop: 8,
   },
   leftText: {
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.grayscale.white,
     fontSize: TextTheme.normal.fontSize,
   },
   leftTextHighlighted: {
     ...TextTheme.bold,
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.grayscale.white,
   },
   rightText: {
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.grayscale.white,
     fontSize: TextTheme.normal.fontSize,
   },
   rightTextHighlighted: {
     ...TextTheme.bold,
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.grayscale.white,
   },
   inputToolbar: {
     backgroundColor: ColorPallet.brand.secondary,
@@ -738,7 +740,7 @@ export const ChatTheme = {
     fontWeight: '500',
     fontSize: TextTheme.normal.fontSize,
   },
-  placeholderText: ColorPallet.grayscale.lightGrey,
+  placeholderText: ColorPallet.grayscale.white,
   sendContainer: {
     marginBottom: 4,
     paddingHorizontal: 4,
@@ -750,7 +752,7 @@ export const ChatTheme = {
   optionsText: ColorPallet.grayscale.black,
   openButtonStyle: {
     borderRadius: 32,
-    backgroundColor: ColorPallet.brand.primary,
+    backgroundColor: ColorPallet.brand.secondary,
     paddingTop: 8,
     paddingBottom: 8,
     paddingLeft: 16,
@@ -850,7 +852,7 @@ const PINInputTheme = {
     color: ColorPallet.brand.text,
   },
   icon: {
-    color: ColorPallet.brand.headerIcon,
+    color: ColorPallet.brand.text,
   },
 }
 
