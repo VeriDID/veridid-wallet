@@ -2,7 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import SettingsMenu from '../components/buttons/SettingsMenu'
+//import SettingsMenu from '../components/buttons/SettingsMenu'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
 import HistoryMenu from '../modules/history/ui/components/HistoryMenu'
@@ -26,7 +26,7 @@ const HomeStack: React.FC = () => {
         options={() => ({
           title: t('Screens.Home'),
           headerRight: () => (store.preferences.useHistoryCapability ? <HistoryMenu /> : null),
-          headerLeft: () => <SettingsMenu />,
+          //headerLeft: () => <SettingsMenu />,
         })}
       />
     </Stack.Navigator>

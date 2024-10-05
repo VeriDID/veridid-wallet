@@ -93,7 +93,14 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, route }) 
         payload: [true],
       })
     }
-  }, [enableToursConfig, store.tours.enableTours, store.tours.seenCredentialOfferTour, screenIsFocused, start, dispatch])
+  }, [
+    enableToursConfig,
+    store.tours.enableTours,
+    store.tours.seenCredentialOfferTour,
+    screenIsFocused,
+    start,
+    dispatch,
+  ])
 
   useEffect(() => {
     if (!agent || !credential) {
@@ -144,12 +151,12 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, route }) 
     updateCredentialPreview()
       .then(() => resolvePresentationFields())
       .then(({ fields }) => {
-        setOverlay(o => ({ ...o, presentationFields: (fields as Attribute[]).filter((field) => field.value) }))
+        setOverlay((o) => ({ ...o, presentationFields: (fields as Attribute[]).filter((field) => field.value) }))
         setLoading(false)
       })
   }, [credential, agent, bundleResolver, i18n.language])
 
-  const toggleDeclineModalVisible = useCallback(() => setDeclineModalVisible(prev => !prev), [])
+  const toggleDeclineModalVisible = useCallback(() => setDeclineModalVisible((prev) => !prev), [])
 
   const logHistoryRecord = useCallback(async () => {
     try {
@@ -244,7 +251,7 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, route }) 
           paddingHorizontal: 25,
           paddingVertical: 16,
           paddingBottom: 26,
-          backgroundColor: ColorPallet.brand.secondaryBackground,
+          backgroundColor: ColorPallet.brand.primaryLight,
         }}
       >
         {loading ? <RecordLoading /> : null}

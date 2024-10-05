@@ -43,7 +43,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ route }) => {
   const styles = StyleSheet.create({
     contentContainer: {
       padding: 20,
-      backgroundColor: ColorPallet.brand.secondaryBackground,
+      backgroundColor: ColorPallet.brand.primaryBackground,
     },
   })
 
@@ -114,7 +114,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ route }) => {
         accessibilityLabel={t('Screens.RenameContact')}
         accessibilityRole={'button'}
         testID={testIdWithKey('RenameContact')}
-        style={[styles.contentContainer, { marginTop: 10 }]}
+        style={[styles.contentContainer, { backgroundColor: '#dddddd', marginTop: 10 }]}
       >
         <Text style={{ ...TextTheme.normal }}>{t('Screens.RenameContact')}</Text>
       </TouchableOpacity>
