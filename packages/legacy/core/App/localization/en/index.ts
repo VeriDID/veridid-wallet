@@ -429,7 +429,9 @@ const translation = {
     "CredentialDetails": "Credential Details",
     "EmptyList": "Your wallet is empty. Your accepted credentials will be added here.",
     "IssuedBy": "Issued by",
-    "Credential": "credential"
+    "Credential": "credential",
+    "VeriDIDWallet": "VeriDID Wallet",
+    "AddYourFirstCredential": "Add your first credential by first joining a channel.",
   },
   "PushNotifications": {
     "EnableNotifiactions": "Enable Notifications to get instant alerts",
@@ -715,6 +717,7 @@ const translation = {
     "Language": "Language",
     "DataRetention": "Data retention",
     "Contacts": "Contacts",
+    "Channels": "Channels",
     "Decline": "Decline",
     "ContactDetails": "Contact Details",
     "Biometry": "Biometrics",

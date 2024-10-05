@@ -177,3 +177,5 @@ app/android/app/src/main/assets/app.bundle
 **/.yarn/install-state.gz
 .xcode.env.local
 packages/legacy/app/vendor/bundle/**
+
+.vscode/settings.json

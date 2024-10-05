@@ -25,7 +25,7 @@ const ContactStack: React.FC = () => {
 
   return (
     <Stack.Navigator screenOptions={{ ...defaultStackOptions }}>
-      <Stack.Screen name={Screens.Contacts} component={ListContacts} options={{ title: t('Screens.Contacts') }} />
+      <Stack.Screen name={Screens.Contacts} component={ListContacts} options={{ title: t('Screens.Channels') }} />
       <Stack.Screen
         name={Screens.ContactDetails}
         component={ContactDetails}
