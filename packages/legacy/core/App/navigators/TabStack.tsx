@@ -209,7 +209,7 @@ const TabStack: React.FC = () => {
                         fontSize: 13,
                       }}
                     >
-                      {/* {t('TabStack.Contacts')} */}
+                      {t('TabStack.Contacts')}
                     </Text>
                   )}
                 </View>
