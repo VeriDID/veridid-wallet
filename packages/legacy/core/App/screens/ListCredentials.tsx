@@ -2,29 +2,34 @@ import { AnonCredsCredentialMetadataKey } from '@credo-ts/anoncreds'
 import { CredentialState } from '@credo-ts/core'
 import { useCredentialByState } from '@credo-ts/react-hooks'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlatList, View } from 'react-native'
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import CredentialCard from '../components/misc/CredentialCard'
 import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
 import { useTour } from '../contexts/tour/tour-context'
-import { CredentialStackParams, Screens } from '../types/navigators'
+import { CredentialStackParams, Screens, TabStackParams, TabStacks } from '../types/navigators'
 import { TourID } from '../types/tour'
 import { TOKENS, useServices } from '../container-api'
-import { EmptyListProps } from '../components/misc/EmptyList'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const ListCredentials: React.FC = () => {
   const { t } = useTranslation()
   const [store, dispatch] = useStore()
-  const [CredentialListOptions, credentialEmptyList, {
-    enableTours: enableToursConfig,
-    credentialHideList,
-  }] = useServices([TOKENS.COMPONENT_CRED_LIST_OPTIONS, TOKENS.COMPONENT_CRED_EMPTY_LIST, TOKENS.CONFIG])
-  const navigation = useNavigation<StackNavigationProp<CredentialStackParams>>()
+  const [, , { enableTours: enableToursConfig, credentialHideList }] = useServices([
+    TOKENS.COMPONENT_CRED_LIST_OPTIONS,
+    TOKENS.COMPONENT_CRED_EMPTY_LIST,
+    TOKENS.CONFIG,
+  ])
+
+  const tabNavigation = useNavigation<BottomTabNavigationProp<TabStackParams>>()
+  const stackNavigation = useNavigation<StackNavigationProp<CredentialStackParams>>()
+
   const { ColorPallet } = useTheme()
   const { start } = useTour()
   const screenIsFocused = useIsFocused()
@@ -32,8 +37,6 @@ const ListCredentials: React.FC = () => {
     ...useCredentialByState(CredentialState.CredentialReceived),
     ...useCredentialByState(CredentialState.Done),
   ]
-
-  const CredentialEmptyList = credentialEmptyList as React.FC<EmptyListProps>
 
   // Filter out hidden credentials when not in dev mode
   if (!store.preferences.developerModeEnabled) {
@@ -55,33 +58,113 @@ const ListCredentials: React.FC = () => {
     }
   }, [enableToursConfig, store.tours.enableTours, store.tours.seenCredentialsTour, screenIsFocused, start, dispatch])
 
+  const navigateToChannels = () => {
+    // Navigate to the 'Contacts' screen within the 'ContactStack'
+    tabNavigation.navigate(TabStacks.ContactStack, {
+      screen: Screens.Contacts,
+    })
+  }
   return (
-    <View>
-      <FlatList
-        style={{ backgroundColor: ColorPallet.brand.primaryBackground }}
-        data={credentials.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())}
-        keyExtractor={(credential) => credential.id}
-        renderItem={({ item: credential, index }) => {
-          return (
-            <View
-              style={{
-                marginHorizontal: 15,
-                marginTop: 15,
-                marginBottom: index === credentials.length - 1 ? 45 : 0,
-              }}
-            >
-              <CredentialCard
-                credential={credential}
-                onPress={() => navigation.navigate(Screens.CredentialDetails, { credential })}
-              />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: ColorPallet.brand.primaryBackground }}>
+        {credentials.length === 0 ? (
+          <View style={styles.emptyContainer}>
+            <View style={styles.boxContainer}>
+              <View style={styles.darkRectangle}>
+                <Image source={require('../assets/img/veridid-logo.png')} style={styles.logo} />
+              </View>
+
+              {/* Light grey rectangle */}
+              <View style={styles.lightRectangle}>
+                <Text style={styles.walletText}>{t('Credentials.VeriDIDWallet')}</Text>
+                <Text style={styles.walletDescription}>{t('Credentials.AddYourFirstCredential')}</Text>
+                <TouchableOpacity style={styles.addIconContainer} onPress={navigateToChannels}>
+                  <Icon name="plus-circle-outline" style={styles.addIcon} />
+                </TouchableOpacity>
+              </View>
             </View>
-          )
-        }}
-        ListEmptyComponent={() => <CredentialEmptyList message={t('Credentials.EmptyList')} />}
-      />
-      <CredentialListOptions />
-    </View>
+          </View>
+        ) : (
+          <FlatList
+            data={credentials.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())}
+            keyExtractor={(credential) => credential.id}
+            renderItem={({ item: credential }) => (
+              <View style={styles.credentialContainer}>
+                <CredentialCard
+                  credential={credential}
+                  onPress={() => stackNavigation.navigate(Screens.CredentialDetails, { credential })}
+                />
+              </View>
+            )}
+          />
+        )}
+      </View>
+    </SafeAreaView>
   )
 }
+const styles = StyleSheet.create({
+  emptyContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  boxContainer: {
+    flexDirection: 'row',
+    width: '95%',
+    height: 106,
+    backgroundColor: '#D9D9D9',
+    borderRadius: 4,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  darkRectangle: {
+    width: '30%',
+    height: '100%',
+    backgroundColor: '#616161',
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  lightRectangle: {
+    flex: 1,
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  logo: {
+    width: '70%',
+    height: '70%',
+  },
+  walletText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 0,
+    marginBottom: 5,
+  },
+  walletDescription: {
+    fontSize: 15,
+    color: '#555555',
+    flexWrap: 'wrap',
+    width: '80%',
+  },
+  addIconContainer: {
+    position: 'absolute',
+    right: 15,
+    top: '30%',
+    transform: [{ translateY: -12 }],
+    backgroundColor: 'transparent',
+    padding: 0,
+  },
+  addIcon: {
+    fontSize: 30,
+    color: '#000',
+  },
+  credentialContainer: {
+    marginHorizontal: '5%',
+    marginTop: 15,
+    marginBottom: 45,
+  },
+})
 
 export default ListCredentials
