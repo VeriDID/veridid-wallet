@@ -610,6 +610,7 @@ export const TabTheme = {
     shadowOpacity: 0.1,
     borderTopWidth: 0,
     paddingBottom: 0,
+    paddingTop: 0,
     borderRadius: 30, // This creates rounded corners on all sides
     position: 'absolute', // Keep it absolute for overlay
     bottom: 10, // Move it up slightly to show bottom rounded corners
@@ -626,7 +627,7 @@ export const TabTheme = {
   tabBarInactiveTintColor: 'black', //ColorPallet.brand.tabBarInactive,
   tabBarTextStyle: {
     ...TextTheme.labelSubtitle,
-    paddingBottom: 5,
+    paddingBottom: 0,
   },
   tabBarButtonIconStyle: {
     color: ColorPallet.brand.headerIcon,
