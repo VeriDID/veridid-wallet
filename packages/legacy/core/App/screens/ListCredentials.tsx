@@ -1,14 +1,15 @@
 import { AnonCredsCredentialMetadataKey } from '@credo-ts/anoncreds'
-import { CredentialState } from '@credo-ts/core'
-import { useCredentialByState } from '@credo-ts/react-hooks'
+import { CredentialState, ConnectionRecord } from '@credo-ts/core'
+import { useCredentialByState, useConnections } from '@credo-ts/react-hooks'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-import CredentialCard from '../components/misc/CredentialCard'
+import CredentialCardCustom from '../components/misc/CredentialCardCustom'
+
 import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
@@ -29,14 +30,30 @@ const ListCredentials: React.FC = () => {
 
   const tabNavigation = useNavigation<BottomTabNavigationProp<TabStackParams>>()
   const stackNavigation = useNavigation<StackNavigationProp<CredentialStackParams>>()
-
   const { ColorPallet } = useTheme()
   const { start } = useTour()
   const screenIsFocused = useIsFocused()
+
+  // State for connections
+  const [connectionsMap, setConnectionsMap] = useState<Record<string, ConnectionRecord>>({})
+
   let credentials = [
     ...useCredentialByState(CredentialState.CredentialReceived),
     ...useCredentialByState(CredentialState.Done),
   ]
+
+  // Fetch all connections and store in state
+  const { records: connections } = useConnections()
+
+  useEffect(() => {
+    const newConnectionsMap: Record<string, ConnectionRecord> = {}
+    connections.forEach((connection) => {
+      if (connection.id) {
+        newConnectionsMap[connection.id] = connection
+      }
+    })
+    setConnectionsMap(newConnectionsMap)
+  }, [connections])
 
   // Filter out hidden credentials when not in dev mode
   if (!store.preferences.developerModeEnabled) {
@@ -59,11 +76,11 @@ const ListCredentials: React.FC = () => {
   }, [enableToursConfig, store.tours.enableTours, store.tours.seenCredentialsTour, screenIsFocused, start, dispatch])
 
   const navigateToChannels = () => {
-    // Navigate to the 'Contacts' screen within the 'ContactStack'
     tabNavigation.navigate(TabStacks.ContactStack, {
       screen: Screens.Contacts,
     })
   }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: ColorPallet.brand.primaryBackground }}>
@@ -73,8 +90,6 @@ const ListCredentials: React.FC = () => {
               <View style={styles.darkRectangle}>
                 <Image source={require('../assets/img/veridid-logo.png')} style={styles.logo} />
               </View>
-
-              {/* Light grey rectangle */}
               <View style={styles.lightRectangle}>
                 <Text style={styles.walletText}>{t('Credentials.VeriDIDWallet')}</Text>
                 <Text style={styles.walletDescription}>{t('Credentials.AddYourFirstCredential')}</Text>
@@ -88,20 +103,27 @@ const ListCredentials: React.FC = () => {
           <FlatList
             data={credentials.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())}
             keyExtractor={(credential) => credential.id}
-            renderItem={({ item: credential }) => (
-              <View style={styles.credentialContainer}>
-                <CredentialCard
-                  credential={credential}
-                  onPress={() => stackNavigation.navigate(Screens.CredentialDetails, { credential })}
-                />
-              </View>
-            )}
+            renderItem={({ item: credential }) => {
+              const connection = connectionsMap[credential.connectionId ?? '']
+              const logoUrl = connection?.imageUrl
+
+              return (
+                <View style={styles.credentialContainer}>
+                  <CredentialCardCustom
+                    credential={credential}
+                    onPress={() => stackNavigation.navigate(Screens.CredentialDetails, { credential })}
+                    logoUrl={logoUrl}
+                  />
+                </View>
+              )
+            }}
           />
         )}
       </View>
     </SafeAreaView>
   )
 }
+
 const styles = StyleSheet.create({
   emptyContainer: {
     justifyContent: 'flex-start',
@@ -144,7 +166,7 @@ const styles = StyleSheet.create({
   },
   walletDescription: {
     fontSize: 15,
-    color: '#555555',
+    color: '#000',
     flexWrap: 'wrap',
     width: '80%',
   },

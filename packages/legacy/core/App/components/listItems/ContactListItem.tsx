@@ -80,10 +80,7 @@ const ContactListItem: React.FC<Props> = ({ contact, navigation }) => {
     () => getConnectionName(contact, store.preferences.alternateContactNames),
     [contact, store.preferences.alternateContactNames]
   )
-  const contactLabelAbbr = useMemo(
-    () => contactLabel?.charAt(0).toUpperCase(),
-    [contactLabel]
-  )
+  const contactLabelAbbr = useMemo(() => contactLabel?.charAt(0).toUpperCase(), [contactLabel])
 
   return (
     <TouchableOpacity

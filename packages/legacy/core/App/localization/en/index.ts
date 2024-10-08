@@ -432,6 +432,8 @@ const translation = {
     "Credential": "credential",
     "VeriDIDWallet": "VeriDID Wallet",
     "AddYourFirstCredential": "Add your first credential by first joining a channel.",
+    "UnknownIssuer": "Unknown Contact",
+    "UnknownCredential": "Unknown Credential",
   },
   "PushNotifications": {
     "EnableNotifiactions": "Enable Notifications to get instant alerts",
