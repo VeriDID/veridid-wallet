@@ -21,6 +21,11 @@ const CustomCredentialCard: React.FC<CustomCredentialCardProps> = ({ credential,
     credential?.credentialAttributes?.find((attr) => attr.name.toLowerCase() === 'name')?.value ??
     t('Credentials.UnknownCredential')
 
+  // Extract and format the creation date
+  const creationDate = credential?.createdAt
+    ? new Date(credential.createdAt).toLocaleDateString()
+    : t('Credentials.UnknownDate')
+
   return (
     <TouchableOpacity style={styles.boxContainer} onPress={onPress}>
       <View style={styles.darkRectangle}>
@@ -31,8 +36,11 @@ const CustomCredentialCard: React.FC<CustomCredentialCardProps> = ({ credential,
         )}
       </View>
       <View style={styles.lightRectangle}>
-        <Text style={styles.walletText}>{issuerName}</Text>
-        <Text style={styles.walletDescription}>{credentialName}</Text>
+        <View>
+          <Text style={styles.walletText}>{issuerName}</Text>
+          <Text style={styles.walletDescription}>{credentialName}</Text>
+        </View>
+        <Text style={styles.dateText}>{creationDate}</Text>
       </View>
     </TouchableOpacity>
   )
@@ -78,6 +86,12 @@ const styles = StyleSheet.create({
     color: '#000',
     flexWrap: 'wrap',
     width: '80%',
+    marginBottom: 22,
+  },
+  dateText: {
+    fontSize: 14,
+    color: '#000',
+    alignSelf: 'flex-start', // Align date at the bottom left
   },
 })
 
