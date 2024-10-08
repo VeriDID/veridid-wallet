@@ -610,14 +610,20 @@ export const TabTheme = {
     shadowOpacity: 0.1,
     borderTopWidth: 0,
     paddingBottom: 0,
+    borderRadius: 30, // This creates rounded corners on all sides
+    position: 'absolute', // Keep it absolute for overlay
+    bottom: 10, // Move it up slightly to show bottom rounded corners
+    left: 5, // Add some space on the left
+    right: 5, // Add some space on the right
+    marginHorizontal: 10,
   },
   tabBarContainerStyle: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabBarActiveTintColor: ColorPallet.brand.primary,
-  tabBarInactiveTintColor: ColorPallet.brand.tabBarInactive,
+  tabBarActiveTintColor: 'red', //ColorPallet.brand.primary,
+  tabBarInactiveTintColor: 'black', //ColorPallet.brand.tabBarInactive,
   tabBarTextStyle: {
     ...TextTheme.labelSubtitle,
     paddingBottom: 5,
