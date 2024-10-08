@@ -226,13 +226,13 @@ const GrayscaleColors: IGrayscaleColors = {
 }
 
 const BrandColors: IBrandColors = {
-  primary: '#42803E',
+  primary: '#30c640', // veridid green
   primaryDisabled: `rgba(53, 130, 63, ${lightOpacity})`,
   secondary: '#b8b8b8',
   secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
   primaryLight: `rgba(53, 130, 63, ${lightOpacity})`,
   highlight: '#FCBA19',
-  primaryBackground: '#f5f5f5',
+  primaryBackground: '#fff',
   secondaryBackground: '#D3D3D3',
   modalPrimary: '#42803E',
   modalSecondary: '#e5e7eb',
@@ -347,8 +347,8 @@ export const TextTheme: ITextTheme = {
   },
   headerTitle: {
     fontSize: 28,
-    fontWeight: 'bold',
-    color: ColorPallet.brand.headerText,
+    //fontWeight: 'bold',
+    color: 'black', //ColorPallet.brand.headerText,//header title color
   },
   modalNormal: {
     fontSize: 18,
@@ -623,7 +623,7 @@ export const TabTheme = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabBarActiveTintColor: 'red', //ColorPallet.brand.primary,
+  tabBarActiveTintColor: '#f324c5', //ColorPallet.brand.primary,//veridid pink
   tabBarInactiveTintColor: 'black', //ColorPallet.brand.tabBarInactive,
   tabBarTextStyle: {
     ...TextTheme.labelSubtitle,
@@ -907,14 +907,14 @@ export const Assets = {
   },
   img: {
     logoPrimary: {
-      src: require('./assets/img/logo-large.png'),
+      src: require('./assets/img/veridid-logo.png'),
       aspectRatio: 1,
       height: '33%',
       width: '33%',
       resizeMode: 'contain',
     },
     logoSecondary: {
-      src: require('./assets/img/logo-large.png'),
+      src: require('./assets/img/veridid-logo.png'),
       aspectRatio: 1,
       height: 120,
       width: 120,

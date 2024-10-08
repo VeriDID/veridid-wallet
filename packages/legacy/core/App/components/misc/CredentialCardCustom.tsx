@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   darkRectangle: {
     width: '30%',
     height: '100%',
-    backgroundColor: '#616161',
+    backgroundColor: '#fea41c',
     borderTopLeftRadius: 4,
     borderBottomLeftRadius: 4,
     justifyContent: 'center',
