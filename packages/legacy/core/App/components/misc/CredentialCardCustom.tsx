@@ -1,30 +1,110 @@
-import React from 'react'
-import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { TouchableOpacity, View, Text, Image, StyleSheet, Linking } from 'react-native'
 import { CredentialExchangeRecord } from '@credo-ts/core'
 import { useTranslation } from 'react-i18next'
 import { useCredentialConnectionLabel } from '../../utils/helpers'
-//import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { getCredentialIdentifiers } from '../../utils/credential'
+import { BrandingOverlay } from '@hyperledger/aries-oca'
+import { TOKENS, useServices } from '../../container-api'
+import { GenericFn } from 'types/fn'
+import { useNavigation } from '@react-navigation/core'
+import { CredentialOverlay } from '@hyperledger/aries-oca/build/legacy'
 
 interface CustomCredentialCardProps {
   credential: CredentialExchangeRecord
   onPress: () => void
   logoUrl?: string
+  credName?: string
+  credDefId?: string
+  schemaId?: string
+  proof: boolean
 }
 
-const CustomCredentialCard: React.FC<CustomCredentialCardProps> = ({ credential, onPress, logoUrl }) => {
-  const { t } = useTranslation()
-  //const connection = useConnectionById(credential.connectionId ?? '')
-  const issuerName = useCredentialConnectionLabel(credential) ?? t('Credentials.UnknownIssuer')
+const CustomCredentialCard: React.FC<CustomCredentialCardProps> = ({
+  credential,
+  onPress,
+  logoUrl,
+  credName,
+  schemaId,
+  proof,
+  credDefId,
+}) => {
+  const { i18n, t } = useTranslation()
 
-  // Attempt to extract the credential name from the credential's attributes does not work tbc
-  const credentialName =
-    credential?.credentialAttributes?.find((attr) => attr.name.toLowerCase() === 'name')?.value ??
-    t('Credentials.UnknownCredential')
+  const issuerName = useCredentialConnectionLabel(credential) ?? t('Credentials.UnknownIssuer')
 
   // Extract and format the creation date
   const creationDate = credential?.createdAt
     ? new Date(credential.createdAt).toLocaleDateString()
     : t('Credentials.UnknownDate')
+
+  const [bundleResolver, credHelpActionOverrides] = useServices([
+    TOKENS.UTIL_OCA_RESOLVER,
+    TOKENS.CRED_HELP_ACTION_OVERRIDES,
+  ])
+
+  const [, setHelpAction] = useState<GenericFn>()
+  const navigation = useNavigation()
+  const [, setFlaggedAttributes] = useState<string[]>()
+  const [, setOverlay] = useState<CredentialOverlay<BrandingOverlay>>({})
+  const [resolvedCredName, setResolvedCredName] = useState<string>(t('Credentials.UnknownCredential'))
+
+  useEffect(() => {
+    const params = {
+      identifiers: credential ? getCredentialIdentifiers(credential) : { schemaId, credentialDefinitionId: credDefId },
+      attributes: proof ? [] : credential?.credentialAttributes,
+      meta: {
+        credName,
+        credConnectionId: credential?.connectionId,
+        //alias: credentialConnectionLabel,
+      },
+      language: i18n.language,
+    }
+    bundleResolver.resolveAllBundles(params).then((bundle: any) => {
+      if (proof) {
+        setFlaggedAttributes((bundle as any).bundle.bundle.flaggedAttributes.map((attr: any) => attr.name))
+        const credHelpUrl =
+          (bundle as any).bundle.bundle.metadata.credentialSupportUrl[params.language] ??
+          Object.values((bundle as any).bundle.bundle.metadata.credentialSupportUrl)?.[0]
+
+        // Check if there is a help action override for this credential
+        const override = credHelpActionOverrides?.find(
+          (override) =>
+            (credDefId && override.credDefIds.includes(credDefId)) ||
+            (schemaId && override.schemaIds.includes(schemaId))
+        )
+        if (override) {
+          setHelpAction(() => () => {
+            override.action(navigation)
+          })
+        } else if (credHelpUrl) {
+          setHelpAction(() => () => {
+            Linking.openURL(credHelpUrl)
+          })
+        }
+      }
+      setOverlay((o) => ({
+        ...o,
+        ...bundle,
+        brandingOverlay: bundle.brandingOverlay as BrandingOverlay,
+      }))
+      // Extract the credential name from the meta overlay
+      const nameFromOverlay = bundle?.metaOverlay?.name
+      if (nameFromOverlay) {
+        setResolvedCredName(nameFromOverlay)
+      }
+    })
+  }, [
+    credential,
+    credName,
+    i18n.language,
+    bundleResolver,
+    credHelpActionOverrides,
+    navigation,
+    schemaId,
+    credDefId,
+    proof,
+  ])
 
   return (
     <TouchableOpacity style={styles.boxContainer} onPress={onPress}>
@@ -38,7 +118,7 @@ const CustomCredentialCard: React.FC<CustomCredentialCardProps> = ({ credential,
       <View style={styles.lightRectangle}>
         <View>
           <Text style={styles.walletText}>{issuerName}</Text>
-          <Text style={styles.walletDescription}>{credentialName}</Text>
+          <Text style={styles.walletDescription}>{resolvedCredName}</Text>
         </View>
         <Text style={styles.dateText}>{creationDate}</Text>
       </View>

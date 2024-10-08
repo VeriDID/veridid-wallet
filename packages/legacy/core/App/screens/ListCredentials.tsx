@@ -113,6 +113,7 @@ const ListCredentials: React.FC = () => {
                     credential={credential}
                     onPress={() => stackNavigation.navigate(Screens.CredentialDetails, { credential })}
                     logoUrl={logoUrl}
+                    proof={false}
                   />
                 </View>
               )
