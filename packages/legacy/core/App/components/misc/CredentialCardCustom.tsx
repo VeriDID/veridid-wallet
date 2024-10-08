@@ -107,26 +107,33 @@ const CustomCredentialCard: React.FC<CustomCredentialCardProps> = ({
   ])
 
   return (
-    <TouchableOpacity style={styles.boxContainer} onPress={onPress}>
-      <View style={styles.darkRectangle}>
-        {logoUrl ? (
-          <Image source={{ uri: logoUrl }} style={styles.logo} />
-        ) : (
-          <Image source={require('../../assets/img/veridid-logo.png')} style={styles.logo} />
-        )}
-      </View>
-      <View style={styles.lightRectangle}>
-        <View>
-          <Text style={styles.walletText}>{issuerName}</Text>
-          <Text style={styles.walletDescription}>{resolvedCredName}</Text>
+    <View style={styles.emptyContainer}>
+      <TouchableOpacity style={styles.boxContainer} onPress={onPress}>
+        <View style={styles.darkRectangle}>
+          {logoUrl ? (
+            <Image source={{ uri: logoUrl }} style={styles.logo} />
+          ) : (
+            <Image source={require('../../assets/img/veridid-logo.png')} style={styles.logo} />
+          )}
         </View>
-        <Text style={styles.dateText}>{creationDate}</Text>
-      </View>
-    </TouchableOpacity>
+        <View style={styles.lightRectangle}>
+          <View>
+            <Text style={styles.walletText}>{issuerName}</Text>
+            <Text style={styles.walletDescription}>{resolvedCredName}</Text>
+          </View>
+          <Text style={styles.dateText}>{creationDate}</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  emptyContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 10,
+  },
   boxContainer: {
     flexDirection: 'row',
     width: '95%',
