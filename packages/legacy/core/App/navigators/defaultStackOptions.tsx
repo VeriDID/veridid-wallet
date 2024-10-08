@@ -7,6 +7,8 @@ import { ITheme, OnboardingTheme } from '../theme'
 import { ScreenOptionsType, Screens } from '../types/navigators'
 import { testIdWithKey } from '../utils/testable'
 import { TOKENS, useServices } from '../container-api'
+import logo from '../assets/img/veridid-logo.png' // Import your logo
+import { Image, StyleSheet, View } from 'react-native' // Import Image and View from 'react-native'
 
 export const DefaultScreenOptionsDictionary: ScreenOptionsType = {
   [Screens.Preface]: {
@@ -50,26 +52,58 @@ export function useDefaultStackOptions({ ColorPallet }: ITheme): StackNavigation
   const { t } = useTranslation()
   const [{ globalScreenOptions }] = useServices([TOKENS.CONFIG])
 
+  const styles = StyleSheet.create({
+    headerContainer: {
+      flexDirection: 'column',
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'white',
+    },
+    logoContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    logo: {
+      width: 100,
+      height: 100,
+      marginBottom: 8, // Space between logo and title
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    titleContainer: {
+      width: '100%',
+      alignItems: 'flex-start', // Align the title to the left
+      paddingLeft: 0, // Left padding for the title
+    },
+  })
+
   return (
     globalScreenOptions ?? {
-      headerTintColor: ColorPallet.brand.headerIcon,
+      headerTintColor: '#ffffff', //ColorPallet.brand.headerIcon,
       headerShown: true,
       headerBackTitleVisible: false,
-      headerTitleContainerStyle: {
-        flexShrink: 1,
-        maxWidth: '68%',
-        width: '100%',
-      },
       headerStyle: {
+        backgroundColor: 'white', //ColorPallet.brand.headerBackground,
         elevation: 0,
         shadowOffset: { width: 0, height: 6 },
         shadowRadius: 6,
-        shadowColor: ColorPallet.grayscale.black,
+        shadowColor: 'white', //ColorPallet.grayscale.black,
         shadowOpacity: 0.15,
         borderBottomWidth: 0,
+        height: 160, // Increase header height to accommodate logo and title
       },
-      headerTitleAlign: 'center' as 'center' | 'left',
-      headerTitle: (props: { children: React.ReactNode }) => <HeaderTitle {...props} />,
+      headerTitleAlign: 'left' as 'center' | 'left',
+      headerTitle: (props: { children: React.ReactNode }) => (
+        <View style={styles.headerContainer}>
+          <View style={styles.logoContainer}>
+            <Image source={logo} style={styles.logo} resizeMode="contain" />
+          </View>
+          <View style={styles.titleContainer}>
+            <HeaderTitle {...props} />
+          </View>
+        </View>
+      ),
       headerBackAccessibilityLabel: t('Global.Back'),
     }
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '../../contexts/theme'
+//import { ColorPallet } from 'theme'
 
 interface Props {
   children: React.ReactNode
@@ -14,7 +15,7 @@ const HeaderTitle: React.FC<Props> = ({ children }) => {
   const styles = StyleSheet.create({
     title: {
       ...TextTheme.headerTitle,
-      textAlign: 'center',
+      textAlign: 'left',
     },
   })
 

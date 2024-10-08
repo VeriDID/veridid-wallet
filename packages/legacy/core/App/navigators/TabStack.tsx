@@ -37,7 +37,7 @@ const TabStack: React.FC = () => {
   useOrientationChange((orientationType) => {
     setOrientation(orientationType)
   })
-
+  //2 line below color is controlling very top and very bottom footers.
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: ColorPallet.brand.primary }}>
       <Tab.Navigator
@@ -209,7 +209,7 @@ const TabStack: React.FC = () => {
                         fontSize: 13,
                       }}
                     >
-                      {t('TabStack.Contacts')}
+                      {/* {t('TabStack.Contacts')} */}
                     </Text>
                   )}
                 </View>
