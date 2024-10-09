@@ -1,5 +1,5 @@
 import { AnonCredsCredentialMetadataKey } from '@credo-ts/anoncreds'
-import { CredentialState, ConnectionRecord } from '@credo-ts/core'
+import { CredentialState, ConnectionRecord, CredentialExchangeRecord } from '@credo-ts/core'
 import { useCredentialByState, useConnections } from '@credo-ts/react-hooks'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
@@ -28,6 +28,7 @@ import { Screens, TabStackParams, TabStacks } from '../types/navigators'
 import { TourID } from '../types/tour'
 import { TOKENS, useServices } from '../container-api'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import CredentialDetailsCustom from '../components/misc/CredentialDetailsCustom'
 //import CredentialDetails from './CredentialDetails'
 
 const ListCredentials: React.FC = () => {
@@ -49,7 +50,8 @@ const ListCredentials: React.FC = () => {
   const [connectionsMap, setConnectionsMap] = useState<Record<string, ConnectionRecord>>({})
 
   const [modalVisible, setModalVisible] = useState(false)
-  //const [selectedCredential, setSelectedCredential] = useState<CredentialExchangeRecord | null>(null)
+  const [selectedCredential, setSelectedCredential] = useState<CredentialExchangeRecord | null>(null) // State for selected credential
+  const [selectedLogoUrl, setSelectedLogoUrl] = useState<string | undefined>(undefined) // State for selected logo URL
 
   let credentials = [
     ...useCredentialByState(CredentialState.CredentialReceived),
@@ -125,7 +127,8 @@ const ListCredentials: React.FC = () => {
                 <CredentialCardCustom
                   credential={credential}
                   onPress={() => {
-                    //setSelectedCredential(credential)
+                    setSelectedCredential(credential)
+                    setSelectedLogoUrl(logoUrl)
                     setModalVisible(true)
                   }}
                   logoUrl={logoUrl}
@@ -136,7 +139,7 @@ const ListCredentials: React.FC = () => {
           />
         )}
       </View>
-      {modalVisible && (
+      {modalVisible && selectedCredential && (
         <Modal
           animationType="slide"
           transparent={true}
@@ -153,7 +156,7 @@ const ListCredentials: React.FC = () => {
               {/* Modal Container */}
               <View style={styles.modalContainer}>
                 <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.modalContent}>
-                  <Text style={styles.placeholderText}>Credential Details Placeholder</Text>
+                  <CredentialDetailsCustom credential={selectedCredential} logoUrl={selectedLogoUrl} />
                   {/* Additional content */}
                 </ScrollView>
               </View>
