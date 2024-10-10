@@ -430,11 +430,12 @@ const translation = {
     "EmptyList": "Your wallet is empty. Your accepted credentials will be added here.",
     "IssuedBy": "Issued by",
     "Credential": "credential",
-    "VeriDIDWallet": "VeriDID Wallet",
+    "VeriDIDWallet": "Welcome to your VeriDID Wallet",
     "AddYourFirstCredential": "Add your first credential by first joining a channel.",
     "UnknownIssuer": "Unknown Contact",
     "UnknownCredential": "Unknown Credential",
     "UnknownDate": "Date Unknown",
+    "JoinChannel": "Join Channel",
   },
   "PushNotifications": {
     "EnableNotifiactions": "Enable Notifications to get instant alerts",
@@ -585,6 +586,9 @@ const translation = {
     "DeleteOfferTitle": "Delete this offer?",
     "DeleteOfferMessage": "Deleting this offer will remove the notification from your list.",
     "DeleteOfferDescription": "Don't recognize the organization? Check your Contacts list. You only receive notifications from Contacts you've initiated",
+  },
+  "Attributes": {
+    "Placeholder": "Placeholder",
   },
   "ProofRequest": {
     "RequestForProof": "Request for proof",

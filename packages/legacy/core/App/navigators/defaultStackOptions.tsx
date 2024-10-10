@@ -7,8 +7,11 @@ import { ITheme, OnboardingTheme } from '../theme'
 import { ScreenOptionsType, Screens } from '../types/navigators'
 import { testIdWithKey } from '../utils/testable'
 import { TOKENS, useServices } from '../container-api'
-import logo from '../assets/img/veridid-logo.png' // Import your logo
+//import logo from '../assets/img/veridid-logo.png' // Import your logo
 import { Image, StyleSheet, View } from 'react-native' // Import Image and View from 'react-native'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const logo = require('../assets/img/veridid-logo.png')
 
 export const DefaultScreenOptionsDictionary: ScreenOptionsType = {
   [Screens.Preface]: {
@@ -54,54 +57,41 @@ export function useDefaultStackOptions({ ColorPallet }: ITheme): StackNavigation
 
   const styles = StyleSheet.create({
     headerContainer: {
-      flexDirection: 'column',
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'white',
-    },
-    logoContainer: {
-      flex: 1,
-      justifyContent: 'center',
+      flexDirection: 'row',
       alignItems: 'center',
     },
     logo: {
-      width: 100,
-      height: 100,
-      marginBottom: 8, // Space between logo and title
-      alignItems: 'center',
-      justifyContent: 'center',
+      width: 90,
+      height: 90,
+      marginLeft: 16,
     },
     titleContainer: {
-      width: '100%',
-      alignItems: 'flex-start', // Align the title to the left
-      paddingLeft: 0, // Left padding for the title
+      flex: 1,
+      justifyContent: 'center',
+      marginLeft: 16,
     },
   })
 
   return (
     globalScreenOptions ?? {
-      headerTintColor: '#ffffff', //ColorPallet.brand.headerIcon,
+      headerTintColor: ColorPallet.brand.primary,
       headerShown: true,
       headerBackTitleVisible: false,
       headerStyle: {
-        backgroundColor: 'white', //ColorPallet.brand.headerBackground,
+        backgroundColor: 'white',
         elevation: 0,
         shadowOffset: { width: 0, height: 6 },
         shadowRadius: 6,
-        shadowColor: 'white', //ColorPallet.grayscale.black,
-        shadowOpacity: 0.15,
+        shadowColor: ColorPallet.grayscale.black,
+        shadowOpacity: 0,
         borderBottomWidth: 0,
-        height: 160, // Increase header height to accommodate logo and title
+        height: 120, // Adjust this value if needed
       },
       headerTitleAlign: 'left' as 'center' | 'left',
+      headerLeft: () => <Image source={logo} style={styles.logo} resizeMode="contain" />,
       headerTitle: (props: { children: React.ReactNode }) => (
-        <View style={styles.headerContainer}>
-          <View style={styles.logoContainer}>
-            <Image source={logo} style={styles.logo} resizeMode="contain" />
-          </View>
-          <View style={styles.titleContainer}>
-            <HeaderTitle {...props} />
-          </View>
+        <View style={styles.titleContainer}>
+          <HeaderTitle {...props} />
         </View>
       ),
       headerBackAccessibilityLabel: t('Global.Back'),

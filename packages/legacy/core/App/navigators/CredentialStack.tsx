@@ -9,13 +9,13 @@ import ListCredentials from '../screens/ListCredentials'
 import { CredentialStackParams, Screens } from '../types/navigators'
 
 import { useDefaultStackOptions } from './defaultStackOptions'
-import { TOKENS, useServices } from '../container-api'
+//import { TOKENS, useServices } from '../container-api'
 
 const CredentialStack: React.FC = () => {
   const Stack = createStackNavigator<CredentialStackParams>()
   const theme = useTheme()
   const { t } = useTranslation()
-  const [CredentialListHeaderRight] = useServices([TOKENS.COMPONENT_CRED_LIST_HEADER_RIGHT])
+  //const [CredentialListHeaderRight] = useServices([TOKENS.COMPONENT_CRED_LIST_HEADER_RIGHT])
   const defaultStackOptions = useDefaultStackOptions(theme)
 
   return (
@@ -25,7 +25,9 @@ const CredentialStack: React.FC = () => {
         component={ListCredentials}
         options={() => ({
           title: t('Screens.Credentials'),
-          headerRight: () => <CredentialListHeaderRight />,
+          headerShown: false,
+          //headerRight: () => <CredentialListHeaderRight />,
+          //options={{ headerShown: false }} // Hide the header for this screen
           //headerLeft: () => <SettingsMenu />,
         })}
       />

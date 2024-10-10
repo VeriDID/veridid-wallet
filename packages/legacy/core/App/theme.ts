@@ -623,7 +623,7 @@ export const TabTheme = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabBarActiveTintColor: '#f324c5', //ColorPallet.brand.primary,//veridid pink
+  tabBarActiveTintColor: '#f324c6', //ColorPallet.brand.primary,//veridid pink
   tabBarInactiveTintColor: 'black', //ColorPallet.brand.tabBarInactive,
   tabBarTextStyle: {
     ...TextTheme.labelSubtitle,
