@@ -33,7 +33,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   const { t, i18n } = useTranslation()
   const [store, dispatch] = useStore()
   const developerOptionCount = useRef(0)
-  const { SettingsTheme, TextTheme, ColorPallet, Assets } = useTheme()
+  const { SettingsTheme, TextTheme, ColorPallet } = useTheme()
   const [{ settings, enableTours, enablePushNotifications }] = useServices([TOKENS.CONFIG])
   const defaultIconSize = 24
   const styles = StyleSheet.create({
@@ -339,7 +339,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
                 <Text style={TextTheme.normal} testID={testIdWithKey('Version')}>
                   {`${t('Settings.Version')} ${getVersion()} ${t('Settings.Build')} (${getBuildNumber()})`}
                 </Text>
-                <Assets.svg.logo style={{ alignSelf: 'center' }} width={150} height={75} />
+                {/* <Assets.svg.logo style={{ alignSelf: 'center' }} width={150} height={75} /> */}
               </View>
             </TouchableWithoutFeedback>
           </View>

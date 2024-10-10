@@ -7,8 +7,11 @@ import { ITheme, OnboardingTheme } from '../theme'
 import { ScreenOptionsType, Screens } from '../types/navigators'
 import { testIdWithKey } from '../utils/testable'
 import { TOKENS, useServices } from '../container-api'
-import logo from '../assets/img/veridid-logo.png' // Import your logo
+//import logo from '../assets/img/veridid-logo.png' // Import your logo
 import { Image, StyleSheet, View } from 'react-native' // Import Image and View from 'react-native'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const logo = require('../assets/img/veridid-logo.png')
 
 export const DefaultScreenOptionsDictionary: ScreenOptionsType = {
   [Screens.Preface]: {
@@ -80,7 +83,7 @@ export function useDefaultStackOptions({ ColorPallet }: ITheme): StackNavigation
         shadowOffset: { width: 0, height: 6 },
         shadowRadius: 6,
         shadowColor: ColorPallet.grayscale.black,
-        shadowOpacity: 0.15,
+        shadowOpacity: 0,
         borderBottomWidth: 0,
         height: 120, // Adjust this value if needed
       },
