@@ -32,7 +32,7 @@ const InfoTextBox: React.FC<TextBoxProps> = ({
       borderRadius: 5,
       borderWidth: 1,
       backgroundColor: ColorPallet.notification.info,
-      borderColor: ColorPallet.notification.infoBorder,
+      borderColor: ColorPallet.notification.info,
       ...style,
     },
     row: {
@@ -56,7 +56,7 @@ const InfoTextBox: React.FC<TextBoxProps> = ({
   })
 
   let iconName = 'info'
-  let iconColor = ColorPallet.notification.infoIcon
+  let iconColor = ColorPallet.brand.verididGreen
 
   switch (type) {
     case InfoBoxType.Info:

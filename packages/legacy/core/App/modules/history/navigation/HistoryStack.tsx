@@ -13,7 +13,7 @@ const HistoryStack: React.FC = () => {
   const Stack = createStackNavigator<HistoryStackParams>()
   const theme = useTheme()
   const { t } = useTranslation()
-  const defaultStackOptions = useDefaultStackOptions(theme)
+  const defaultStackOptions = useDefaultStackOptions()
 
   return (
     <Stack.Navigator screenOptions={{ ...defaultStackOptions }}>

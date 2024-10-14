@@ -48,7 +48,7 @@ const RootStack: React.FC = () => {
   const { t } = useTranslation()
   const navigation = useNavigation<StackNavigationProp<AuthenticateStackParams>>()
   const theme = useTheme()
-  const defaultStackOptions = useDefaultStackOptions(theme)
+  const defaultStackOptions = useDefaultStackOptions()
   const [splash, { enableImplicitInvitations, enableReuseConnections }, logger, OnboardingStack, loadState] =
     useServices([TOKENS.SCREEN_SPLASH, TOKENS.CONFIG, TOKENS.UTIL_LOGGER, TOKENS.STACK_ONBOARDING, TOKENS.LOAD_STATE])
 

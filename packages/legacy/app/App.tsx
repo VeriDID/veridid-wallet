@@ -58,7 +58,7 @@ const App = () => {
                   <StatusBar
                     hidden={false}
                     barStyle="light-content"
-                    backgroundColor={theme.ColorPallet.brand.primary}
+                    backgroundColor={theme.ColorPallet.brand.primaryBackground}
                     translucent={false}
                   />
                   <NetInfo />

@@ -39,7 +39,7 @@ const TabStack: React.FC = () => {
   })
   //2 line below color is controlling very top and very bottom footers.
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: ColorPallet.brand.primary }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: ColorPallet.brand.primaryBackground }}>
       <Tab.Navigator
         initialRouteName={TabStacks.HomeStack}
         screenOptions={{
@@ -94,7 +94,7 @@ const TabStack: React.FC = () => {
             tabBarIcon: ({ color, focused }) => (
               <AttachTourStep tourID={TourID.HomeTour} index={2}>
                 <View style={{ ...TabTheme.tabBarContainerStyle, justifyContent: showLabels ? 'flex-end' : 'center' }}>
-                  <Icon name={focused ? 'wallet' : 'wallet-outline'} color={color} size={30} />
+                  <Icon name={focused ? 'wallet-outline' : 'wallet-outline'} color={color} size={30} />
                   {showLabels && (
                     <Text
                       style={{
@@ -199,7 +199,7 @@ const TabStack: React.FC = () => {
             tabBarIcon: ({ color, focused }) => (
               <AttachTourStep tourID={TourID.HomeTour} index={4}>
                 <View style={{ ...TabTheme.tabBarContainerStyle, justifyContent: showLabels ? 'flex-end' : 'center' }}>
-                  <Icon name={focused ? 'chat' : 'chat-outline'} color={color} size={30} />
+                  <Icon name={focused ? 'chat-outline' : 'chat-outline'} color={color} size={30} />
                   {showLabels && (
                     <Text
                       style={{
@@ -228,7 +228,7 @@ const TabStack: React.FC = () => {
             tabBarIcon: ({ color, focused }) => (
               <AttachTourStep tourID={TourID.HomeTour} index={3}>
                 <View style={{ ...TabTheme.tabBarContainerStyle, justifyContent: showLabels ? 'flex-end' : 'center' }}>
-                  <Icon name={focused ? 'cog' : 'cog-outline'} color={color} size={30} />
+                  <Icon name={focused ? 'cog-outline' : 'cog-outline'} color={color} size={30} />
                   {showLabels && (
                     <Text
                       style={{

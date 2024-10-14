@@ -79,9 +79,10 @@ const PINCreate: React.FC<PINCreateProps> = ({ setAuthenticated, route }) => {
 
   const style = StyleSheet.create({
     screenContainer: {
+      marginTop: 30,
       height: '100%',
       backgroundColor: ColorPallet.brand.primaryBackground,
-      padding: 20,
+      padding: 40,
       justifyContent: 'space-between',
     },
 

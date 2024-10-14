@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
 import { SvgProps } from 'react-native-svg'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import CredentialList from '../assets/img/credential-list.svg'
 import ScanShare from '../assets/img/scan-share.svg'
@@ -94,7 +95,7 @@ const CustomPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
     <>
-      <ScrollView style={{ padding: 20 }}>
+      <ScrollView style={{ padding: 20}}>
         <View style={{ alignItems: 'center' }}>
           <Assets.svg.secureImage {...imageDisplayOptions} />
         </View>
@@ -103,7 +104,7 @@ const CustomPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
             Your credential wallet
           </Text>
           <Text style={[styles.bodyText, { marginTop: 25 }]} testID={testIdWithKey('BodyText')}>
-            This is your wallet where you will hold your digital credentials. It will help you receive and present your
+          This is your wallet where you will hold your digital credentials. It will help you receive and present your
             documents when you are in-person or online. You will receive your documents from participating organizations
             and be able to safely and securely share them with others.
           </Text>
@@ -118,7 +119,8 @@ const CustomPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
           accessibilityLabel={t('Global.GetStarted')}
           testID={testIdWithKey('GetStarted')}
           onPress={onTutorialCompleted}
-          buttonType={ButtonType.Primary}
+          buttonType={ButtonType.ModalSecondary}
+          icon={<Icon name="arrow-forward" size={24} color="black" />}
         />
       </View>
     </>

@@ -33,6 +33,9 @@ const EmptyListContacts: React.FC<EmptyListProps> = ({ navigation }) => {
       marginTop: 10,
       alignSelf: 'center',
     },
+    svg: {
+      color: ColorPallet.brand.secondaryDisabled
+    }
   })
 
   const navigateToWhatAreContacts = () => {
@@ -41,10 +44,9 @@ const EmptyListContacts: React.FC<EmptyListProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Assets.svg.contactBook fill={ListItems.emptyList.color} height={120} />
-      <Text style={[TextTheme.headingThree, styles.text, { marginTop: 30 }]}>{t('Contacts.EmptyList')}</Text>
+      <Assets.svg.contactBook fill={ListItems.emptyList.color} height={100} />
+      <Text style={[TextTheme.headingFour, styles.text, { marginTop: 30 }]}>{t('Contacts.EmptyList')}</Text>
       <Text style={[ListItems.emptyList, styles.text]}>{t('Contacts.PeopleAndOrganizations')}</Text>
-      <Link style={styles.link} linkText={t('Contacts.WhatAreContacts')} onPress={navigateToWhatAreContacts} />
     </View>
   )
 }

@@ -93,7 +93,7 @@ const CameraDisclosureModal: React.FC<CameraDisclosureModalProps> = ({ requestCa
               accessibilityLabel={t('Global.Continue')}
               testID={testIdWithKey('Continue')}
               onPress={onContinueTouched}
-              buttonType={ButtonType.ModalPrimary}
+              buttonType={ButtonType.Primary}
               disabled={requestInProgress}
             />
           </View>

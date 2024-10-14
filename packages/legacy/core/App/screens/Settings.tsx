@@ -43,7 +43,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
     },
     section: {
       backgroundColor: SettingsTheme.modalSecondary,
-      paddingVertical: 24,
+      paddingVertical: 14,
       flexGrow: 1,
     },
     sectionHeader: {
@@ -96,6 +96,20 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
         title: ' ',
       },
       data: [
+        {
+          title: t('Settings.Backup'),
+          value: undefined,
+          accessibilityLabel: t('Settings.Backup'),
+          testID: testIdWithKey('Backup'),
+          // onPress: () => navigation.navigate(Screens.Language),
+        },
+        {
+          title: t('Settings.Restore'),
+          value: undefined,
+          accessibilityLabel: t('Settings.Restore'),
+          testID: testIdWithKey('Restore'),
+          // onPress: () => navigation.navigate(Screens.Language),
+        },
         {
           title: t('Global.Biometrics'),
           value: store.preferences.useBiometry ? t('Global.On') : t('Global.Off'),
@@ -339,7 +353,6 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
                 <Text style={TextTheme.normal} testID={testIdWithKey('Version')}>
                   {`${t('Settings.Version')} ${getVersion()} ${t('Settings.Build')} (${getBuildNumber()})`}
                 </Text>
-                {/* <Assets.svg.logo style={{ alignSelf: 'center' }} width={150} height={75} /> */}
               </View>
             </TouchableWithoutFeedback>
           </View>

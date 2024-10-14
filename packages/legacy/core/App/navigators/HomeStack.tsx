@@ -16,7 +16,7 @@ const HomeStack: React.FC = () => {
   const theme = useTheme()
   const { t } = useTranslation()
   const [store] = useStore()
-  const defaultStackOptions = useDefaultStackOptions(theme)
+  const defaultStackOptions = useDefaultStackOptions()
 
   return (
     <Stack.Navigator screenOptions={{ ...defaultStackOptions }}>

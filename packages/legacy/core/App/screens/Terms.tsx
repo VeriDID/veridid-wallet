@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -44,6 +44,17 @@ const Terms: React.FC = () => {
       }
     }
   }, [dispatch, agreedToPreviousTerms, navigation, store.onboarding.postAuthScreens])
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <Text style={TextTheme.headerTitle}>{t('Screens.Terms')}</Text>
+      ),
+      headerTitleAlign: 'left' as const,
+    })
+  }, [navigation, t, TextTheme])
+
+
   const style = StyleSheet.create({
     container: {
       ...OnboardingTheme.container,
@@ -119,7 +130,7 @@ const Terms: React.FC = () => {
                 accessibilityLabel={t('Global.Back')}
                 testID={testIdWithKey('Back')}
                 onPress={onBackPressed}
-                buttonType={ButtonType.Secondary}
+                buttonType={ButtonType.ModalSecondary}
               />
             </View>
           )}

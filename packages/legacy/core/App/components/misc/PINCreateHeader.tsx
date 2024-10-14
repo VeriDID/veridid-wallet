@@ -12,7 +12,7 @@ const PINCreateHeader = ({ updatePin }: PINCreateHeaderProps) => {
   return (
     <View>
       <Text style={[TextTheme.normal, { marginBottom: 16 }]}>
-        <Text style={{ fontWeight: TextTheme.bold.fontWeight }}>
+        <Text >
           {updatePin ? t('PINCreate.RememberChangePIN') : t('PINCreate.RememberPIN')}
         </Text>{' '}
         {t('PINCreate.PINDisclaimer')}

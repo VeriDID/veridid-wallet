@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { hitSlop } from '../../constants'
 import { useTheme } from '../../contexts/theme'
 
-const defaultIconSize = 26
+const defaultIconSize = 30
 
 export enum ButtonLocation {
   Left,
@@ -43,12 +43,23 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
     },
     title: {
       ...TextTheme.label,
-      color: ColorPallet.brand.headerText,
+      color: ColorPallet.brand.verididPink,
       marginRight: 4,
+    },
+    icon: {
+      width: defaultIconSize,
+      height: defaultIconSize,
     },
   })
 
-  const myIcon = () => <Icon name={icon} size={defaultIconSize} color={iconTintColor ?? ColorPallet.brand.headerIcon} />
+  const myIcon = () => (
+    <Icon 
+      name={icon} 
+      size={defaultIconSize} 
+      color={iconTintColor ?? ColorPallet.brand.verididPink}
+      style={style.icon}
+    />
+  )
 
   const myText = () => (text ? <Text style={style.title}>{text}</Text> : null)
 
@@ -70,6 +81,7 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
         )
     }
   }
+
   return (
     <Pressable
       accessibilityLabel={accessibilityLabel}

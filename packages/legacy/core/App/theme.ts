@@ -157,6 +157,9 @@ export interface IBrandColors {
   tabBarInactive: string
   unorderedList: string
   unorderedListModal: string
+  verididGreen: string
+  verididOrange: string
+  verididPink: string
 }
 
 export interface ISemanticColors {
@@ -225,30 +228,59 @@ const GrayscaleColors: IGrayscaleColors = {
   white: '#FFFFFF',
 }
 
+// const BrandColors: IBrandColors = {
+//   //primary: '#ffffff', // veridid white
+//   primary: '#30c640', // veridid green
+//   primaryDisabled: `rgba(53, 130, 63, ${lightOpacity})`,
+//   secondary: '#b8b8b8',
+//   secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
+//   primaryLight: `rgba(53, 130, 63, ${lightOpacity})`,
+//   highlight: '#FCBA19',
+//   primaryBackground: '#fff', // veridid white
+//   secondaryBackground: '#D3D3D3',
+//   modalPrimary: '#42803E',
+//   modalSecondary: '#30c640',
+//   modalPrimaryBackground: '#D3D3D3',
+//   modalSecondaryBackground: '#D3D3D3',
+//   modalIcon: GrayscaleColors.white,
+//   unorderedList: GrayscaleColors.white,
+//   unorderedListModal: GrayscaleColors.white,
+//   link: GrayscaleColors.darkGrey,
+//   text: GrayscaleColors.darkGrey,
+//   icon: GrayscaleColors.white,
+//   headerIcon: GrayscaleColors.white,
+//   headerText: GrayscaleColors.white,
+//   buttonText: GrayscaleColors.white,
+//   tabBarInactive: GrayscaleColors.white,
+// }
+
 const BrandColors: IBrandColors = {
   primary: '#30c640', // veridid green
-  primaryDisabled: `rgba(53, 130, 63, ${lightOpacity})`,
+  primaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
   secondary: '#b8b8b8',
-  secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
+  secondaryDisabled: `rgba(255, 20, 147, ${heavyOpacity})`,// Disabled state for pink
   primaryLight: `rgba(53, 130, 63, ${lightOpacity})`,
-  highlight: '#FCBA19',
-  primaryBackground: '#fff',
+  highlight: '#FCBA19', // yellow highlight (can align with an accent or CTA buttons)
+  verididGreen: '#30c640', // veridid green
+  verididOrange: '#FFA500', // Orange for one of the "D"s
+  verididPink: '#FF1493', // Pink for the other "D"
+  primaryBackground: '#fff', // veridid white
   secondaryBackground: '#D3D3D3',
   modalPrimary: '#42803E',
-  modalSecondary: '#e5e7eb',
+  modalSecondary: '#30c640', // veridid green for modals
   modalPrimaryBackground: '#D3D3D3',
   modalSecondaryBackground: '#D3D3D3',
   modalIcon: GrayscaleColors.white,
   unorderedList: GrayscaleColors.white,
   unorderedListModal: GrayscaleColors.white,
-  link: GrayscaleColors.darkGrey,
-  text: GrayscaleColors.darkGrey,
-  icon: GrayscaleColors.white,
-  headerIcon: GrayscaleColors.white,
-  headerText: GrayscaleColors.white,
-  buttonText: GrayscaleColors.white,
-  tabBarInactive: GrayscaleColors.white,
-}
+  link: GrayscaleColors.darkGrey, // Dark gray for link text
+  text: GrayscaleColors.darkGrey, // Dark gray text to contrast with the white background
+  icon: GrayscaleColors.darkGrey, // Dark gray icons
+  headerIcon: GrayscaleColors.darkGrey, // Consistent icon color for headers
+  headerText: GrayscaleColors.darkGrey, // Consistent text color for headers
+  buttonText: GrayscaleColors.white, // White text on buttons for contrast
+  tabBarInactive: GrayscaleColors.lightGrey, // Lighter gray for inactive tab bar elements
+};
 
 const SemanticColors: ISemanticColors = {
   error: '#D8292F',
@@ -347,8 +379,8 @@ export const TextTheme: ITextTheme = {
   },
   headerTitle: {
     fontSize: 28,
-    //fontWeight: 'bold',
-    color: 'black', //ColorPallet.brand.headerText,//header title color
+    fontWeight: 'bold',
+    color: ColorPallet.brand.headerText,//header title color
   },
   modalNormal: {
     fontSize: 18,
@@ -418,6 +450,11 @@ export const Inputs: IInputs = StyleSheet.create({
 })
 
 export const Buttons = StyleSheet.create({
+  verididPink: {
+    padding: 16,
+    borderRadius: 4,
+    backgroundColor: ColorPallet.brand.verididPink,
+  },
   critical: {
     padding: 16,
     borderRadius: 4,
@@ -426,12 +463,12 @@ export const Buttons = StyleSheet.create({
   primary: {
     padding: 16,
     borderRadius: 4,
-    backgroundColor: ColorPallet.brand.primary,
+    backgroundColor: ColorPallet.brand.verididPink,
   },
   primaryDisabled: {
     padding: 16,
     borderRadius: 4,
-    backgroundColor: ColorPallet.brand.primaryDisabled,
+    backgroundColor: ColorPallet.brand.secondaryDisabled,
   },
   primaryText: {
     ...TextTheme.bold,
@@ -483,11 +520,11 @@ export const Buttons = StyleSheet.create({
     padding: 16,
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: ColorPallet.brand.modalPrimary,
+    borderColor: ColorPallet.brand.verididPink,
   },
   modalSecondaryText: {
     ...TextTheme.bold,
-    color: ColorPallet.brand.modalPrimary,
+    color:  ColorPallet.brand.text,
     textAlign: 'center',
   },
 })
@@ -635,7 +672,7 @@ export const TabTheme = {
   focusTabIconStyle: {
     height: 60,
     width: 60,
-    backgroundColor: ColorPallet.brand.primary,
+    backgroundColor: ColorPallet.brand.primaryBackground,
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
@@ -650,8 +687,8 @@ export const NavigationTheme = {
   colors: {
     primary: ColorPallet.brand.primary,
     background: ColorPallet.brand.primaryBackground,
-    card: ColorPallet.brand.primary,
-    text: ColorPallet.grayscale.white,
+    card: ColorPallet.brand.primaryBackground,
+    text: ColorPallet.grayscale.black,
     border: ColorPallet.grayscale.white,
     notification: ColorPallet.grayscale.white,
   },
@@ -674,6 +711,38 @@ export const HomeTheme = StyleSheet.create({
   link: {
     ...TextTheme.normal,
     color: ColorPallet.brand.link,
+  },
+})
+
+export const HeaderTheme = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 16,
+  },
+  headerStyle: {
+    height: 180,
+  },
+  headerLogoStyle: {
+    width: 120,
+    height: 120,
+    top: '10%',
+    resizeMode: 'contain',
+  },
+
+  logoContainer: {
+    marginBottom: 8,
+  },
+
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    width: '100%',
+  },
+  titleContainer: {
+    flex: 1,
   },
 })
 
@@ -794,16 +863,16 @@ export const OnboardingTheme = {
     backgroundColor: ColorPallet.brand.primaryBackground,
   },
   pagerDot: {
-    borderColor: ColorPallet.brand.primary,
+    borderColor: ColorPallet.brand.secondary,
   },
   pagerDotActive: {
-    color: ColorPallet.brand.primary,
+    color: ColorPallet.brand.secondaryBackground,
   },
   pagerDotInactive: {
-    color: ColorPallet.brand.secondary,
+    color: ColorPallet.brand.primary,
   },
   pagerNavigationButton: {
-    color: ColorPallet.brand.primary,
+    color: ColorPallet.brand.secondary,
     fontWeight: 'bold',
     fontSize: 18,
   },
@@ -942,7 +1011,8 @@ export interface ITheme {
   heavyOpacity: any
   borderRadius: any
   borderWidth: typeof borderWidth
-  Assets: IAssets
+  Assets: IAssets,
+  HeaderTheme: any
 }
 
 export const theme: ITheme = {
@@ -965,4 +1035,5 @@ export const theme: ITheme = {
   borderRadius,
   borderWidth,
   Assets,
+  HeaderTheme,
 }

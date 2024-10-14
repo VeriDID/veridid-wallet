@@ -6,7 +6,7 @@ import { useTheme } from '../../contexts/theme'
 import { Button, ButtonType, ButtonProps } from './Button-api'
 
 const ButtonImplComponent = (
-  { title, buttonType, accessibilityLabel, testID, onPress, disabled = false, children }: ButtonProps,
+  { title, buttonType, accessibilityLabel, testID, onPress, disabled = false, children, icon }: ButtonProps,
   ref: React.LegacyRef<TouchableOpacity>
 ) => {
   const { Buttons, heavyOpacity } = useTheme()
@@ -57,6 +57,7 @@ const ButtonImplComponent = (
         >
           {title}
         </Text>
+        {icon && <View style={{ marginLeft: 10 }}>{icon}</View>}
       </View>
     </TouchableOpacity>
   )

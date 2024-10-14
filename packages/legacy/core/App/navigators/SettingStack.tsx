@@ -32,7 +32,7 @@ const SettingStack: React.FC = () => {
     TOKENS.SCREEN_USE_BIOMETRY,
     TOKENS.SCREEN_DEVELOPER,
   ])
-  const defaultStackOptions = useDefaultStackOptions(theme)
+  const defaultStackOptions = useDefaultStackOptions()
   const OnboardingTheme = theme.OnboardingTheme
   const carousel = createCarouselStyle(OnboardingTheme)
 
