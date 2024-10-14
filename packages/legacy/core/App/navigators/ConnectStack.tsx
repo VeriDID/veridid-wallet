@@ -15,15 +15,12 @@ import { TOKENS, useServices } from '../container-api'
 const ConnectStack: React.FC = () => {
   const Stack = createStackNavigator<ConnectStackParams>()
   const theme = useTheme()
-  const defaultStackOptions = useDefaultStackOptions(theme)
+
   const [scan] = useServices([TOKENS.SCREEN_SCAN])
   const { t } = useTranslation()
 
   return (
     <Stack.Navigator
-      screenOptions={{
-        ...defaultStackOptions,
-      }}
     >
       <Stack.Screen name={Screens.Scan} component={scan} options={{ headerBackTestID: testIdWithKey('Back') }} />
       <Stack.Screen

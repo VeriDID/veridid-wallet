@@ -2,7 +2,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Animated, BackHandler, FlatList, View, useWindowDimensions } from 'react-native'
+import { Animated, BackHandler, FlatList, Text, View, useWindowDimensions } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import HeaderButton, { ButtonLocation } from '../components/buttons/HeaderButton'
@@ -11,6 +11,7 @@ import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { AuthenticateStackParams, Screens } from '../types/navigators'
 import { testIdWithKey } from '../utils/testable'
+import { TextTheme } from '../theme'
 
 export interface OnboardingStyleSheet {
   container: Record<string, any>
@@ -100,6 +101,10 @@ const Onboarding: React.FC<OnboardingProps> = ({
   useEffect(() => {
     !disableSkip &&
       navigation.setOptions({
+        headerTitle: () => (
+          <Text style={TextTheme.headerTitle}>{t('Screens.Onboarding')}</Text>
+        ),
+        headerTitleAlign: 'left' as const,
         headerRight: () => (
           <HeaderButton
             buttonLocation={ButtonLocation.Right}

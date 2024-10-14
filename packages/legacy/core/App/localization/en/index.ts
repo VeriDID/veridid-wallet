@@ -389,7 +389,7 @@ const translation = {
     "UseHistoryCapabilityToggle": "Toggle Enable history",
   },
   "Contacts": {
-    "EmptyList": "Your Contacts is empty!",
+    "EmptyList": "Your Channel is empty!",
     "TypeHere": "Message this contact...",
     "PeopleAndOrganizations": "People and organizations you've interacted with are listed here.",
     "WhatAreContacts": "What are Contacts?",
@@ -671,6 +671,8 @@ const translation = {
     "MoreInformation": "More information",
     "Developer": "Developer options",
     "Notifications": "Notifications",
+    "Backup": "Backup",
+    "Restore": "Restore"
   },
   "TabStack": {
     "Home": "Notifications",

@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { hitSlop } from '../../constants'
 import { useTheme } from '../../contexts/theme'
 
+
 interface Props {
   title: string
   titleStyle?: TextStyle
@@ -24,7 +25,7 @@ const CheckBoxRow: React.FC<Props> = ({
   onPress,
   reverse,
 }) => {
-  const { Inputs } = useTheme()
+  const { Inputs, ColorPallet } = useTheme()
   const style = StyleSheet.create({
     container: {
       flex: 1,
@@ -51,9 +52,9 @@ const CheckBoxRow: React.FC<Props> = ({
         hitSlop={hitSlop}
       >
         {checked ? (
-          <Icon name={'check-box'} size={36} color={Inputs.checkBoxColor.color} />
+          <Icon name={'check-box'} size={36} color={ColorPallet.brand.verididPink} />
         ) : (
-          <Icon name={'check-box-outline-blank'} size={36} color={Inputs.checkBoxColor.color} />
+          <Icon name={'check-box-outline-blank'} size={36} color={ColorPallet.brand.verididPink} />
         )}
       </TouchableOpacity>
       <Text style={[style.text, titleStyle]}>{title}</Text>

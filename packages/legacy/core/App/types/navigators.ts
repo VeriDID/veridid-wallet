@@ -116,6 +116,7 @@ export type ContactStackParams = {
   [Screens.CredentialOffer]: { credentialId: string }
   [Screens.ProofDetails]: { recordId: string; isHistory?: boolean }
   [Screens.ProofRequest]: { proofId: string }
+  [Screens.Scan]: undefined
 }
 
 export type ProofRequestsStackParams = {

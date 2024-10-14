@@ -16,6 +16,7 @@ export interface ButtonProps extends React.PropsWithChildren {
   testID?: string
   onPress?: () => void
   disabled?: boolean
+  icon?: React.ReactNode 
 }
 
 export enum ButtonState {

@@ -27,6 +27,7 @@ type ScreenOptions = RouteConfig<
   StackNavigationEventMap
 >
 
+
 const OnboardingStack: React.FC = () => {
   const [, dispatch] = useStore()
   const { t } = useTranslation()
@@ -35,7 +36,7 @@ const OnboardingStack: React.FC = () => {
   const OnboardingTheme = theme.OnboardingTheme
   const carousel = createCarouselStyle(OnboardingTheme)
   const [splash, pages, useBiometry, Onboarding, Developer, { screen: Terms }, onTutorialCompletedCurried, ScreenOptionsDictionary, Preface] = useServices([TOKENS.SCREEN_SPLASH, TOKENS.SCREEN_ONBOARDING_PAGES, TOKENS.SCREEN_USE_BIOMETRY, TOKENS.SCREEN_ONBOARDING, TOKENS.SCREEN_DEVELOPER, TOKENS.SCREEN_TERMS, TOKENS.FN_ONBOARDING_DONE, TOKENS.OBJECT_ONBOARDING_CONFIG, TOKENS.SCREEN_PREFACE])
-  const defaultStackOptions = useDefaultStackOptions(theme)
+  const defaultStackOptions = useDefaultStackOptions()
   const navigation = useNavigation<StackNavigationProp<AuthenticateStackParams>>()
   const onTutorialCompleted = onTutorialCompletedCurried(dispatch, navigation)
   const [{ disableOnboardingSkip }] = useServices([TOKENS.CONFIG])
@@ -50,7 +51,7 @@ const OnboardingStack: React.FC = () => {
     })
   }, [dispatch])
 
-  const OnBoardingScreen = () => {
+  const OnboardingScreen = () => {
     return (
       <Onboarding
         nextButtonText={t('Global.Next')}
@@ -89,13 +90,10 @@ const OnboardingStack: React.FC = () => {
     },
     {
       name: Screens.Onboarding,
-      children: OnBoardingScreen,
-      options: () => {
-        return {
-          ...ScreenOptionsDictionary[Screens.Onboarding],
-          title: t('Screens.Onboarding'),
-        }
-      },
+      component: OnboardingScreen,
+      options: () => ({
+        ...ScreenOptionsDictionary[Screens.Onboarding],
+      }),
     },
     {
       name: Screens.Terms,
@@ -110,6 +108,7 @@ const OnboardingStack: React.FC = () => {
       children: CreatePINScreen,
       initialParams: {},
       options: () => ({
+        ...defaultStackOptions,
         ...ScreenOptionsDictionary[Screens.CreatePIN],
         title: t('Screens.CreatePIN'),
       }),
@@ -125,6 +124,7 @@ const OnboardingStack: React.FC = () => {
     {
       name: Screens.UseBiometry,
       options: () => ({
+        ...defaultStackOptions,
         ...ScreenOptionsDictionary[Screens.UseBiometry],
         title: t('Screens.Biometry'),
       }),
@@ -169,9 +169,9 @@ const OnboardingStack: React.FC = () => {
   ]
 
   return (
-    <Stack.Navigator initialRouteName={Screens.Splash} screenOptions={{ ...defaultStackOptions }}>
-      {screens.map((item) => {
-        return <Stack.Screen key={item.name} {...item} />
+    <Stack.Navigator initialRouteName={Screens.Splash} screenOptions={{ headerShown: true  }}>
+      {screens.map((screen) => {
+        return <Stack.Screen key={screen.name} {...screen} />
       })}
     </Stack.Navigator>
   )

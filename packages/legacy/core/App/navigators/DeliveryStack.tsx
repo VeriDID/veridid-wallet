@@ -16,7 +16,7 @@ const DeliveryStack: React.FC = () => {
   const Stack = createStackNavigator<DeliveryStackParams>()
   const { t } = useTranslation()
   const theme = useTheme()
-  const defaultStackOptions = useDefaultStackOptions(theme)
+  const defaultStackOptions = useDefaultStackOptions()
 
   return (
     <Stack.Navigator

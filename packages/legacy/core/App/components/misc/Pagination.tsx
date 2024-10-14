@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Animated, Text, TouchableOpacity, View } from 'react-native'
+import { Animated, Text, TouchableOpacity, View, StyleSheet } from 'react-native'
 import { ScalingDot } from 'react-native-animated-pagination-dots'
 
 import { hitSlop } from '../../constants'
@@ -39,23 +39,31 @@ export const Pagination: React.FC<IPaginationProps> = ({
   const { t } = useTranslation()
 
   const shouldHideBack = (): boolean => {
-    if (activeIndex === 0) {
-      return true
-    }
-
-    return false
+    return activeIndex === 0
   }
 
   const shouldHideNext = (): boolean => {
-    if (activeIndex === pages.length - 1) {
-      return true
-    }
-
-    return false
+    return activeIndex === pages.length - 1
   }
 
-  // FIXME: Issue #204. Better to `disable` the `TouchableOpacity`
-  // controls rather than changing the color to transparent.
+  const styles = StyleSheet.create({
+    buttonText: {
+      ...style.pagerNavigationButton,
+      color: '#FF1493', 
+    },
+    backButton: {
+      paddingRight: 20,
+    },
+    nextButton: {
+      paddingLeft: 20,
+    },
+    pagerDotActive: {
+      color: '#333333', 
+    },
+    pagerDotInactive: {
+      color: '#B0B0B0', 
+    },
+  })
 
   return (
     <View style={style.pagerContainer}>
@@ -71,8 +79,9 @@ export const Pagination: React.FC<IPaginationProps> = ({
       >
         <Text
           style={[
-            style.pagerNavigationButton,
-            { paddingRight: 20, color: shouldHideBack() ? 'transparent' : style.pagerNavigationButton.color },
+            styles.buttonText,
+            styles.backButton,
+            { opacity: shouldHideBack() ? 0 : 1 },
           ]}
         >
           {previousButtonText}
@@ -81,14 +90,13 @@ export const Pagination: React.FC<IPaginationProps> = ({
       <ScalingDot
         data={pages}
         scrollX={scrollX}
-        inActiveDotColor={style.pagerDotInactive.color}
+        inActiveDotColor={styles.pagerDotInactive.color}
         inActiveDotOpacity={1}
-        activeDotColor={style.pagerDotActive.color}
+        activeDotColor={styles.pagerDotActive.color}
         activeDotScale={1}
         dotStyle={style.pagerDot}
         containerStyle={style.pagerPosition}
       />
-
       <TouchableOpacity
         accessible={true}
         accessibilityLabel={t('Global.Next')}
@@ -101,8 +109,9 @@ export const Pagination: React.FC<IPaginationProps> = ({
       >
         <Text
           style={[
-            style.pagerNavigationButton,
-            { paddingLeft: 20, color: shouldHideNext() ? 'transparent' : style.pagerNavigationButton.color },
+            styles.buttonText,
+            styles.nextButton,
+            { opacity: shouldHideNext() ? 0 : 1 },
           ]}
         >
           {nextButtonText}
