@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 //import SettingsMenu from '../components/buttons/SettingsMenu'
-import { useTheme } from '../contexts/theme'
+//import { useTheme } from '../contexts/theme'
 import CredentialDetails from '../screens/CredentialDetails'
 import ListCredentials from '../screens/ListCredentials'
 import { CredentialStackParams, Screens } from '../types/navigators'
@@ -13,7 +13,7 @@ import { useDefaultStackOptions } from './defaultStackOptions'
 
 const CredentialStack: React.FC = () => {
   const Stack = createStackNavigator<CredentialStackParams>()
-  const theme = useTheme()
+  //const theme = useTheme()
   const { t } = useTranslation()
   //const [CredentialListHeaderRight] = useServices([TOKENS.COMPONENT_CRED_LIST_HEADER_RIGHT])
   const defaultStackOptions = useDefaultStackOptions()
@@ -25,7 +25,7 @@ const CredentialStack: React.FC = () => {
         component={ListCredentials}
         options={() => ({
           title: t('Screens.Credentials'),
-          headerShown: false,
+          // headerShown: false,
           //headerRight: () => <CredentialListHeaderRight />,
           //options={{ headerShown: false }} // Hide the header for this screen
           //headerLeft: () => <SettingsMenu />,

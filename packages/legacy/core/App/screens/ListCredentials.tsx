@@ -23,11 +23,12 @@ import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
 import { useTour } from '../contexts/tour/tour-context'
-import { Screens, TabStackParams, TabStacks } from '../types/navigators'
+import { Screens, TabStackParams, TabStacks, CredentialStackParams } from '../types/navigators'
 import { TourID } from '../types/tour'
 import { TOKENS, useServices } from '../container-api'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import CredentialDetailsCustom from '../components/misc/CredentialDetailsCustom'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 const ListCredentials: React.FC = () => {
   const { t } = useTranslation()
@@ -38,6 +39,7 @@ const ListCredentials: React.FC = () => {
     TOKENS.CONFIG,
   ])
 
+  const stackNavigation = useNavigation<StackNavigationProp<CredentialStackParams>>()
   const tabNavigation = useNavigation<BottomTabNavigationProp<TabStackParams>>()
   const { ColorPallet } = useTheme()
   const { start } = useTour()
@@ -82,7 +84,19 @@ const ListCredentials: React.FC = () => {
         payload: [true],
       })
     }
-  }, [enableToursConfig, store.tours.enableTours, store.tours.seenCredentialsTour, screenIsFocused, start, dispatch])
+    stackNavigation.setOptions({
+      headerShown: credentials.length > 0,
+    })
+  }, [
+    enableToursConfig,
+    store.tours.enableTours,
+    store.tours.seenCredentialsTour,
+    screenIsFocused,
+    start,
+    dispatch,
+    credentials.length,
+    stackNavigation,
+  ])
 
   const navigateToChannels = () => {
     tabNavigation.navigate(TabStacks.ContactStack, {
