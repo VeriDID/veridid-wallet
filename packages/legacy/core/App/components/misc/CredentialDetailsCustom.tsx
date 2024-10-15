@@ -1,3 +1,4 @@
+//fetching data (attributes) + upper modal
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { CredentialExchangeRecord } from '@credo-ts/core'
@@ -8,6 +9,7 @@ import { Attribute, CredentialOverlay } from '@hyperledger/aries-oca/build/legac
 import { TOKENS, useServices } from '../../container-api'
 import { buildFieldsFromAnonCredsCredential } from '../../utils/oca'
 import { getCredentialIdentifiers } from '../../utils/credential'
+import VDCard from './VDCard'
 
 interface CredentialDetailsCustomProps {
   credential: CredentialExchangeRecord
@@ -27,6 +29,11 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
   const [bundleResolver] = useServices([TOKENS.UTIL_OCA_RESOLVER])
 
   const issuerName = useCredentialConnectionLabel(credential) ?? t('Credentials.UnknownIssuer')
+
+  const firstName = credential.credentialAttributes?.find((attr) => attr.name === 'First')?.value || ''
+  const lastName = credential.credentialAttributes?.find((attr) => attr.name === 'Last')?.value || ''
+  const studentId = credential.credentialAttributes?.find((attr) => attr.name === 'StudentID')?.value || ''
+  const issueDate = new Date(credential.createdAt).toLocaleDateString()
 
   const creationDate = credential?.createdAt
     ? new Date(credential.createdAt).toLocaleDateString()
@@ -59,6 +66,14 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
 
   return (
     <View style={styles.container}>
+      <VDCard
+        width="100%"
+        height={200} // Adjust this value as needed
+        firstName={firstName}
+        lastName={lastName}
+        studentId={studentId}
+        issueDate={issueDate}
+      />
       <View style={styles.logoContainer}>
         {logoUrl ? (
           <Image source={{ uri: logoUrl }} style={styles.logo} />

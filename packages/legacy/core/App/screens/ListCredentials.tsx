@@ -15,6 +15,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
 } from 'react-native'
 
 import CredentialCardCustom from '../components/misc/CredentialCardCustom'
@@ -29,6 +30,152 @@ import { TOKENS, useServices } from '../container-api'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import CredentialDetailsCustom from '../components/misc/CredentialDetailsCustom'
 import { StackNavigationProp } from '@react-navigation/stack'
+import CredentialConnectionInfo from '../components/misc/CredentialConnectionInfo'
+
+//import { set } from 'mockdate'
+
+const windowHeight = Dimensions.get('window').height
+
+const styles = StyleSheet.create({
+  joinButtonIcon: {
+    fontSize: 20,
+    color: '#FFFFFF',
+  },
+  joinButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f324c6', // Your pink color
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    alignSelf: 'center', // Centers the button within its parent
+    marginTop: 30, // Adjust as needed for spacing
+    position: 'absolute',
+    bottom: 90, // Adjust to position above the navigation bar
+    width: '80%',
+  },
+  joinButtonText: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginRight: 8, // Adds space between the text and icon
+  },
+  circle: {
+    position: 'absolute',
+    borderRadius: 1000, // This makes the view a circle
+  },
+  whiteCircleContainer: {
+    width: 300,
+    height: 300,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 150, // Make it a perfect circle
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+    position: 'absolute',
+    top: '25%', // Adjust position as needed
+  },
+  greenCircle: {
+    width: 250,
+    height: 250,
+    backgroundColor: '#00FF00',
+    top: '20%',
+    left: '-25%',
+  },
+  orangeCircle: {
+    width: 250,
+    height: 250,
+    backgroundColor: '#ffa41e',
+    bottom: '25%',
+    right: '-20%',
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: 'transparent', // Updated for full transparency
+  },
+  emptyLogo: {
+    width: 120,
+    height: 120,
+    marginBottom: 20,
+    resizeMode: 'contain',
+    position: 'absolute', // Absolute positioning
+    top: '5%', // Position above the circles
+    zIndex: 2, // Higher than the circles
+  },
+  textContainer: {
+    width: '85%', // Make the width less than 100% to start and end earlier
+    alignSelf: 'center', // Center the text container horizontally within the parent
+    paddingHorizontal: 10, // Add padding to further offset the start and end points
+    paddingVertical: 20, // Add vertical padding if needed for spacing
+  },
+  emptyTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+
+    // Styling for the main title in the empty state
+  },
+
+  emptyDescription: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '#666', // Lighter color for the description text
+  },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalWrapper: {
+    width: '90%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: windowHeight * 0.55, // 60% of screen height
+  },
+  modalContainer: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    overflow: 'hidden',
+    height: windowHeight * 0.35, // 50% of screen height
+    marginBottom: 10,
+  },
+  menuModalContainer: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    height: windowHeight * 0.25, // 15% of screen height
+  },
+  menuOption: {
+    paddingVertical: 15,
+  },
+  menuOptionText: {
+    fontSize: 18,
+    color: '#000',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: -40,
+    right: 10,
+    zIndex: 1,
+  },
+  closeIcon: {
+    fontSize: 25,
+    color: '#FFF',
+  },
+  modalContent: {
+    padding: 20,
+  },
+})
 
 const ListCredentials: React.FC = () => {
   const { t } = useTranslation()
@@ -46,7 +193,8 @@ const ListCredentials: React.FC = () => {
   const screenIsFocused = useIsFocused()
 
   const [connectionsMap, setConnectionsMap] = useState<Record<string, ConnectionRecord>>({})
-  const [modalVisible, setModalVisible] = useState(false)
+  const [credentialModalVisible, setCredentialModalVisible] = useState(false)
+  const [menuModalVisible, setMenuModalVisible] = useState(false)
   const [selectedCredential, setSelectedCredential] = useState<CredentialExchangeRecord | null>(null)
   const [selectedLogoUrl, setSelectedLogoUrl] = useState<string | undefined>(undefined)
 
@@ -144,7 +292,8 @@ const ListCredentials: React.FC = () => {
                   onPress={() => {
                     setSelectedCredential(credential)
                     setSelectedLogoUrl(logoUrl)
-                    setModalVisible(true)
+                    setCredentialModalVisible(true)
+                    setMenuModalVisible(true)
                   }}
                   logoUrl={logoUrl}
                   proof={false}
@@ -154,26 +303,28 @@ const ListCredentials: React.FC = () => {
           />
         )}
       </View>
-      {modalVisible && selectedCredential && (
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => setModalVisible(false)}
-        >
+      {(credentialModalVisible || menuModalVisible) && selectedCredential && (
+        <Modal animationType="fade" transparent={true} visible={credentialModalVisible || menuModalVisible}>
           <View style={styles.modalOverlay}>
             <View style={styles.modalWrapper}>
-              {/* Close Button Positioned Above the Modal */}
-              <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-                <Icon name="close" size={30} style={styles.closeIcon} />
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => {
+                  setCredentialModalVisible(false)
+                  setMenuModalVisible(false)
+                }}
+              >
+                <Icon name="close" size={30} color="#FFF" />
               </TouchableOpacity>
 
               <View style={styles.modalContainer}>
-                <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.modalContent}>
+                <ScrollView contentContainerStyle={styles.modalContent}>
                   <CredentialDetailsCustom credential={selectedCredential} logoUrl={selectedLogoUrl} />
-                  {/* Passing the selected credential and logo to the details view */}
                 </ScrollView>
               </View>
+              <ScrollView>
+                <CredentialConnectionInfo />
+              </ScrollView>
             </View>
           </View>
         </Modal>
@@ -181,129 +332,5 @@ const ListCredentials: React.FC = () => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  joinButtonIcon: {
-    fontSize: 20,
-    color: '#FFFFFF',
-  },
-  joinButton: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f324c6', // Your pink color
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 25,
-    alignSelf: 'center', // Centers the button within its parent
-    marginTop: 30, // Adjust as needed for spacing
-    position: 'absolute',
-    bottom: 90, // Adjust to position above the navigation bar
-    width: '80%',
-  },
-  joinButtonText: {
-    color: '#FFFFFF',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginRight: 8, // Adds space between the text and icon
-  },
-  circle: {
-    position: 'absolute',
-    borderRadius: 1000, // This makes the view a circle
-  },
-  whiteCircleContainer: {
-    width: 300,
-    height: 300,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 150, // Make it a perfect circle
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-    position: 'absolute',
-    top: '25%', // Adjust position as needed
-  },
-  greenCircle: {
-    width: 250,
-    height: 250,
-    backgroundColor: '#00FF00',
-    top: '20%',
-    left: '-25%',
-  },
-  orangeCircle: {
-    width: 250,
-    height: 250,
-    backgroundColor: '#ffa41e',
-    bottom: '25%',
-    right: '-20%',
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: 'transparent', // Updated for full transparency
-  },
-  emptyLogo: {
-    width: 120,
-    height: 120,
-    marginBottom: 20,
-    resizeMode: 'contain',
-    position: 'absolute', // Absolute positioning
-    top: '5%', // Position above the circles
-    zIndex: 2, // Higher than the circles
-  },
-  textContainer: {
-    width: '85%', // Make the width less than 100% to start and end earlier
-    alignSelf: 'center', // Center the text container horizontally within the parent
-    paddingHorizontal: 10, // Add padding to further offset the start and end points
-    paddingVertical: 20, // Add vertical padding if needed for spacing
-  },
-  emptyTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
-
-    // Styling for the main title in the empty state
-  },
-
-  emptyDescription: {
-    fontSize: 18,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#666', // Lighter color for the description text
-  },
-
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalWrapper: {
-    width: '95%',
-    alignItems: 'center',
-  },
-  modalContainer: {
-    width: '100%',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    overflow: 'hidden',
-    height: '75%',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: -40,
-    right: 10,
-    zIndex: 1,
-  },
-  closeIcon: {
-    fontSize: 25,
-    color: '#FFF',
-  },
-  modalContent: {
-    padding: 20,
-  },
-})
 
 export default ListCredentials
