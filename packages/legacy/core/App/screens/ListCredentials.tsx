@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   modalWrapper: {
     width: '90%',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     height: windowHeight * 0.6,
   },
   modalContainer: {
@@ -141,15 +141,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
-    height: windowHeight * 0.32,
-    marginBottom: 10,
+    height: windowHeight * 0.28,
+    marginBottom: 20, //controls spacing in between modals
   },
   menuModalContainer: {
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 20,
-    height: windowHeight * 0.25,
+    padding: 5,
+    height: windowHeight * 0.28,
   },
   menuOption: {
     paddingVertical: 15,
@@ -313,7 +313,9 @@ const ListCredentials: React.FC = () => {
                   <CredentialDetailsCustom credential={selectedCredential} logoUrl={selectedLogoUrl} />
                 </ScrollView>
               </View>
-              <CredentialConnectionInfo credential={selectedCredential} />
+              <View style={styles.menuModalContainer}>
+                <CredentialConnectionInfo credential={selectedCredential} />
+              </View>
             </View>
           </View>
         </Modal>
