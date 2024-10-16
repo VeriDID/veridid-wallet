@@ -24,7 +24,7 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
     metaOverlay: undefined,
     brandingOverlay: undefined,
   })
-  const [attributes, setAttributes] = useState<Attribute[]>([])
+  const [, setAttributes] = useState<Attribute[]>([])
 
   const [bundleResolver] = useServices([TOKENS.UTIL_OCA_RESOLVER])
 
@@ -74,7 +74,7 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
         studentId={studentId}
         issueDate={issueDate}
       />
-      <View style={styles.logoContainer}>
+      {/* <View style={styles.logoContainer}>
         {logoUrl ? (
           <Image source={{ uri: logoUrl }} style={styles.logo} />
         ) : (
@@ -83,8 +83,8 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
       </View>
       <Text style={styles.institutionName}>{issuerName}</Text>
       <Text style={styles.credentialType}>{overlay.metaOverlay?.name || t('Credentials.UnknownCredential')}</Text>
-      <Text style={styles.date}>{creationDate}</Text>
-      <View style={styles.attributesContainer}>
+      <Text style={styles.date}>{creationDate}</Text> */}
+      {/* <View style={styles.attributesContainer}>
         {attributes.length > 0 ? (
           attributes.map((attr, index) => (
             <Text key={index} style={styles.attributeText}>
@@ -94,7 +94,7 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
         ) : (
           <Text style={styles.attributesPlaceholder}>{t('Attributes.Placeholder')}</Text>
         )}
-      </View>
+      </View> */}
     </View>
   )
 }
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'transparent',
     borderRadius: 10,
+    height: '100%',
   },
   logoContainer: {
     width: '100%',

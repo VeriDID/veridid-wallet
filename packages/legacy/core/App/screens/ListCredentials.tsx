@@ -322,9 +322,7 @@ const ListCredentials: React.FC = () => {
                   <CredentialDetailsCustom credential={selectedCredential} logoUrl={selectedLogoUrl} />
                 </ScrollView>
               </View>
-              <ScrollView>
-                <CredentialConnectionInfo />
-              </ScrollView>
+              <CredentialConnectionInfo credential={selectedCredential} />
             </View>
           </View>
         </Modal>
