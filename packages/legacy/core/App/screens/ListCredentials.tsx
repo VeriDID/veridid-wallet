@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 5,
+    padding: 0,
     height: windowHeight * 0.28,
   },
   menuOption: {
