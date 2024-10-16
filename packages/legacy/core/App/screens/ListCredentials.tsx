@@ -138,14 +138,14 @@ const styles = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: windowHeight * 0.55, // 60% of screen height
+    height: windowHeight * 0.6, // 60% of screen height
   },
   modalContainer: {
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
-    height: windowHeight * 0.35, // 50% of screen height
+    height: windowHeight * 0.32, // 50% of screen height
     marginBottom: 10,
   },
   menuModalContainer: {

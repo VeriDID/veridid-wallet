@@ -1,21 +1,15 @@
-//lower modal design for credential
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { useTheme } from '../../contexts/theme'
-//import { Attribute } from '@hyperledger/aries-oca/build/legacy'
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { CredentialExchangeRecord } from '@credo-ts/core'
 import { useTranslation } from 'react-i18next'
+import { useTheme } from '../../contexts/theme'
 import { useCredentialConnectionLabel } from '../../utils/helpers'
 import { BrandingOverlay } from '@hyperledger/aries-oca'
 import { Attribute, CredentialOverlay } from '@hyperledger/aries-oca/build/legacy'
 import { TOKENS, useServices } from '../../container-api'
 import { buildFieldsFromAnonCredsCredential } from '../../utils/oca'
 import { getCredentialIdentifiers } from '../../utils/credential'
-
-// interface CredentialConnectionInfoProps {
-//   attributes: Attribute[]
-// }
 
 interface CredentialDetailsCustomProps {
   credential: CredentialExchangeRecord
@@ -24,7 +18,6 @@ interface CredentialDetailsCustomProps {
 const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ credential }) => {
   const [menuVisible, setMenuVisible] = useState(false)
   const { ColorPallet } = useTheme()
-
   const toggleMenu = () => {
     setMenuVisible(!menuVisible)
   }
@@ -37,19 +30,8 @@ const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ cred
     brandingOverlay: undefined,
   })
   const [attributes, setAttributes] = useState<Attribute[]>([])
-
   const [bundleResolver] = useServices([TOKENS.UTIL_OCA_RESOLVER])
-
   const issuerName = useCredentialConnectionLabel(credential) ?? t('Credentials.UnknownIssuer')
-
-  //   const firstName = credential.credentialAttributes?.find((attr) => attr.name === 'First')?.value || ''
-  //   const lastName = credential.credentialAttributes?.find((attr) => attr.name === 'Last')?.value || ''
-  //   const studentId = credential.credentialAttributes?.find((attr) => attr.name === 'StudentID')?.value || ''
-  //   const issueDate = new Date(credential.createdAt).toLocaleDateString()
-
-  //   const creationDate = credential?.createdAt
-  //     ? new Date(credential.createdAt).toLocaleDateString()
-  //     : t('Credentials.UnknownDate')
 
   useEffect(() => {
     if (!credential) {
@@ -78,11 +60,9 @@ const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ cred
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.headerButton} onPress={toggleMenu}>
-          <Icon name="dots-vertical" size={24} color={menuVisible ? ColorPallet.brand.verididPink : '#000'} />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.headerButton} onPress={toggleMenu}>
+        <Icon name="dots-vertical" size={24} color={menuVisible ? ColorPallet.brand.verididPink : '#000'} />
+      </TouchableOpacity>
       {menuVisible && (
         <View style={[styles.menu, { borderColor: ColorPallet.brand.verididPink }]}>
           <TouchableOpacity style={styles.menuItem}>
@@ -94,14 +74,14 @@ const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ cred
         </View>
       )}
       <ScrollView style={styles.scrollableContainer}>
-        <View style={styles.attributesContainer}></View>
-        {attributes.map((attr, index) => (
-          <Text key={index} style={styles.attributeText}>
-            {attr.name}: {attr.value}
-          </Text>
-        ))}
+        <View style={styles.attributesContainer}>
+          {attributes.map((attr, index) => (
+            <Text key={index} style={styles.attributeText}>
+              {attr.name}: {attr.value}
+            </Text>
+          ))}
+        </View>
       </ScrollView>
-
       <View style={styles.content}>
         <View style={styles.infoItem}>
           <Icon name="link-variant" size={28} color="#000" />
@@ -121,15 +101,28 @@ const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ cred
 }
 
 const styles = StyleSheet.create({
-  scrollableContainer: {
-    //maxHeight: 200, // Adjust the max height to control the scrollable area size
+  container: {
     flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    overflow: 'visible',
+    width: '100%',
+  },
+  headerButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 2,
+    padding: 5,
+  },
+  scrollableContainer: {
+    flex: 1,
+    marginTop: 0,
   },
   attributesContainer: {
     paddingRight: 15,
-    paddingTop: 0,
+    paddingTop: 15, // Adjust this value to align with the menu icon
     marginBottom: 10,
-    marginTop: -20,
   },
   attributeText: {
     paddingLeft: 20,
@@ -137,20 +130,6 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlign: 'left',
     marginBottom: 5,
-  },
-  container: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    overflow: 'visible',
-    width: '100%',
-    height: '45%',
-  },
-  header: {
-    alignItems: 'flex-end',
-    padding: 10,
-  },
-  headerButton: {
-    padding: 5,
   },
   content: {
     flexDirection: 'row',
@@ -176,7 +155,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderRadius: 5,
-    zIndex: 1,
+    zIndex: 3,
   },
   menuItem: {
     padding: 10,
