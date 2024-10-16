@@ -1,6 +1,6 @@
 //design of lower modal
-import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useEffect, useState, useCallback } from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, DeviceEventEmitter } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { CredentialExchangeRecord } from '@credo-ts/core'
 import { useTranslation } from 'react-i18next'
@@ -11,18 +11,24 @@ import { Attribute, CredentialOverlay } from '@hyperledger/aries-oca/build/legac
 import { TOKENS, useServices } from '../../container-api'
 import { buildFieldsFromAnonCredsCredential } from '../../utils/oca'
 import { getCredentialIdentifiers } from '../../utils/credential'
+import { useAgent } from '@credo-ts/react-hooks'
+import Toast from 'react-native-toast-message'
+import CommonRemoveModal from '../modals/CommonRemoveModal'
+import { ModalUsage } from '../../types/remove'
+import { BifoldError } from '../../types/error'
+import { EventTypes } from '../../constants'
+import { GenericFn } from '../../types/fn'
 
-interface CredentialDetailsCustomProps {
+interface CredentialConnectionInfoProps {
   credential: CredentialExchangeRecord
+  onRemove?: GenericFn
 }
 
-const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ credential }) => {
+const CredentialConnectionInfo: React.FC<CredentialConnectionInfoProps> = ({ credential, onRemove = () => null }) => {
   const [menuVisible, setMenuVisible] = useState(false)
+  const [isRemoveModalVisible, setIsRemoveModalVisible] = useState(false)
   const { ColorPallet } = useTheme()
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible)
-  }
-
+  const { agent } = useAgent()
   const { t, i18n } = useTranslation()
   const [, setOverlay] = useState<CredentialOverlay<BrandingOverlay>>({
     bundle: undefined,
@@ -33,6 +39,49 @@ const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ cred
   const [attributes, setAttributes] = useState<Attribute[]>([])
   const [bundleResolver] = useServices([TOKENS.UTIL_OCA_RESOLVER])
   const issuerName = useCredentialConnectionLabel(credential) ?? t('Credentials.UnknownIssuer')
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible)
+  }
+
+  const callOnRemove = useCallback(() => {
+    setIsRemoveModalVisible(true)
+    setMenuVisible(false)
+  }, [])
+
+  const callSubmitRemove = useCallback(async () => {
+    try {
+      if (!(agent && credential)) {
+        return
+      }
+
+      await agent.credentials.deleteById(credential.id)
+
+      // Close modals and perform any additional actions
+      setIsRemoveModalVisible(false)
+      onRemove()
+
+      // Show success toast after a delay
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+
+      Toast.show({
+        type: 'success',
+        text1: t('CredentialDetails.CredentialRemoved'),
+      })
+    } catch (err: unknown) {
+      const error = new BifoldError(
+        t('Error.Title1032'),
+        t('Error.Message1032'),
+        (err as Error)?.message ?? String(err),
+        1032
+      )
+      DeviceEventEmitter.emit(EventTypes.ERROR_ADDED, error)
+    }
+  }, [agent, credential, onRemove, t])
+
+  const callCancelRemove = useCallback(() => {
+    setIsRemoveModalVisible(false)
+  }, [])
 
   useEffect(() => {
     if (!credential) {
@@ -66,7 +115,7 @@ const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ cred
       </TouchableOpacity>
       {menuVisible && (
         <View style={[styles.menu, { borderColor: ColorPallet.brand.verididPink }]}>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={callOnRemove}>
             <Text style={styles.menuItemText}>Delete Credential</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
@@ -97,6 +146,12 @@ const CredentialConnectionInfo: React.FC<CredentialDetailsCustomProps> = ({ cred
           <Text style={styles.infoText}>31 Discussions</Text>
         </View>
       </View>
+      <CommonRemoveModal
+        usage={ModalUsage.CredentialRemove}
+        visible={isRemoveModalVisible}
+        onSubmit={callSubmitRemove}
+        onCancel={callCancelRemove}
+      />
     </View>
   )
 }

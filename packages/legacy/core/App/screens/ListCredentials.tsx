@@ -314,7 +314,17 @@ const ListCredentials: React.FC = () => {
                 </ScrollView>
               </View>
               <View style={styles.menuModalContainer}>
-                <CredentialConnectionInfo credential={selectedCredential} />
+                <CredentialConnectionInfo
+                  credential={selectedCredential}
+                  onRemove={() => {
+                    // Close modals and refresh list
+                    setCredentialModalVisible(false)
+                    setMenuModalVisible(false)
+                    setSelectedCredential(null)
+                    setSelectedLogoUrl(undefined)
+                    // Reload or refresh credentials list if necessary
+                  }}
+                />
               </View>
             </View>
           </View>
