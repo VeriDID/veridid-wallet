@@ -8,13 +8,15 @@ interface VDCardProps extends SvgProps {
   lastName?: string
   studentId?: string
   issueDate?: string
+  logoImage?: string
 }
 
-const VDCard: React.FC<VDCardProps> = ({ firstName, lastName, studentId, issueDate, ...props }) => {
+const VDCard: React.FC<VDCardProps> = ({ firstName, lastName, studentId, issueDate, logoImage, ...props }) => {
   const filledSvg = VDCardSvg.replace('{firstName}', firstName || '')
     .replace('{lastName}', lastName || '')
     .replace('{studentId}', studentId || '')
     .replace('{issueDate}', issueDate || '')
+    .replace('{logoImage}', logoImage || '')
 
   return <SvgXml xml={filledSvg} {...props} />
 }

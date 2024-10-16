@@ -1,6 +1,6 @@
 //fetching data (attributes) + designing upper modal
 import React, { useEffect, useState } from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { CredentialExchangeRecord } from '@credo-ts/core'
 import { useTranslation } from 'react-i18next'
 import { useCredentialConnectionLabel } from '../../utils/helpers'
@@ -18,13 +18,15 @@ interface CredentialDetailsCustomProps {
 
 const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ credential, logoUrl }) => {
   const { t, i18n } = useTranslation()
-  const [overlay, setOverlay] = useState<CredentialOverlay<BrandingOverlay>>({
+  const [, setOverlay] = useState<CredentialOverlay<BrandingOverlay>>({
     bundle: undefined,
     presentationFields: [],
     metaOverlay: undefined,
     brandingOverlay: undefined,
   })
   const [, setAttributes] = useState<Attribute[]>([])
+
+  const [logoBase64, setLogoBase64] = useState<string | null>(null) // New state for logo
 
   const [bundleResolver] = useServices([TOKENS.UTIL_OCA_RESOLVER])
 
@@ -35,9 +37,34 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
   const studentId = credential.credentialAttributes?.find((attr) => attr.name === 'StudentID')?.value || ''
   const issueDate = new Date(credential.createdAt).toLocaleDateString()
 
-  const creationDate = credential?.createdAt
-    ? new Date(credential.createdAt).toLocaleDateString()
-    : t('Credentials.UnknownDate')
+  // const creationDate = credential?.createdAt
+  //   ? new Date(credential.createdAt).toLocaleDateString()
+  //   : t('Credentials.UnknownDate')
+
+  useEffect(() => {
+    if (logoUrl) {
+      const fetchLogo = async () => {
+        try {
+          const response = await fetch(logoUrl)
+          const blob = await response.blob()
+
+          const reader = new FileReader()
+          reader.onloadend = () => {
+            const base64data = reader.result as string
+            setLogoBase64(base64data)
+          }
+          reader.readAsDataURL(blob)
+        } catch (error) {
+          console.error('Error fetching logo image:', error)
+        }
+      }
+
+      fetchLogo()
+    } else {
+      // Use a default logo if logoUrl is not provided
+      setLogoBase64(null)
+    }
+  }, [logoUrl])
 
   useEffect(() => {
     if (!credential) {
@@ -69,33 +96,12 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
       <VDCard
         style={styles.card}
         width="100%"
-        //height={200} // Adjust this value as needed
         firstName={firstName}
         lastName={lastName}
         studentId={studentId}
         issueDate={issueDate}
+        logoImage={logoBase64 || ''}
       />
-      {/* <View style={styles.logoContainer}>
-        {logoUrl ? (
-          <Image source={{ uri: logoUrl }} style={styles.logo} />
-        ) : (
-          <Image source={require('../../assets/img/veridid-logo.png')} style={styles.logo} />
-        )}
-      </View>
-      <Text style={styles.institutionName}>{issuerName}</Text>
-      <Text style={styles.credentialType}>{overlay.metaOverlay?.name || t('Credentials.UnknownCredential')}</Text>
-      <Text style={styles.date}>{creationDate}</Text> */}
-      {/* <View style={styles.attributesContainer}>
-        {attributes.length > 0 ? (
-          attributes.map((attr, index) => (
-            <Text key={index} style={styles.attributeText}>
-              {attr.name}: {attr.value}
-            </Text>
-          ))
-        ) : (
-          <Text style={styles.attributesPlaceholder}>{t('Attributes.Placeholder')}</Text>
-        )}
-      </View> */}
     </View>
   )
 }
