@@ -32,8 +32,6 @@ import CredentialDetailsCustom from '../components/misc/CredentialDetailsCustom'
 import { StackNavigationProp } from '@react-navigation/stack'
 import CredentialConnectionInfo from '../components/misc/CredentialConnectionInfo'
 
-//import { set } from 'mockdate'
-
 const windowHeight = Dimensions.get('window').height
 
 const styles = StyleSheet.create({
@@ -45,25 +43,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f324c6', // Your pink color
+    backgroundColor: '#f324c6',
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 25,
-    alignSelf: 'center', // Centers the button within its parent
-    marginTop: 30, // Adjust as needed for spacing
+    alignSelf: 'center',
+    marginTop: 30,
     position: 'absolute',
-    bottom: 90, // Adjust to position above the navigation bar
+    bottom: 90,
     width: '80%',
   },
   joinButtonText: {
     color: '#FFFFFF',
     fontSize: 20,
     fontWeight: 'bold',
-    marginRight: 8, // Adds space between the text and icon
+    marginRight: 8,
   },
   circle: {
     position: 'absolute',
-    borderRadius: 1000, // This makes the view a circle
+    borderRadius: 1000,
   },
   whiteCircleContainer: {
     width: 300,
@@ -74,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 1,
     position: 'absolute',
-    top: '25%', // Adjust position as needed
+    top: '25%',
   },
   greenCircle: {
     width: 250,
@@ -95,37 +93,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: 'transparent', // Updated for full transparency
+    backgroundColor: 'transparent',
   },
   emptyLogo: {
     width: 120,
     height: 120,
     marginBottom: 20,
     resizeMode: 'contain',
-    position: 'absolute', // Absolute positioning
-    top: '5%', // Position above the circles
-    zIndex: 2, // Higher than the circles
+    position: 'absolute',
+    top: '5%',
+    zIndex: 2,
   },
   textContainer: {
-    width: '85%', // Make the width less than 100% to start and end earlier
-    alignSelf: 'center', // Center the text container horizontally within the parent
-    paddingHorizontal: 10, // Add padding to further offset the start and end points
-    paddingVertical: 20, // Add vertical padding if needed for spacing
+    width: '85%',
+    alignSelf: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 20,
   },
   emptyTitle: {
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 10,
-
-    // Styling for the main title in the empty state
   },
 
   emptyDescription: {
     fontSize: 18,
     textAlign: 'center',
     marginBottom: 20,
-    color: '#666', // Lighter color for the description text
+    color: '#666',
   },
 
   modalOverlay: {
@@ -138,14 +134,14 @@ const styles = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: windowHeight * 0.6, // 60% of screen height
+    height: windowHeight * 0.6,
   },
   modalContainer: {
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
-    height: windowHeight * 0.32, // 50% of screen height
+    height: windowHeight * 0.32,
     marginBottom: 10,
   },
   menuModalContainer: {
@@ -153,7 +149,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
-    height: windowHeight * 0.25, // 15% of screen height
+    height: windowHeight * 0.25,
   },
   menuOption: {
     paddingVertical: 15,
@@ -262,21 +258,16 @@ const ListCredentials: React.FC = () => {
             <View style={[styles.circle, styles.orangeCircle]} />
 
             <Image source={require('../assets/img/veridid-logo.png')} style={styles.emptyLogo} />
-            {/* Centered logo with adjusted size */}
             <View style={styles.whiteCircleContainer}>
               <View style={styles.textContainer}>
                 <Text style={styles.emptyTitle}>{t('Credentials.VeriDIDWallet')}</Text>
-                {/* Updated title based on Figma design */}
-
                 <Text style={styles.emptyDescription}>{t('Credentials.AddYourFirstCredential')}</Text>
-                {/* Description message matching the design */}
               </View>
             </View>
             <TouchableOpacity style={styles.joinButton} onPress={navigateToChannels}>
               <Text style={styles.joinButtonText}>{t('Credentials.JoinChannel')}</Text>
               <Icon name="plus-circle-outline" style={styles.joinButtonIcon} />
             </TouchableOpacity>
-            {/* Join Channel button with an icon */}
           </View>
         ) : (
           <FlatList

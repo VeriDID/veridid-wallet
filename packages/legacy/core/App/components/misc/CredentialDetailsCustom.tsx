@@ -1,4 +1,4 @@
-//fetching data (attributes) + upper modal
+//fetching data (attributes) + designing upper modal
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { CredentialExchangeRecord } from '@credo-ts/core'
@@ -67,8 +67,9 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
   return (
     <View style={styles.container}>
       <VDCard
+        style={styles.card}
         width="100%"
-        height={200} // Adjust this value as needed
+        //height={200} // Adjust this value as needed
         firstName={firstName}
         lastName={lastName}
         studentId={studentId}
@@ -100,12 +101,19 @@ const CredentialDetailsCustom: React.FC<CredentialDetailsCustomProps> = ({ crede
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'flex-start',
-    padding: 20,
-    backgroundColor: 'transparent',
-    borderRadius: 10,
+  card: {
+    width: '100%',
     height: '100%',
+    aspectRatio: 381 / 203, // Maintain the aspect ratio of the SVG
+  },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    padding: 0,
   },
   logoContainer: {
     width: '100%',
