@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* VeriDIDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* VeriDIDTests.m */; };
+		0AFE34AECB3C57E363084E6A /* libPods-VeriDID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E23DC6A384D97F1164F10C8F /* libPods-VeriDID.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		43857C042720ABB4004F54E0 /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43857C032720ABB4004F54E0 /* libswiftWebKit.tbd */; };
 		566FB1F2273B158E003E9BEE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566FB1F1273B158E003E9BEE /* Media.xcassets */; };
-		7F9438A241415D91FE03E672 /* libPods-VeriDID-VeriDIDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC619872BBA37072A5639EB2 /* libPods-VeriDID-VeriDIDTests.a */; };
+		7DB67E9378854AB168469B88 /* libPods-VeriDID-VeriDIDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 214419FC6AD277507BCCC417 /* libPods-VeriDID-VeriDIDTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B3323260BEE4FC72AE872472 /* libPods-VeriDID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BF87D79D79E6F4258D6916 /* libPods-VeriDID.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,16 +51,16 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VeriDID/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = VeriDID/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = VeriDID/main.m; sourceTree = "<group>"; };
-		415816A04BCC050DC9A49323 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID-VeriDIDTests.debug.xcconfig"; path = "Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests.debug.xcconfig"; sourceTree = "<group>"; };
+		214419FC6AD277507BCCC417 /* libPods-VeriDID-VeriDIDTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeriDID-VeriDIDTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24F038D2358372BE64900F05 /* Pods-VeriDID.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID.release.xcconfig"; path = "Target Support Files/Pods-VeriDID/Pods-VeriDID.release.xcconfig"; sourceTree = "<group>"; };
+		25B9E8A52779CDF83675C055 /* Pods-VeriDID.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID.debug.xcconfig"; path = "Target Support Files/Pods-VeriDID/Pods-VeriDID.debug.xcconfig"; sourceTree = "<group>"; };
 		433E773D26557E1B00F569EE /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Indy.framework; path = Pods/Frameworks/Indy.framework; sourceTree = "<group>"; };
 		43857C032720ABB4004F54E0 /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
+		500E01B36258617AE715CABD /* Pods-VeriDID-VeriDIDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID-VeriDIDTests.release.xcconfig"; path = "Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests.release.xcconfig"; sourceTree = "<group>"; };
 		566FB1F1273B158E003E9BEE /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		64726A7B47B6D572FD093F8E /* Pods-VeriDID.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID.debug.xcconfig"; path = "Target Support Files/Pods-VeriDID/Pods-VeriDID.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = VeriDID/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B2BF87D79D79E6F4258D6916 /* libPods-VeriDID.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeriDID.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC619872BBA37072A5639EB2 /* libPods-VeriDID-VeriDIDTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeriDID-VeriDIDTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7495224647186AC6DB45AAD /* Pods-VeriDID.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID.release.xcconfig"; path = "Target Support Files/Pods-VeriDID/Pods-VeriDID.release.xcconfig"; sourceTree = "<group>"; };
-		E7B4CE8865FE7A1ACD281C63 /* Pods-VeriDID-VeriDIDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID-VeriDIDTests.release.xcconfig"; path = "Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests.release.xcconfig"; sourceTree = "<group>"; };
+		B5D78048BA0F9547B0DC42A8 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeriDID-VeriDIDTests.debug.xcconfig"; path = "Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E23DC6A384D97F1164F10C8F /* libPods-VeriDID.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeriDID.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F9438A241415D91FE03E672 /* libPods-VeriDID-VeriDIDTests.a in Frameworks */,
+				7DB67E9378854AB168469B88 /* libPods-VeriDID-VeriDIDTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43857C042720ABB4004F54E0 /* libswiftWebKit.tbd in Frameworks */,
-				B3323260BEE4FC72AE872472 /* libPods-VeriDID.a in Frameworks */,
+				0AFE34AECB3C57E363084E6A /* libPods-VeriDID.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +121,8 @@
 				43857C032720ABB4004F54E0 /* libswiftWebKit.tbd */,
 				433E773D26557E1B00F569EE /* Indy.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B2BF87D79D79E6F4258D6916 /* libPods-VeriDID.a */,
-				BC619872BBA37072A5639EB2 /* libPods-VeriDID-VeriDIDTests.a */,
+				E23DC6A384D97F1164F10C8F /* libPods-VeriDID.a */,
+				214419FC6AD277507BCCC417 /* libPods-VeriDID-VeriDIDTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,10 +170,10 @@
 		8ACF6F3B2962FE31C0EE5408 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				64726A7B47B6D572FD093F8E /* Pods-VeriDID.debug.xcconfig */,
-				C7495224647186AC6DB45AAD /* Pods-VeriDID.release.xcconfig */,
-				415816A04BCC050DC9A49323 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */,
-				E7B4CE8865FE7A1ACD281C63 /* Pods-VeriDID-VeriDIDTests.release.xcconfig */,
+				25B9E8A52779CDF83675C055 /* Pods-VeriDID.debug.xcconfig */,
+				24F038D2358372BE64900F05 /* Pods-VeriDID.release.xcconfig */,
+				B5D78048BA0F9547B0DC42A8 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */,
+				500E01B36258617AE715CABD /* Pods-VeriDID-VeriDIDTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -185,12 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "VeriDIDTests" */;
 			buildPhases = (
-				8EB4976DD63495D9749DAC78 /* [CP] Check Pods Manifest.lock */,
+				0EFBE9975AC377B3BA3B9B1C /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C76D9CD45F97D0D184B10CD4 /* [CP] Embed Pods Frameworks */,
-				CAC9B3BBED48D5539BDBAB3C /* [CP] Copy Pods Resources */,
+				49E208239AE2622027BF43B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,15 +205,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "VeriDID" */;
 			buildPhases = (
-				CDA35C59FCC1282C888E8420 /* [CP] Check Pods Manifest.lock */,
+				3AEC64E751499081BFF20937 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				433E774026557E1B00F569EE /* Embed Frameworks */,
-				1729053FB685E4E95BB93B42 /* [CP] Embed Pods Frameworks */,
-				BCCD7B77F36887DDE1BF5EC6 /* [CP] Copy Pods Resources */,
+				966F2C80ABCAED4A9823B03C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -296,24 +294,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=/Users/uy/.nvm/versions/node/v18.18.2/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		1729053FB685E4E95BB93B42 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8EB4976DD63495D9749DAC78 /* [CP] Check Pods Manifest.lock */ = {
+		0EFBE9975AC377B3BA3B9B1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -335,58 +316,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BCCD7B77F36887DDE1BF5EC6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C76D9CD45F97D0D184B10CD4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CAC9B3BBED48D5539BDBAB3C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CDA35C59FCC1282C888E8420 /* [CP] Check Pods Manifest.lock */ = {
+		3AEC64E751499081BFF20937 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -406,6 +336,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		49E208239AE2622027BF43B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID-VeriDIDTests/Pods-VeriDID-VeriDIDTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		966F2C80ABCAED4A9823B03C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeriDID/Pods-VeriDID-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -460,7 +424,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 415816A04BCC050DC9A49323 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */;
+			baseConfigurationReference = B5D78048BA0F9547B0DC42A8 /* Pods-VeriDID-VeriDIDTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = "";
@@ -488,7 +452,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7B4CE8865FE7A1ACD281C63 /* Pods-VeriDID-VeriDIDTests.release.xcconfig */;
+			baseConfigurationReference = 500E01B36258617AE715CABD /* Pods-VeriDID-VeriDIDTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -513,7 +477,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64726A7B47B6D572FD093F8E /* Pods-VeriDID.debug.xcconfig */;
+			baseConfigurationReference = 25B9E8A52779CDF83675C055 /* Pods-VeriDID.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -549,7 +513,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7495224647186AC6DB45AAD /* Pods-VeriDID.release.xcconfig */;
+			baseConfigurationReference = 24F038D2358372BE64900F05 /* Pods-VeriDID.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -613,9 +577,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -648,6 +613,8 @@
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
 					"-Wl -ld_classic ",
@@ -688,9 +655,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -718,6 +686,8 @@
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
 					"-Wl -ld_classic ",

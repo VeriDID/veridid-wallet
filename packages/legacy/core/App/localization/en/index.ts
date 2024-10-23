@@ -456,6 +456,7 @@ const translation = {
   "CredentialDetails": {
     "Id": "Id:",
     "CreatedAt": "Created At:",
+    "FailedToDeleteCredential": "Failed to Delete the Credential",
     "Version": "Version",
     "Issued": "Issued",
     "PrivacyPolicy": "Privacy policy",

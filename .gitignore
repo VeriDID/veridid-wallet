@@ -179,3 +179,18 @@ app/android/app/src/main/assets/app.bundle
 packages/legacy/app/vendor/bundle/**
 
 .vscode/settings.json
+
+packages/legacy/app/ios/veridid.xcodeproj/project.pbxproj
+
+#firebase
+
+packages/legacy/app/android/app/google-services.json
+packages/legacy/app/ios/GoogleService-Info.plist
+
+#svgs:
+
+packages/legacy/core/App/assets/img/Card.svg
+packages/legacy/core/App/assets/img/credentialcard.svg
+
+# Ignore the release folder inside android/app
+packages/legacy/app/android/app/release/
