@@ -191,3 +191,6 @@ packages/legacy/app/ios/GoogleService-Info.plist
 
 packages/legacy/core/App/assets/img/Card.svg
 packages/legacy/core/App/assets/img/credentialcard.svg
+
+# Ignore the release folder inside android/app
+packages/legacy/app/android/app/release/
