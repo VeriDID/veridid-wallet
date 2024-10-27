@@ -228,5 +228,8 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "@credo-ts/drpc": "0.5.11"
   }
 }
