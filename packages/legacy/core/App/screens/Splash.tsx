@@ -1,4 +1,14 @@
-import { Agent, HttpOutboundTransport, WsOutboundTransport, WalletError } from '@credo-ts/core'
+//splash.tsx
+import {
+  Agent,
+  HttpOutboundTransport,
+  WsOutboundTransport,
+  WalletError,
+  DidExchangeState,
+  ConnectionStateChangedEvent,
+  ConnectionEventTypes,
+  ConnectionRecord,
+} from '@credo-ts/core'
 import { IndyVdrPoolService } from '@credo-ts/indy-vdr/build/pool'
 import { useAgent } from '@credo-ts/react-hooks'
 import { agentDependencies } from '@credo-ts/react-native'
@@ -23,6 +33,7 @@ import { Screens, Stacks } from '../types/navigators'
 import { getAgentModules, createLinkSecretIfRequired } from '../utils/agent'
 import { migrateToAskar, didMigrateToAskar } from '../utils/migration'
 import { RemoteOCABundleResolver } from '@hyperledger/aries-oca/build/legacy'
+import { DrpcRecord, DrpcRequestEventTypes, DrpcRequestStateChangedEvent } from '@credo-ts/drpc'
 
 const OnboardingVersion = 1
 
@@ -88,6 +99,12 @@ const resumeOnboardingAt = (
  * iOS and Android launch screen to match the background color of
  * of this view.
  */
+
+interface CacheItem {
+  did: string
+  id: string
+}
+
 const Splash: React.FC = () => {
   const { agent, setAgent } = useAgent()
   const { t } = useTranslation()
@@ -124,6 +141,76 @@ const Splash: React.FC = () => {
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
   })
+
+  // const sendDRPCResponseWorkflow = async (
+  //   agent: Agent,
+  //   connectionRecord: ConnectionRecord,
+  //   workflowId: string,
+  //   instanceId: string,
+  //   displayData: any
+  // ) => {
+  //   await agent.modules.drpc.sendRequest(connectionRecord.id, {
+  //     jsonrpc: '2.0',
+  //     method: 'workflow_response',
+  //     id: '',
+  //     params: {
+  //       version: '1.0',
+  //       workflowid: workflowId,
+  //       instance: instanceId,
+  //       displaydata: displayData,
+  //     },
+  //   })
+  // }
+
+  // const sendDRPCRequestWorkflow = async (
+  //   agent: Agent,
+  //   connectionRecord: ConnectionRecord,
+  //   workflowId: string,
+  //   instanceId?: string,
+  //   actionId?: string,
+  //   actionParams?: any
+  // ) => {
+  //   if (typeof instanceId !== 'undefined') {
+  //     instanceId = ''
+  //   }
+  //   if (typeof actionId !== 'undefined') {
+  //     actionId = ''
+  //   }
+  //   if (typeof actionParams !== 'undefined') {
+  //     actionParams = {}
+  //   }
+  //   await agent.modules.drpc.sendRequest(connectionRecord.id, {
+  //     jsonrpc: '2.0',
+  //     method: 'workflow_request',
+  //     id: '',
+  //     params: {
+  //       version: '1.0',
+  //       workflowid: workflowId,
+  //       instance: instanceId,
+  //       actionId: actionId,
+  //     },
+  //   })
+  // }
+
+  const sendDRPCWorkflows = async (agent: Agent, connectionRecord: ConnectionRecord) => {
+    console.log('Sending initial DRPC from agent:', agent.config.label)
+    await agent.modules.drpc.sendRequest(connectionRecord.id, {
+      jsonrpc: '2.0',
+      method: 'workflow_connection',
+      id: '',
+      params: {
+        version: '1.0',
+        default_workflowid: '00000000-0000-0000-0000-000000000000',
+        workflows: [
+          {
+            workflowid: '00000000-0000-0000-0000-000000000000',
+            name: 'Welcome',
+          },
+        ],
+      },
+    })
+    return 'called sendDRPC'
+  }
 
   // navigation calls that occur before the screen is fully mounted will fail
   // this useeffect prevents that race condition
@@ -354,16 +441,107 @@ const Splash: React.FC = () => {
 
         await newAgent.initialize()
 
+        // Add connection listener for DRPC
+
+        newAgent.events.on<ConnectionStateChangedEvent>(ConnectionEventTypes.ConnectionStateChanged, ({ payload }) => {
+          if (payload.connectionRecord.state === DidExchangeState.Completed) {
+            const connectionRecord = payload.connectionRecord // Store the connection record
+
+            // Set up DRPC listener
+            newAgent.events.on(
+              DrpcRequestEventTypes.DrpcRequestStateChanged,
+              async ({ payload }: DrpcRequestStateChangedEvent) => {
+                // Send back a request for the default workflow to start
+                const record: DrpcRecord = payload.drpcMessageRecord
+                const request: any = record.request
+                const method: string = request.method
+                console.log(
+                  '\nReceived DRPC call on agent',
+                  newAgent.config.label,
+                  ' role:',
+                  payload.drpcMessageRecord.role,
+                  ' method:',
+                  method
+                )
+
+                switch (method) {
+                  // case 'workflow_connection':
+                  //   if (payload.drpcMessageRecord.role === 'server') {
+                  //     console.log('* Received workflow_connection')
+                  //     // Received list of workflows
+                  //     console.log('** Save workflow')
+                  //     workflows.current.set(connectionRecord.id, request.params)
+                  //     // Request the default
+                  //     console.log('*** Send workflow request')
+                  //     await sendDRPCRequestWorkflow(newAgent, connectionRecord, request.params.default_workflowid)
+                  //   } else {
+                  //     console.log('## client workflow_connection ', newAgent.config.label)
+                  //   }
+                  //   break
+
+                  // case 'workflow_request': // get rid of
+                  //   if (payload.drpcMessageRecord.role === 'client') {
+                  //     console.log('* Received workflow_request')
+                  //     // Workflow request with action
+                  //     console.log('** Parse workflow')
+                  //     const displayData = await parserService.parse(
+                  //       request.params.workflowid,
+                  //       connectionRecord.id,
+                  //       request.params.instanceId,
+                  //       '00000000-0000-0000-0000-000000000000',
+                  //       {}
+                  //     )
+                  //     console.log('*** Send workflow response')
+                  //     await sendDRPCResponseWorkflow(
+                  //       newAgent,
+                  //       connectionRecord,
+                  //       request.params.workflowid,
+                  //       request.params.instanceId,
+                  //       displayData
+                  //     )
+                  //   } else {
+                  //     console.log('## server workflow_request ', newAgent.config.label)
+                  //   }
+                  //   break
+
+                  case 'workflow_response':
+                    if (payload.drpcMessageRecord.role === 'server') {
+                      console.log('Received workflow_response')
+                      // Response to request with display
+                      console.log('Workflow response display is:', request?.params?.displaydata)
+                    } else {
+                      console.log('## client workflow_response ', newAgent.config.label)
+                    }
+                    break
+
+                  default:
+                    console.log(
+                      '\nNo handler for call ',
+                      newAgent.config.label,
+                      ' role:',
+                      payload.drpcMessageRecord.role,
+                      ' method:',
+                      method
+                    )
+                }
+              }
+            )
+
+            // Send initial workflows
+            sendDRPCWorkflows(newAgent, connectionRecord)
+          }
+        })
+
         await createLinkSecretIfRequired(newAgent)
 
         const poolService = newAgent.dependencyManager.resolve(IndyVdrPoolService)
-        cacheCredDefs.forEach(async ({ did, id }) => {
+        cacheCredDefs.forEach(async ({ did, id }: CacheItem) => {
           const pool = await poolService.getPoolForDid(newAgent.context, did)
           const credDefRequest = new GetCredentialDefinitionRequest({ credentialDefinitionId: id })
           await pool.pool.submitRequest(credDefRequest)
         })
 
-        cacheSchemas.forEach(async ({ did, id }) => {
+        cacheSchemas.forEach(async ({ did, id }: CacheItem) => {
           const pool = await poolService.getPoolForDid(newAgent.context, did)
           const schemaRequest = new GetSchemaRequest({ schemaId: id })
           await pool.pool.submitRequest(schemaRequest)
