@@ -20,6 +20,7 @@ import { Role } from '../types/chat'
 import { BasicMessageMetadata, basicMessageCustomMetadata } from '../types/metadata'
 import { RootStackParams, ContactStackParams, Screens, Stacks } from '../types/navigators'
 import { getConnectionName } from '../utils/helpers'
+import { useWorkflow } from '../contexts/workflow'
 
 type ChatProps = StackScreenProps<ContactStackParams, Screens.Chat> | StackScreenProps<RootStackParams, Screens.Chat>
 
@@ -41,6 +42,9 @@ const Chat: React.FC<ChatProps> = ({ route }) => {
   const [showActionSlider, setShowActionSlider] = useState(false)
   const { ChatTheme: theme, Assets } = useTheme()
   const [theirLabel, setTheirLabel] = useState(getConnectionName(connection, store.preferences.alternateContactNames))
+  //const { setDisplayData } = useWorkflow()
+  const { display } = useWorkflow()
+  const [displayData, setDisplayData] = useState<any>(null)
 
   // This useEffect is for properly rendering changes to the alt contact name, useMemo did not pick them up
   useEffect(() => {
@@ -69,6 +73,16 @@ const Chat: React.FC<ChatProps> = ({ route }) => {
       }
     })
   }, [basicMessages, agent])
+
+  useEffect(() => {
+    setDisplayData(display.get(connectionId))
+  }, [displayData, connectionId, setDisplayData, display])
+
+  useEffect(() => {
+    console.log('*********chat interface:', displayData)
+    // Update your chat interface here based on currentWorkflows
+    // For example, you might update state variables or trigger side effects
+  }, [displayData])
 
   const onSend = useCallback(
     async (messages: IMessage[]) => {
