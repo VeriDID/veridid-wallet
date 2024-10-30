@@ -80,7 +80,7 @@ const Chat: React.FC<ChatProps> = ({ route }) => {
 
   useEffect(() => {
     console.log('*********chat interface:', displayData)
-    // Update your chat interface here based on currentWorkflows
+    // Update your chat interface here based on displaydata
     // For example, you might update state variables or trigger side effects
   }, [displayData])
 
