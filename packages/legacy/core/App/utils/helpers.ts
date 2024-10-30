@@ -1170,5 +1170,6 @@ export function generateRandomWalletName() {
   for (let i = 0; i < 4; i++) {
     name = name.concat(Math.floor(Math.random() * 10).toString())
   }
+
   return name
 }
