@@ -20,6 +20,7 @@ import { NetworkProvider } from './contexts/network'
 import { StoreProvider } from './contexts/store'
 import { ThemeProvider } from './contexts/theme'
 import { TourProvider } from './contexts/tour/tour-provider'
+import { WorkflowProvider } from './contexts/workflow'
 import { initLanguages, initStoredLanguage, translationResources } from './localization'
 import RootStack from './navigators/RootStack'
 import { theme } from './theme'
@@ -46,25 +47,27 @@ const App = (system: Container): React.FC => {
               <AnimatedComponentsProvider value={animatedComponents}>
                 <AuthProvider>
                   <NetworkProvider>
-                    <StatusBar
-                      hidden={false}
-                      barStyle="light-content"
-                      backgroundColor={theme.ColorPallet.brand.primaryBackground}
-                      translucent={false}
-                    />
-                    <NetInfo />
-                    <ErrorModal />
-                    <TourProvider
-                      homeTourSteps={homeTourSteps}
-                      credentialsTourSteps={credentialsTourSteps}
-                      credentialOfferTourSteps={credentialOfferTourSteps}
-                      proofRequestTourSteps={proofRequestTourSteps}
-                      overlayColor={'gray'}
-                      overlayOpacity={0.7}
-                    >
-                      <RootStack />
-                    </TourProvider>
-                    <Toast topOffset={15} config={toastConfig} />
+                    <WorkflowProvider>
+                      <StatusBar
+                        hidden={false}
+                        barStyle="light-content"
+                        backgroundColor={theme.ColorPallet.brand.primaryBackground}
+                        translucent={false}
+                      />
+                      <NetInfo />
+                      <ErrorModal />
+                      <TourProvider
+                        homeTourSteps={homeTourSteps}
+                        credentialsTourSteps={credentialsTourSteps}
+                        credentialOfferTourSteps={credentialOfferTourSteps}
+                        proofRequestTourSteps={proofRequestTourSteps}
+                        overlayColor={'gray'}
+                        overlayOpacity={0.7}
+                      >
+                        <RootStack />
+                      </TourProvider>
+                      <Toast topOffset={15} config={toastConfig} />
+                    </WorkflowProvider>
                   </NetworkProvider>
                 </AuthProvider>
               </AnimatedComponentsProvider>
