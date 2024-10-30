@@ -7,14 +7,13 @@ import {
   DidExchangeState,
   ConnectionStateChangedEvent,
   ConnectionEventTypes,
-  ConnectionRecord,
 } from '@credo-ts/core'
 import { IndyVdrPoolService } from '@credo-ts/indy-vdr/build/pool'
 import { useAgent } from '@credo-ts/react-hooks'
 import { agentDependencies } from '@credo-ts/react-native'
 import { GetCredentialDefinitionRequest, GetSchemaRequest } from '@hyperledger/indy-vdr-shared'
 import { useNavigation, CommonActions } from '@react-navigation/native'
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DeviceEventEmitter, StyleSheet } from 'react-native'
 import { Config } from 'react-native-config'
@@ -142,8 +141,8 @@ const Splash: React.FC = () => {
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
   })
-  const { saveWorkflows, saveCurrentWorkflows } = useWorkflow();
- 
+  const { saveWorkflows, saveCurrentWorkflows, saveDisplay } = useWorkflow()
+
   const sendDRPCRequestWorkflow = async (
     agent: Agent,
     connectionId: string,
@@ -408,7 +407,7 @@ const Splash: React.FC = () => {
 
         newAgent.events.on<ConnectionStateChangedEvent>(ConnectionEventTypes.ConnectionStateChanged, ({ payload }) => {
           if (payload.connectionRecord.state === DidExchangeState.Completed) {
-            const connectionRecord = payload.connectionRecord // Store the connection record
+            //const connectionRecord = payload.connectionRecord // Store the connection record
 
             // Set up DRPC listener
             newAgent.events.on(
@@ -433,12 +432,16 @@ const Splash: React.FC = () => {
                       console.log('* Received workflow_connection')
                       // Received list of workflows
                       console.log('** Save workflow')
-                      console.log("connectionId=", payload.drpcMessageRecord.connectionId, " params=", request.params);
+                      console.log('connectionId=', payload.drpcMessageRecord.connectionId, ' params=', request.params)
                       //workflows.saveWorkflows(payload.drpcMessageRecord.connectionId, request.params);
-                      saveWorkflows(payload.drpcMessageRecord.connectionId, request.params);
+                      saveWorkflows(payload.drpcMessageRecord.connectionId, request.params)
                       // Request the default
                       console.log('*** Send workflow request')
-                      await sendDRPCRequestWorkflow(newAgent, payload.drpcMessageRecord.connectionId, request.params.default_workflowid)
+                      await sendDRPCRequestWorkflow(
+                        newAgent,
+                        payload.drpcMessageRecord.connectionId,
+                        request.params.default_workflowid
+                      )
                     } else {
                       console.log('## client workflow_connection ', newAgent.config.label)
                     }
@@ -450,6 +453,10 @@ const Splash: React.FC = () => {
                       // Response to request with display
                       console.log('Workflow response display is:', request?.params?.displaydata)
                       console.log('Workflow response params is:', request?.params)
+                      // Save the current workflows
+                      const displayData = request.params.displaydata
+                      //displayData[instanceId] =
+                      saveDisplay(payload.drpcMessageRecord.connectionId, displayData)
                     } else {
                       console.log('## client workflow_response ', newAgent.config.label)
                     }
@@ -527,6 +534,9 @@ const Splash: React.FC = () => {
     store.preferences.usePushNotifications,
     navigation,
     t,
+    saveWorkflows,
+    saveCurrentWorkflows,
+    saveDisplay,
   ])
 
   useEffect(() => {
