@@ -29,6 +29,7 @@ import { isTablet } from 'react-native-device-info'
 import Orientation from 'react-native-orientation-locker'
 import SplashScreen from 'react-native-splash-screen'
 import Toast from 'react-native-toast-message'
+import { WorkflowProvider } from '../core/App/contexts/workflow'
 
 initLanguages(translationResources)
 
@@ -55,25 +56,27 @@ const App = () => {
             <ConfigurationProvider value={defaultConfiguration}>
               <AuthProvider>
                 <NetworkProvider>
-                  <StatusBar
-                    hidden={false}
-                    barStyle="light-content"
-                    backgroundColor={theme.ColorPallet.brand.primaryBackground}
-                    translucent={false}
-                  />
-                  <NetInfo />
-                  <ErrorModal />
-                  <TourProvider
-                    homeTourSteps={homeTourSteps}
-                    credentialsTourSteps={credentialsTourSteps}
-                    credentialOfferTourSteps={credentialOfferTourSteps}
-                    proofRequestTourSteps={proofRequestTourSteps}
-                    overlayColor={'gray'}
-                    overlayOpacity={0.7}
-                  >
-                    <RootStack />
-                  </TourProvider>
-                  <Toast topOffset={15} config={toastConfig} />
+                  <WorkflowProvider>
+                    <StatusBar
+                      hidden={false}
+                      barStyle="light-content"
+                      backgroundColor={theme.ColorPallet.brand.primaryBackground}
+                      translucent={false}
+                    />
+                    <NetInfo />
+                    <ErrorModal />
+                    <TourProvider
+                      homeTourSteps={homeTourSteps}
+                      credentialsTourSteps={credentialsTourSteps}
+                      credentialOfferTourSteps={credentialOfferTourSteps}
+                      proofRequestTourSteps={proofRequestTourSteps}
+                      overlayColor={'gray'}
+                      overlayOpacity={0.7}
+                    >
+                      <RootStack />
+                    </TourProvider>
+                    <Toast topOffset={15} config={toastConfig} />
+                  </WorkflowProvider>
                 </NetworkProvider>
               </AuthProvider>
             </ConfigurationProvider>
