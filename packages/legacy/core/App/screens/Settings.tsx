@@ -95,6 +95,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
         icon: { name: '' },
         title: ' ',
       },
+
       data: [
         {
           title: t('Settings.Backup'),
@@ -334,7 +335,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
         )}
         renderSectionHeader={({
           section: {
-            header: { title, icon, iconRight, titleTestID },
+            header: { title='', icon={name: 'settings'}, iconRight, titleTestID },
           },
         }) => <SectionHeader icon={icon} iconRight={iconRight} title={title} titleTestID={titleTestID} />}
         ItemSeparatorComponent={() => (

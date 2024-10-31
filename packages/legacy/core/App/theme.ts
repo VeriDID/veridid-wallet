@@ -719,7 +719,6 @@ export const HeaderTheme = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    paddingHorizontal: 16,
   },
   headerStyle: {
     height: 180,

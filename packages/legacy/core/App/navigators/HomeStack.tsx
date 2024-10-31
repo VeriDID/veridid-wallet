@@ -25,7 +25,7 @@ const HomeStack: React.FC = () => {
         component={Home}
         options={() => ({
           title: t('Screens.Home'),
-          headerRight: () => (store.preferences.useHistoryCapability ? <HistoryMenu /> : null),
+          // headerRight: () => (store.preferences.useHistoryCapability ? <HistoryMenu /> : null),
           //headerLeft: () => <SettingsMenu />,
         })}
       />

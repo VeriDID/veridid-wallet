@@ -24,6 +24,7 @@ import { useTheme } from '../contexts/theme'
 import { TOKENS, useServices } from '../container-api'
 import { testIdWithKey } from '../utils/testable'
 import { useNetwork } from '../contexts/network'
+import DummyScreen from '../screens/DummyScreen'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const logo = require('../assets/img/veridid-logo.png')
@@ -41,7 +42,7 @@ const CustomHeaderTitle: React.FC<StackHeaderProps> = (props) => {
     if (!assertConnectedNetwork()) {
       return
     }
-    navigation.navigate(Stacks.ConnectStack, { screen: Screens.Scan })
+    navigation.navigate(Screens.Scan)
   }
 
   const styles = StyleSheet.create({
@@ -106,7 +107,7 @@ const ContactStack: React.FC = () => {
   })
 
   return (
-    <Stack.Navigator screenOptions={{ ...defaultStackOptions }}>
+    <Stack.Navigator >
       <Stack.Screen
         name={Screens.Contacts}
         component={ListContacts}
@@ -154,6 +155,12 @@ const ContactStack: React.FC = () => {
         name={Screens.ProofRequest}
         component={ProofRequest}
         options={{ title: t('Screens.ProofRequest') }}
+      />
+       {/* Dummy Screen Added in here */}
+       <Stack.Screen
+        name={Screens.DummyScreen}
+        component={DummyScreen}
+        options={{ headerShown: true }}
       />
     </Stack.Navigator>
   )

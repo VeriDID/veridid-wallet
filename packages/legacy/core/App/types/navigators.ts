@@ -46,6 +46,9 @@ export enum Screens {
   HistorySettings = 'History Settings',
   HistoryPage = 'History',
   HistoryDetails = 'History details',
+
+  DummyScreen = 'DummyScreen',
+  ListContacts = 'ListContacts',
 }
 
 export enum Stacks {
@@ -117,6 +120,7 @@ export type ContactStackParams = {
   [Screens.ProofDetails]: { recordId: string; isHistory?: boolean }
   [Screens.ProofRequest]: { proofId: string }
   [Screens.Scan]: undefined
+  [Screens.DummyScreen]: undefined
 }
 
 export type ProofRequestsStackParams = {
