@@ -46,8 +46,8 @@ export enum Screens {
   HistorySettings = 'History Settings',
   HistoryPage = 'History',
   HistoryDetails = 'History details',
-
-  DummyScreen = 'DummyScreen',
+  Workflows = 'Workflows',
+  WorkflowDetails = 'WorkflowDetails',
   ListContacts = 'ListContacts',
 }
 
@@ -120,7 +120,8 @@ export type ContactStackParams = {
   [Screens.ProofDetails]: { recordId: string; isHistory?: boolean }
   [Screens.ProofRequest]: { proofId: string }
   [Screens.Scan]: undefined
-  [Screens.DummyScreen]: undefined
+  [Screens.WorkflowDetails]: { oobRecordId: string; workflowId: string } // not sure to use connectionId or oobRecordId
+  [Screens.Workflows]: { oobRecordId: string }
 }
 
 export type ProofRequestsStackParams = {

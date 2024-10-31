@@ -844,6 +844,9 @@ const translation = {
     "InvalidPredicateValueDetails": "Must be a number",
     "ConnectionLessLabel": "Anonymous",
     "WaitingForResponse": "Waiting for response..."
+  },
+  "Workflows": {
+    "NoWorkflowsAvailable": "No workflows available"
   }
 }
 
