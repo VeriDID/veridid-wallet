@@ -144,7 +144,7 @@ const QRScanner: React.FC<Props> = ({ handleCodeScan, error, enableCameraOnError
           </View>
         )}
 
-        <View style={{ marginHorizontal: 24, height: 24, marginBottom: 60, flexDirection: 'row' }}>
+        <View style={{ marginHorizontal: 24, height: 24, marginBottom: 100, flexDirection: 'row' }}>
           {showScanHelp && (
             <Pressable
               accessibilityLabel={t('Scan.ScanHelp')}
