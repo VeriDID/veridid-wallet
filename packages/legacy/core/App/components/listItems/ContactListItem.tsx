@@ -73,7 +73,7 @@ const ContactListItem: React.FC<Props> = ({ contact, navigation }) => {
   const navigateToContact = useCallback(() => {
     navigation
       .getParent()
-      ?.navigate(Stacks.ContactStack, { screen: Screens.Chat, params: { connectionId: contact.id } })
+      ?.navigate(Stacks.ContactStack, { screen: Screens.Workflows, params: { oobRecordId: contact.outOfBandId } })
   }, [navigation, contact])
 
   const contactLabel = useMemo(

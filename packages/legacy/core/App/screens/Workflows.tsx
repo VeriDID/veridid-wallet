@@ -62,7 +62,15 @@ const Workflows: React.FC = () => {
           testID="BackButton"
           icon="arrow-left"
           onPress={() => {
-            navigation.goBack()
+            //navigation.goBack() instead of going back to the previous screen, navigate to list of contacts
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: Screens.Contacts,
+                },
+              ],
+            })
           }}
         />
       ),
@@ -79,7 +87,14 @@ const Workflows: React.FC = () => {
       backgroundColor: ColorPallet.brand.secondaryBackground,
       borderRadius: 6,
       marginBottom: 16,
-      overflow: 'hidden',
+      //overflow: 'hidden',commented because it was blocking the shadow
+      // Shadow properties for iOS
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      // Elevation for Android
+      elevation: 5,
     },
     cardContent: {
       padding: 16,
@@ -87,6 +102,8 @@ const Workflows: React.FC = () => {
     statusBar: {
       height: 4,
       width: '100%',
+      position: 'absolute',
+      bottom: 0, // Move to bottom
     },
     statusBarPending: {
       backgroundColor: '#FFA500', // Orange for pending
@@ -157,7 +174,6 @@ const Workflows: React.FC = () => {
           })
         }
       >
-        <View style={[styles.statusBar, isComplete ? styles.statusBarComplete : styles.statusBarPending]} />
         <View style={styles.cardContent}>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.subtitle}>{isComplete ? 'Workflow completed' : 'Waiting for your action'}</Text>
@@ -170,6 +186,7 @@ const Workflows: React.FC = () => {
             />
           </View>
         </View>
+        <View style={[styles.statusBar, isComplete ? styles.statusBarComplete : styles.statusBarPending]} />
       </TouchableOpacity>
     )
   }
