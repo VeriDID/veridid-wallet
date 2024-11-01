@@ -62,7 +62,15 @@ const Workflows: React.FC = () => {
           testID="BackButton"
           icon="arrow-left"
           onPress={() => {
-            navigation.goBack()
+            //navigation.goBack() instead of going back to the previous screen, navigate to list of contacts
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: Screens.Contacts,
+                },
+              ],
+            })
           }}
         />
       ),
@@ -79,7 +87,7 @@ const Workflows: React.FC = () => {
       backgroundColor: ColorPallet.brand.secondaryBackground,
       borderRadius: 6,
       marginBottom: 16,
-      //overflow: 'hidden',
+      //overflow: 'hidden',commented because it was blocking the shadow
       // Shadow properties for iOS
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
