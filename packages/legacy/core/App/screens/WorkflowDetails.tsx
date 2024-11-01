@@ -85,7 +85,6 @@ const WorkflowDetails: React.FC = () => {
           icon="arrow-left"
           onPress={() => {
             navigation.goBack()
-            navigation.goBack()
           }}
         />
       ),
