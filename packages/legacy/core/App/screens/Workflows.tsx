@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
+import { useNavigation, useRoute, RouteProp, CommonActions, StackActions } from '@react-navigation/native'
 import { useWorkflow } from '../contexts/workflow'
 import { useTheme } from '../contexts/theme'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -62,15 +62,14 @@ const Workflows: React.FC = () => {
           testID="BackButton"
           icon="arrow-left"
           onPress={() => {
-            //navigation.goBack() instead of going back to the previous screen, navigate to list of contacts
-            navigation.reset({
-              index: 0,
-              routes: [
-                {
-                  name: Screens.Contacts,
-                },
-              ],
-            })
+            // First pop the current screen
+            navigation.dispatch(StackActions.pop())
+            // Then ensure we're at the contacts screen
+            navigation.dispatch(
+              CommonActions.navigate({
+                name: Screens.Contacts,
+              })
+            )
           }}
         />
       ),
