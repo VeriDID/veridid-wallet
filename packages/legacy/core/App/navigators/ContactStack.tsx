@@ -24,12 +24,11 @@ import { useTheme } from '../contexts/theme'
 import { TOKENS, useServices } from '../container-api'
 import { testIdWithKey } from '../utils/testable'
 import { useNetwork } from '../contexts/network'
-import DummyScreen from '../screens/DummyScreen'
+import WorkflowDetails from '../screens/WorkflowDetails'
+import Workflows from '../screens/Workflows'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const logo = require('../assets/img/veridid-logo.png')
-
-
 
 const CustomHeaderTitle: React.FC<StackHeaderProps> = (props) => {
   const { t } = useTranslation()
@@ -72,7 +71,7 @@ const CustomHeaderTitle: React.FC<StackHeaderProps> = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-      <Image source={logo} style={HeaderTheme.headerLogoStyle} />
+        <Image source={logo} style={HeaderTheme.headerLogoStyle} />
       </View>
       <View style={styles.titleRow}>
         <View style={styles.titleContainer}>
@@ -93,7 +92,6 @@ const CustomHeaderTitle: React.FC<StackHeaderProps> = (props) => {
   )
 }
 
-
 const ContactStack: React.FC = () => {
   const Stack = createStackNavigator<ContactStackParams>()
   const theme = useTheme()
@@ -102,12 +100,11 @@ const ContactStack: React.FC = () => {
   const defaultStackOptions = useDefaultStackOptions()
 
   const styles = StyleSheet.create({
-    headerContainer: {
-    },
+    headerContainer: {},
   })
 
   return (
-    <Stack.Navigator >
+    <Stack.Navigator>
       <Stack.Screen
         name={Screens.Contacts}
         component={ListContacts}
@@ -117,7 +114,7 @@ const ContactStack: React.FC = () => {
         }}
       />
 
-<Stack.Screen name={Screens.Scan} component={scan} options={{ headerBackTestID: testIdWithKey('Back') }} />
+      <Stack.Screen name={Screens.Scan} component={scan} options={{ headerBackTestID: testIdWithKey('Back') }} />
 
       <Stack.Screen
         name={Screens.ContactDetails}
@@ -156,12 +153,9 @@ const ContactStack: React.FC = () => {
         component={ProofRequest}
         options={{ title: t('Screens.ProofRequest') }}
       />
-       {/* Dummy Screen Added in here */}
-       <Stack.Screen
-        name={Screens.DummyScreen}
-        component={DummyScreen}
-        options={{ headerShown: true }}
-      />
+      {/* Workflows & details Added in here */}
+      <Stack.Screen name={Screens.Workflows} component={Workflows} options={{ headerShown: true }} />
+      <Stack.Screen name={Screens.WorkflowDetails} component={WorkflowDetails} options={{ headerShown: true }} />
     </Stack.Navigator>
   )
 }
