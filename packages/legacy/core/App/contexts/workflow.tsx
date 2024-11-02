@@ -8,7 +8,7 @@ export interface WorkflowContext {
   saveDisplay: (connectionId: string, displayData: any) => void
   getDisplay: (connectionId: string) => any
   workflows: Map<string, any>
-  current: Map<string, any>
+  //current: Map<string, any>
   display: Map<string, any>
 }
 
@@ -74,7 +74,7 @@ export const WorkflowProvider: React.FC<React.PropsWithChildren> = ({ children }
         saveDisplay,
         getDisplay,
         workflows,
-        current: workflows, // Use workflows instead of current
+        //current: workflows, //there is no reference to current commented will be deleted after testing
         display,
       }}
     >
