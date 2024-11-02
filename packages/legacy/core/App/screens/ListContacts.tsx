@@ -1,7 +1,7 @@
 import { ConnectionRecord, ConnectionType, DidExchangeState } from '@credo-ts/core'
 import { useAgent } from '@credo-ts/react-hooks'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DeviceEventEmitter, FlatList, StyleSheet, View } from 'react-native'
 
@@ -17,6 +17,7 @@ import { BifoldAgent } from '../utils/agent'
 import { fetchContactsByLatestMessage } from '../utils/contacts'
 import { testIdWithKey } from '../utils/testable'
 import { TOKENS, useServices } from '../container-api'
+import { useFocusEffect } from '@react-navigation/core'
 
 interface ListContactsProps {
   navigation: StackNavigationProp<ContactStackParams, Screens.Contacts>
@@ -40,55 +41,67 @@ const ListContacts: React.FC<ListContactsProps> = ({ navigation }) => {
     },
   })
 
-  useEffect(() => {
-    const fetchAndSetConnections = async () => {
-      if (!agent) return
-      let orderedContacts = await fetchContactsByLatestMessage(agent as BifoldAgent)
+  // Function to fetch and set connections
+  const fetchAndSetConnections = useCallback(async () => {
+    if (!agent) return
+    let orderedContacts = await fetchContactsByLatestMessage(agent as BifoldAgent)
 
-      // if developer mode is disabled, filter out mediator connections and connections in the hide list
-      if (!store.preferences.developerModeEnabled) {
-        orderedContacts = orderedContacts.filter((r) => {
-          return (
-            !r.connectionTypes.includes(ConnectionType.Mediator) &&
-            !contactHideList?.includes((r.theirLabel || r.alias) ?? '') &&
-            r.state === DidExchangeState.Completed
-          )
-        })
-      }
-
-      setConnections(orderedContacts)
+    // Filter connections if developer mode is disabled
+    if (!store.preferences.developerModeEnabled) {
+      orderedContacts = orderedContacts.filter((r) => {
+        return (
+          !r.connectionTypes.includes(ConnectionType.Mediator) &&
+          !contactHideList?.includes((r.theirLabel || r.alias) ?? '') &&
+          r.state === DidExchangeState.Completed
+        )
+      })
     }
 
-    fetchAndSetConnections().catch((err) => {
-      agent?.config.logger.error('Error fetching contacts:', err)
-      const error = new BifoldError(t('Error.Title1046'), t('Error.Message1046'), (err as Error)?.message ?? err, 1046)
-      DeviceEventEmitter.emit(EventTypes.ERROR_ADDED, error)
-    })
-  }, [agent, store.preferences.developerModeEnabled, contactHideList, t])
+    setConnections(orderedContacts)
+  }, [agent, store.preferences.developerModeEnabled, contactHideList])
+
+  // UseFocusEffect to refetch contacts when the screen is focused
+  useFocusEffect(
+    useCallback(() => {
+      fetchAndSetConnections().catch((err) => {
+        agent?.config.logger.error('Error fetching contacts:', err)
+        const error = new BifoldError(
+          t('Error.Title1046'),
+          t('Error.Message1046'),
+          (err as Error)?.message ?? err,
+          1046
+        )
+        DeviceEventEmitter.emit(EventTypes.ERROR_ADDED, error)
+      })
+    }, [agent?.config.logger, fetchAndSetConnections, t])
+  )
 
   const onPressAddContact = useCallback(() => {
     navigation.getParent()?.navigate(Stacks.ConnectStack, { screen: Screens.Scan, params: { defaultToConnect: true } })
   }, [navigation])
 
-  useEffect(() => {
-    if (store.preferences.useConnectionInviterCapability) {
-      navigation.setOptions({
-        headerRight: () => (
-          <HeaderButton
-            buttonLocation={ButtonLocation.Right}
-            accessibilityLabel={t('Contacts.AddContact')}
-            testID={testIdWithKey('AddContact')}
-            onPress={onPressAddContact}
-            icon="plus-circle-outline"
-          />
-        ),
-      })
-    } else {
-      navigation.setOptions({
-        headerRight: () => false,
-      })
-    }
-  }, [store.preferences.useConnectionInviterCapability, navigation, t, onPressAddContact])
+  // Set header options based on store preferences
+  useFocusEffect(
+    useCallback(() => {
+      if (store.preferences.useConnectionInviterCapability) {
+        navigation.setOptions({
+          headerRight: () => (
+            <HeaderButton
+              buttonLocation={ButtonLocation.Right}
+              accessibilityLabel={t('Contacts.AddContact')}
+              testID={testIdWithKey('AddContact')}
+              onPress={onPressAddContact}
+              icon="plus-circle-outline"
+            />
+          ),
+        })
+      } else {
+        navigation.setOptions({
+          headerRight: () => false,
+        })
+      }
+    }, [store.preferences.useConnectionInviterCapability, navigation, t, onPressAddContact])
+  )
 
   return (
     <View>

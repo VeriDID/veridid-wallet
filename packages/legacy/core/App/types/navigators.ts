@@ -120,7 +120,7 @@ export type ContactStackParams = {
   [Screens.ProofDetails]: { recordId: string; isHistory?: boolean }
   [Screens.ProofRequest]: { proofId: string }
   [Screens.Scan]: undefined
-  [Screens.WorkflowDetails]: { oobRecordId: string; workflowId: string } // not sure to use connectionId or oobRecordId
+  [Screens.WorkflowDetails]: { oobRecordId: string; workflowId: string; instanceId?: string } // not sure to use connectionId or oobRecordId
   [Screens.Workflows]: { oobRecordId: string }
 }
 
