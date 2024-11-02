@@ -1,14 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-import { useNavigation, useRoute, RouteProp, CommonActions, StackActions } from '@react-navigation/native'
+//workflows.tsx
+import React, { useCallback, useEffect, useState } from 'react'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Modal } from 'react-native'
+import {
+  useNavigation,
+  useRoute,
+  RouteProp,
+  useFocusEffect,
+  StackActions,
+  CommonActions,
+} from '@react-navigation/native'
 import { useWorkflow } from '../contexts/workflow'
 import { useTheme } from '../contexts/theme'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { ContactStackParams, Screens } from '../types/navigators'
+import { ContactStackParams, Screens, TabStacks } from '../types/navigators'
 import { useConnectionByOutOfBandId, useOutOfBandById } from '../hooks/connections'
 import { useTranslation } from 'react-i18next'
-import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
+//import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import CustomContactsHeader from '../navigators/components/CustomContactsHeader'
+import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
 
 //import { render } from '@testing-library/react-native'
 //import CustomButton, { ButtonType } from '../components/buttons/Button' // Renamed to avoid conflict
@@ -26,6 +36,9 @@ const Workflows: React.FC = () => {
   const { TextTheme, ColorPallet } = useTheme()
   const { t } = useTranslation()
   const { oobRecordId } = route.params
+
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [iconColor, setIconColor] = useState('black') // Initialize icon color as black
 
   // Get the connection using oobRecordId
   const oobRecord = useOutOfBandById(route.params?.oobRecordId)
@@ -51,36 +64,99 @@ const Workflows: React.FC = () => {
     }
   }, [oobRecord])
 
-  // Set the header title and back button
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      title: connectionDetails.label,
-      headerLeft: () => (
-        <IconButton
-          buttonLocation={ButtonLocation.Left}
-          accessibilityLabel={t('Global.Back')}
-          testID="BackButton"
-          icon="arrow-left"
-          onPress={() => {
-            // First pop the current screen
-            navigation.dispatch(StackActions.pop())
-            // Then ensure we're at the contacts screen
-            navigation.dispatch(
-              CommonActions.navigate({
-                name: Screens.Contacts,
-              })
-            )
-          }}
-        />
-      ),
-    })
-  }, [navigation, t, connectionDetails.label])
+  // // Set the header title and back button
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     title: connectionDetails.label,
+  //     headerLeft: () => (
+  //       <IconButton
+  //         buttonLocation={ButtonLocation.Left}
+  //         accessibilityLabel={t('Global.Back')}
+  //         testID="BackButton"
+  //         icon="arrow-left"
+  //         onPress={() => {
+  //           // First pop the current screen
+  //           navigation.dispatch(StackActions.pop())
+  //           // Then ensure we're at the contacts screen
+  //           navigation.dispatch(
+  //             CommonActions.navigate({
+  //               name: Screens.Contacts,
+  //             })
+  //           )
+  //         }}
+  //       />
+  //     ),
+  //   })
+  // }, [navigation, t, connectionDetails.label])
+
+  // const { assertConnectedNetwork } = useNetwork()
+
+  // const handleAddPress = useCallback(() => {
+  //   if (!assertConnectedNetwork()) {
+  //     return
+  //   }
+  //   navigation.navigate(Screens.Scan)
+  // }, [navigation, assertConnectedNetwork])
+  const toggleModal = useCallback(() => {
+    setIsModalVisible((prevState) => !prevState)
+    setIconColor((prevState) => (prevState === 'black' ? '#FF1493' : 'black'))
+  }, [])
+
+  const handleBackPress = useCallback(() => {
+    navigation.goBack()
+  }, [navigation])
+
+  // Replace your existing useLayoutEffect with this useFocusEffect
+  useFocusEffect(
+    useCallback(() => {
+      navigation.setOptions({
+        header: () => (
+          <CustomContactsHeader
+            title={connectionDetails.label || t('Screens.Channels')}
+            onAddPress={toggleModal}
+            onBackPress={handleBackPress} // Pass the navigation logic here
+            iconColor={iconColor}
+          />
+        ),
+        gestureEnabled: false,
+      })
+    }, [navigation, connectionDetails.label, t, toggleModal, handleBackPress, iconColor])
+  )
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: ColorPallet.brand.primaryBackground,
       padding: 16,
+    },
+    modalContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+      width: '90%', // Increase modal width
+      padding: 20,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      alignItems: 'flex-start', // Align content to the left
+    },
+    closeIconContainer: {
+      position: 'absolute',
+      top: 10,
+      right: 10,
+    },
+    modalTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 15,
+      alignSelf: 'flex-start',
+    },
+    modalItem: {
+      fontSize: 16,
+      marginBottom: 10,
+      textAlign: 'left',
     },
     card: {
       backgroundColor: ColorPallet.brand.secondaryBackground,
@@ -213,6 +289,20 @@ const Workflows: React.FC = () => {
         renderItem={renderWorkflowCard}
         ListEmptyComponent={() => <Text style={styles.emptyText}>{t('Workflows.NoWorkflowsAvailable')}</Text>}
       />
+      <Modal visible={isModalVisible} transparent animationType="slide">
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <TouchableOpacity onPress={toggleModal} style={styles.closeIconContainer}>
+              <Icon name="close" size={24} color="black" />
+            </TouchableOpacity>
+            <Text style={styles.modalTitle}>New Topics</Text>
+            <Text style={styles.modalItem}>Request Student ID</Text>
+            <Text style={styles.modalItem}>Request Membership</Text>
+            <Text style={styles.modalItem}>Request Transcript</Text>
+            <Text style={styles.modalItem}>Request Attendance Record</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }
