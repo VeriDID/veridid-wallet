@@ -40,6 +40,8 @@ const Workflows: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [iconColor, setIconColor] = useState('black') // Initialize icon color as black
 
+  const [modalWorkflows, setModalWorkflows] = useState<Array<any>>([])
+
   // Get the connection using oobRecordId
   const oobRecord = useOutOfBandById(route.params?.oobRecordId)
   const connection = useConnectionByOutOfBandId(route.params?.oobRecordId)
@@ -51,6 +53,16 @@ const Workflows: React.FC = () => {
     state: '',
     label: '',
   })
+
+  // Get workflows when connection changes
+  useEffect(() => {
+    if (connection?.id) {
+      const flows = workflows.get(connection.id)
+      if (flows && flows.workflows && Array.isArray(flows.workflows)) {
+        setModalWorkflows(flows.workflows)
+      }
+    }
+  }, [workflows, connection])
 
   // Update connection details when data is available
   useEffect(() => {
@@ -157,6 +169,18 @@ const Workflows: React.FC = () => {
       fontSize: 16,
       marginBottom: 10,
       textAlign: 'left',
+      paddingVertical: 8,
+      paddingHorizontal: 12,
+      borderRadius: 4,
+      backgroundColor: ColorPallet.brand.secondaryBackground,
+      // Add touch feedback styles:
+      touchAction: 'none',
+    },
+    modalEmptyText: {
+      fontSize: 14,
+      color: ColorPallet.grayscale.mediumGrey,
+      textAlign: 'center',
+      marginTop: 20,
     },
     card: {
       backgroundColor: ColorPallet.brand.secondaryBackground,
@@ -296,10 +320,15 @@ const Workflows: React.FC = () => {
               <Icon name="close" size={24} color="black" />
             </TouchableOpacity>
             <Text style={styles.modalTitle}>New Topics</Text>
-            <Text style={styles.modalItem}>Request Student ID</Text>
-            <Text style={styles.modalItem}>Request Membership</Text>
-            <Text style={styles.modalItem}>Request Transcript</Text>
-            <Text style={styles.modalItem}>Request Attendance Record</Text>
+            {modalWorkflows.length > 0 ? (
+              modalWorkflows.map((workflow, index) => (
+                <Text key={index} style={styles.modalItem}>
+                  {workflow.name}
+                </Text>
+              ))
+            ) : (
+              <Text style={styles.modalItem}>No workflows available</Text>
+            )}
           </View>
         </View>
       </Modal>
