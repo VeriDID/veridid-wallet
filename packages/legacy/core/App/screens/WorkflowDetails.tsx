@@ -3,15 +3,11 @@ import { View, Text, StyleSheet, ScrollView, Image, Button } from 'react-native'
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
 import { useTheme } from '../contexts/theme'
 import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
-//import CustomButton, { ButtonType } from '../components/buttons/Button' // Renamed to avoid conflict
-//import { Stacks, Screens } from '../types/navigators'
 import { useConnectionByOutOfBandId, useOutOfBandById } from '../hooks/connections'
 import { testIdWithKey } from '../utils/testable'
-//import { useServices, TOKENS } from '../container-api'
-import { useWorkflow } from '../contexts/workflow' // Import useWorkflow
+import { useWorkflow } from '../contexts/workflow'
 import { useAgent } from '@credo-ts/react-hooks'
 import { DrpcRequestEventTypes, DrpcRequestStateChangedEvent } from '@credo-ts/drpc'
 
@@ -92,13 +88,6 @@ const WorkflowDetails: React.FC = () => {
     console.log('Button pressed with actionID:', actionID)
     // For example, navigate to another state or screen
   }
-
-  // // Handle continue button press
-  // const handleContinue = () => {
-  //   if (route.params?.oobRecordId) {
-  //     return
-  //   }
-  // }
 
   // Header configuration
   React.useLayoutEffect(() => {

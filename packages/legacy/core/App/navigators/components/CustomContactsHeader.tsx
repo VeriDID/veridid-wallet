@@ -11,7 +11,7 @@ const logo = require('../../assets/img/veridid-logo.png')
 interface CustomContactsHeaderProps {
   title: string
   onAddPress: () => void
-  onBackPress: () => void // Keep this prop
+  onBackPress: () => void
   iconColor: string
 }
 

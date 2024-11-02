@@ -16,7 +16,7 @@ export const WorkflowContext = createContext<WorkflowContext>(null as unknown as
 
 export const WorkflowProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [workflows, setWorkflows] = useState<Map<string, any>>(new Map())
-  const [current, setCurrent] = useState<Map<string, any>>(new Map())
+  //const [current, setCurrent] = useState<Map<string, any>>(new Map())
   const [display, setDisplay] = useState<Map<string, any>>(new Map())
 
   const saveWorkflows = (connectionId: string, flows: any) => {
@@ -27,11 +27,25 @@ export const WorkflowProvider: React.FC<React.PropsWithChildren> = ({ children }
     })
   }
 
-  const saveCurrentWorkflows = (connectionId: string, instanceId: any) => {
-    setCurrent((prevCurrent) => {
-      const newCurrent = new Map(prevCurrent)
-      newCurrent.set(connectionId, instanceId)
-      return newCurrent
+  // const saveCurrentWorkflows = (connectionId: string, instanceId: any) => {
+  //   setCurrent((prevCurrent) => {
+  //     const newCurrent = new Map(prevCurrent)
+  //     newCurrent.set(connectionId, instanceId)
+  //     return newCurrent
+  //   })
+  // }
+
+  //to list all existing workflows
+  const saveCurrentWorkflows = (connectionId: string, flows: any) => {
+    setWorkflows((prevWorkflows) => {
+      const newWorkflows = new Map(prevWorkflows)
+      // Preserve existing workflows and add new one
+      const existingFlows = newWorkflows.get(connectionId) || { workflows: [] }
+      newWorkflows.set(connectionId, {
+        ...flows,
+        workflows: [...existingFlows.workflows, ...flows.workflows],
+      })
+      return newWorkflows
     })
   }
 
@@ -44,11 +58,11 @@ export const WorkflowProvider: React.FC<React.PropsWithChildren> = ({ children }
   }
 
   const getDisplay = (connectionId: string) => {
-    return current.get(connectionId)
+    return display.get(connectionId)
   }
 
   const getCurrentWorkflows = (connectionId: string) => {
-    return current.get(connectionId)
+    return workflows.get(connectionId)
   }
 
   return (
@@ -60,7 +74,7 @@ export const WorkflowProvider: React.FC<React.PropsWithChildren> = ({ children }
         saveDisplay,
         getDisplay,
         workflows,
-        current,
+        current: workflows, // Use workflows instead of current
         display,
       }}
     >

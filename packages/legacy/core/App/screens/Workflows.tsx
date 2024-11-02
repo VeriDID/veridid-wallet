@@ -1,30 +1,16 @@
 //workflows.tsx
 import React, { useCallback, useEffect, useState } from 'react'
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Modal } from 'react-native'
-import {
-  useNavigation,
-  useRoute,
-  RouteProp,
-  useFocusEffect,
-  StackActions,
-  CommonActions,
-} from '@react-navigation/native'
+import { useNavigation, useRoute, RouteProp, useFocusEffect, CommonActions } from '@react-navigation/native'
 import { useWorkflow } from '../contexts/workflow'
 import { useTheme } from '../contexts/theme'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { ContactStackParams, Screens, TabStacks } from '../types/navigators'
+import { ContactStackParams, Screens } from '../types/navigators'
 import { useConnectionByOutOfBandId, useOutOfBandById } from '../hooks/connections'
 import { useTranslation } from 'react-i18next'
-//import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import CustomContactsHeader from '../navigators/components/CustomContactsHeader'
-import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
 import { useAgent } from '@credo-ts/react-hooks'
-
-//import { render } from '@testing-library/react-native'
-//import CustomButton, { ButtonType } from '../components/buttons/Button' // Renamed to avoid conflict
-
-//import { ColorPallet, TextTheme } from 'theme'
 
 type WorkflowsScreenNavigationProp = StackNavigationProp<ContactStackParams, Screens.Workflows>
 type WorkflowsRouteProp = RouteProp<ContactStackParams, Screens.Workflows>
@@ -33,7 +19,7 @@ const Workflows: React.FC = () => {
   const navigation = useNavigation<WorkflowsScreenNavigationProp>()
   const route = useRoute<WorkflowsRouteProp>()
 
-  const { workflows } = useWorkflow()
+  const { workflows, saveCurrentWorkflows } = useWorkflow()
   const { TextTheme, ColorPallet } = useTheme()
   const { t } = useTranslation()
   const { oobRecordId } = route.params
@@ -65,9 +51,12 @@ const Workflows: React.FC = () => {
   // Add function to handle workflow selection
   const handleWorkflowSelect = useCallback(
     async (workflow: any) => {
-      if (!connection?.id) return
+      if (!connection?.id || !agent) return
 
       try {
+        // Add timestamp to make each instance unique
+        const instanceId = Date.now().toString()
+
         // Send DRPC request for the selected workflow
         if (agent) {
           await agent.modules.drpc.sendRequest(connection.id, {
@@ -77,11 +66,34 @@ const Workflows: React.FC = () => {
             params: {
               version: '1.0',
               workflowid: workflow.workflowid,
-              instance: '', // New instance
+              instance: instanceId, // New instance
               actionId: '',
             },
           })
         }
+
+        // Add the new workflow to the list
+        const newWorkflow = {
+          ...workflow,
+          oobRecordId,
+          instanceId, // Add instance ID to track this specific instance
+          status: 'pending',
+          timestamp: new Date().toISOString(),
+        }
+
+        // Get existing workflows
+        const currentWorkflows = workflows.get(connection.id) || { workflows: [] }
+
+        //console.log('Current workflows:', currentWorkflows)
+
+        // Add new workflow to existing workflows
+        const updatedWorkflows = {
+          ...currentWorkflows,
+          workflows: [...currentWorkflows.workflows, newWorkflow],
+        }
+
+        // Save updated workflows to context
+        saveCurrentWorkflows(connection.id, updatedWorkflows)
 
         // Close modal
         toggleModal()
@@ -90,13 +102,13 @@ const Workflows: React.FC = () => {
         navigation.navigate(Screens.WorkflowDetails, {
           oobRecordId: oobRecordId,
           workflowId: workflow.workflowid,
+          instanceId, // Pass instance ID to the details screen
         })
       } catch (error) {
         console.error('Error requesting workflow:', error)
-        // Optionally show error to user
       }
     },
-    [connection, navigation, oobRecordId, toggleModal, agent]
+    [connection, navigation, oobRecordId, toggleModal, agent, workflows, saveCurrentWorkflows]
   )
 
   // Get workflows when connection changes
@@ -104,12 +116,21 @@ const Workflows: React.FC = () => {
     if (connection?.id) {
       const flows = workflows.get(connection.id)
       if (flows && flows.workflows && Array.isArray(flows.workflows)) {
-        setModalWorkflows(flows.workflows)
+        // Filter unique workflows by workflowid
+        const uniqueWorkflows = flows.workflows.reduce((acc: any[], curr: any) => {
+          const exists = acc.find((w) => w.workflowid === curr.workflowid)
+          if (!exists) {
+            acc.push(curr)
+          }
+          return acc
+        }, [])
+
+        setModalWorkflows(uniqueWorkflows)
       }
     }
   }, [workflows, connection])
 
-  // Update connection details when data is available
+  // Update connection details when data is available, this part is trivial
   useEffect(() => {
     if (oobRecord) {
       setConnectionDetails({
@@ -121,45 +142,14 @@ const Workflows: React.FC = () => {
     }
   }, [oobRecord])
 
-  // // Set the header title and back button
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     title: connectionDetails.label,
-  //     headerLeft: () => (
-  //       <IconButton
-  //         buttonLocation={ButtonLocation.Left}
-  //         accessibilityLabel={t('Global.Back')}
-  //         testID="BackButton"
-  //         icon="arrow-left"
-  //         onPress={() => {
-  //           // First pop the current screen
-  //           navigation.dispatch(StackActions.pop())
-  //           // Then ensure we're at the contacts screen
-  //           navigation.dispatch(
-  //             CommonActions.navigate({
-  //               name: Screens.Contacts,
-  //             })
-  //           )
-  //         }}
-  //       />
-  //     ),
-  //   })
-  // }, [navigation, t, connectionDetails.label])
-
-  // const { assertConnectedNetwork } = useNetwork()
-
-  // const handleAddPress = useCallback(() => {
-  //   if (!assertConnectedNetwork()) {
-  //     return
-  //   }
-  //   navigation.navigate(Screens.Scan)
-  // }, [navigation, assertConnectedNetwork])
-
   const handleBackPress = useCallback(() => {
-    navigation.goBack()
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: Screens.Contacts,
+      })
+    )
   }, [navigation])
 
-  // Replace your existing useLayoutEffect with this useFocusEffect
   useFocusEffect(
     useCallback(() => {
       navigation.setOptions({
@@ -167,7 +157,7 @@ const Workflows: React.FC = () => {
           <CustomContactsHeader
             title={connectionDetails.label || t('Screens.Channels')}
             onAddPress={toggleModal}
-            onBackPress={handleBackPress} // Pass the navigation logic here
+            onBackPress={handleBackPress}
             iconColor={iconColor}
           />
         ),
@@ -300,7 +290,10 @@ const Workflows: React.FC = () => {
         return flows.workflows.map((workflow: any) => ({
           ...workflow,
           oobRecordId,
+          instanceId: workflow.instanceId || 'initial', // Track if it's initial or new instance
           status: 'pending', // You'll need to implement actual status tracking
+          // Only set timestamp if it doesn't exist
+          timestamp: workflow.timestamp || workflow.created || new Date().toISOString(),
         }))
       }
     }
@@ -311,6 +304,8 @@ const Workflows: React.FC = () => {
     const status = getWorkflowStatus(item)
     const isComplete = status === 'complete'
 
+    const timeAgo = item.timestamp ? new Date(item.timestamp).toLocaleString() : 'Unknown Time'
+
     return (
       <TouchableOpacity
         style={styles.card}
@@ -318,13 +313,14 @@ const Workflows: React.FC = () => {
           navigation.navigate(Screens.WorkflowDetails, {
             oobRecordId: item.oobRecordId,
             workflowId: item.workflowId,
+            instanceId: item.instanceId,
           })
         }
       >
         <View style={styles.cardContent}>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.subtitle}>{isComplete ? 'Workflow completed' : 'Waiting for your action'}</Text>
-          <Text style={styles.timestamp}>2h ago</Text>
+          <Text style={styles.timestamp}>{timeAgo}</Text>
           <View style={styles.statusIcon}>
             <Icon
               name={isComplete ? 'check-circle-outline' : 'timer-sand'}
@@ -337,21 +333,6 @@ const Workflows: React.FC = () => {
       </TouchableOpacity>
     )
   }
-
-  //   const renderItem = ({ item }: { item: any }) => (
-  //     <TouchableOpacity
-  //       style={styles.card}
-  //       onPress={() =>
-  //         navigation.navigate(Screens.WorkflowDetails, {
-  //           oobRecordId: item.oobRecordId,
-  //           workflowId: item.workflowId,
-  //         })
-  //       }
-  //     >
-  //       <Text style={styles.title}>{item.name}</Text>
-  //       <Text style={styles.subtitle}>Placeholder subtitle text</Text>
-  //     </TouchableOpacity>
-  //   )
 
   return (
     <View style={styles.container}>
