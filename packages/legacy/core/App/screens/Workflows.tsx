@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import CustomContactsHeader from '../navigators/components/CustomContactsHeader'
 import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
+import { useAgent } from '@credo-ts/react-hooks'
 
 //import { render } from '@testing-library/react-native'
 //import CustomButton, { ButtonType } from '../components/buttons/Button' // Renamed to avoid conflict
@@ -46,6 +47,8 @@ const Workflows: React.FC = () => {
   const oobRecord = useOutOfBandById(route.params?.oobRecordId)
   const connection = useConnectionByOutOfBandId(route.params?.oobRecordId)
 
+  const { agent } = useAgent()
+
   // State for connection details
   const [connectionDetails, setConnectionDetails] = useState({
     invitationType: '',
@@ -53,6 +56,48 @@ const Workflows: React.FC = () => {
     state: '',
     label: '',
   })
+
+  const toggleModal = useCallback(() => {
+    setIsModalVisible((prevState) => !prevState)
+    setIconColor((prevState) => (prevState === 'black' ? '#FF1493' : 'black'))
+  }, [])
+
+  // Add function to handle workflow selection
+  const handleWorkflowSelect = useCallback(
+    async (workflow: any) => {
+      if (!connection?.id) return
+
+      try {
+        // Send DRPC request for the selected workflow
+        if (agent) {
+          await agent.modules.drpc.sendRequest(connection.id, {
+            jsonrpc: '2.0',
+            method: 'workflow_request',
+            id: '',
+            params: {
+              version: '1.0',
+              workflowid: workflow.workflowid,
+              instance: '', // New instance
+              actionId: '',
+            },
+          })
+        }
+
+        // Close modal
+        toggleModal()
+
+        // Navigate to workflow details screen
+        navigation.navigate(Screens.WorkflowDetails, {
+          oobRecordId: oobRecordId,
+          workflowId: workflow.workflowid,
+        })
+      } catch (error) {
+        console.error('Error requesting workflow:', error)
+        // Optionally show error to user
+      }
+    },
+    [connection, navigation, oobRecordId, toggleModal, agent]
+  )
 
   // Get workflows when connection changes
   useEffect(() => {
@@ -109,10 +154,6 @@ const Workflows: React.FC = () => {
   //   }
   //   navigation.navigate(Screens.Scan)
   // }, [navigation, assertConnectedNetwork])
-  const toggleModal = useCallback(() => {
-    setIsModalVisible((prevState) => !prevState)
-    setIconColor((prevState) => (prevState === 'black' ? '#FF1493' : 'black'))
-  }, [])
 
   const handleBackPress = useCallback(() => {
     navigation.goBack()
@@ -175,6 +216,13 @@ const Workflows: React.FC = () => {
       backgroundColor: ColorPallet.brand.secondaryBackground,
       // Add touch feedback styles:
       touchAction: 'none',
+    },
+    modalItemContainer: {
+      width: '100%',
+      backgroundColor: ColorPallet.brand.secondaryBackground,
+      borderRadius: 8,
+      marginBottom: 8,
+      overflow: 'hidden',
     },
     modalEmptyText: {
       fontSize: 14,
@@ -322,12 +370,16 @@ const Workflows: React.FC = () => {
             <Text style={styles.modalTitle}>New Topics</Text>
             {modalWorkflows.length > 0 ? (
               modalWorkflows.map((workflow, index) => (
-                <Text key={index} style={styles.modalItem}>
-                  {workflow.name}
-                </Text>
+                <TouchableOpacity
+                  key={index}
+                  style={styles.modalItemContainer}
+                  onPress={() => handleWorkflowSelect(workflow)}
+                >
+                  <Text style={styles.modalItem}>{workflow.name}</Text>
+                </TouchableOpacity>
               ))
             ) : (
-              <Text style={styles.modalItem}>No workflows available</Text>
+              <Text style={styles.modalEmptyText}>No workflows available</Text>
             )}
           </View>
         </View>

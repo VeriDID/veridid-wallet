@@ -6,12 +6,14 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { useTheme } from '../contexts/theme'
 import IconButton, { ButtonLocation } from '../components/buttons/IconButton'
-import CustomButton, { ButtonType } from '../components/buttons/Button' // Renamed to avoid conflict
+//import CustomButton, { ButtonType } from '../components/buttons/Button' // Renamed to avoid conflict
 //import { Stacks, Screens } from '../types/navigators'
 import { useConnectionByOutOfBandId, useOutOfBandById } from '../hooks/connections'
 import { testIdWithKey } from '../utils/testable'
 //import { useServices, TOKENS } from '../container-api'
 import { useWorkflow } from '../contexts/workflow' // Import useWorkflow
+import { useAgent } from '@credo-ts/react-hooks'
+import { DrpcRequestEventTypes, DrpcRequestStateChangedEvent } from '@credo-ts/drpc'
 
 // Define route params type
 type WorkflowDetailsParam = {
@@ -40,6 +42,31 @@ const WorkflowDetails: React.FC = () => {
     label: '',
   })
 
+  const { agent } = useAgent()
+
+  useEffect(() => {
+    if (!agent || !connection?.id) return
+
+    // Store the unsubscribe function directly
+    const unsubscribe = agent.events.on(
+      DrpcRequestEventTypes.DrpcRequestStateChanged,
+      async ({ payload }: DrpcRequestStateChangedEvent) => {
+        const record = payload.drpcMessageRecord
+        const request: any = record.request
+
+        if (request.method === 'workflow_response') {
+          console.log('Received workflow response:', request.params)
+          if (connection?.id && request.params?.displaydata) {
+            setDisplayData(request.params.displaydata)
+          }
+        }
+      }
+    )
+
+    // Return the unsubscribe function directly
+    return unsubscribe
+  }, [agent, connection])
+
   // Update connection details when data is available
   useEffect(() => {
     if (oobRecord) {
@@ -66,12 +93,12 @@ const WorkflowDetails: React.FC = () => {
     // For example, navigate to another state or screen
   }
 
-  // Handle continue button press
-  const handleContinue = () => {
-    if (route.params?.oobRecordId) {
-      return
-    }
-  }
+  // // Handle continue button press
+  // const handleContinue = () => {
+  //   if (route.params?.oobRecordId) {
+  //     return
+  //   }
+  // }
 
   // Header configuration
   React.useLayoutEffect(() => {
@@ -214,19 +241,6 @@ const WorkflowDetails: React.FC = () => {
           </>
         )}
       </ScrollView>
-
-      <View style={styles.buttonContainer}>
-        {/* Show the 'Continue' button only if displayData is not present */}
-        {!displayData && (
-          <CustomButton
-            title={t('Global.Continue')}
-            accessibilityLabel={t('Global.Continue')}
-            testID={testIdWithKey('Continue')}
-            onPress={handleContinue}
-            buttonType={ButtonType.Primary}
-          />
-        )}
-      </View>
     </SafeAreaView>
   )
 }
