@@ -71,9 +71,13 @@ const ContactListItem: React.FC<Props> = ({ contact, navigation }) => {
   })
 
   const navigateToContact = useCallback(() => {
-    navigation
-      .getParent()
-      ?.navigate(Stacks.ContactStack, { screen: Screens.Workflows, params: { oobRecordId: contact.outOfBandId } })
+    if (contact.outOfBandId) {  
+      navigation.navigate(Screens.Workflows, { 
+        oobRecordId: contact.outOfBandId 
+      })
+    } else {
+      console.warn('No outOfBandId available for this contact')
+    }
   }, [navigation, contact])
 
   const contactLabel = useMemo(

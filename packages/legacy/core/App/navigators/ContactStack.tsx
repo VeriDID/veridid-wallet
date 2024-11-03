@@ -26,6 +26,8 @@ import { testIdWithKey } from '../utils/testable'
 import { useNetwork } from '../contexts/network'
 import WorkflowDetails from '../screens/WorkflowDetails'
 import Workflows from '../screens/Workflows'
+import ConnectStack from './ConnectStack'
+import ContactListItem from '../components/listItems/ContactListItem'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const logo = require('../assets/img/veridid-logo.png')
@@ -116,20 +118,13 @@ const ContactStack: React.FC = () => {
 
       <Stack.Screen name={Screens.Scan} component={scan} options={{ headerBackTestID: testIdWithKey('Back') }} />
 
-      <Stack.Screen
-        name={Screens.ContactDetails}
-        component={ContactDetails}
-        options={{
-          title: t('Screens.ContactDetails'),
-        }}
-      />
-      <Stack.Screen
+      {/* <Stack.Screen
         name={Screens.RenameContact}
         component={RenameContact}
         options={{ title: t('Screens.RenameContact') }}
-      />
+      /> */}
       <Stack.Screen name={Screens.Chat} component={Chat} />
-      <Stack.Screen name={Screens.WhatAreContacts} component={WhatAreContacts} options={{ title: '' }} />
+      {/* <Stack.Screen name={Screens.WhatAreContacts} component={WhatAreContacts} options={{ title: '' }} /> */}
       <Stack.Screen
         name={Screens.CredentialDetails}
         component={CredentialDetails}

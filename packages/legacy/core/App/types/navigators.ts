@@ -122,6 +122,7 @@ export type ContactStackParams = {
   [Screens.Scan]: undefined
   [Screens.WorkflowDetails]: { oobRecordId: string; workflowId: string; instanceId?: string } // not sure to use connectionId or oobRecordId
   [Screens.Workflows]: { oobRecordId: string }
+  [Screens.ListContacts]: undefined
 }
 
 export type ProofRequestsStackParams = {
@@ -153,6 +154,7 @@ export type ConnectStackParams = {
   [Screens.NameWallet]: undefined
   [Screens.ScanHelp]: undefined
   [Screens.PasteUrl]: undefined
+  [Screens.Workflows]: { oobRecordId: string }
 }
 
 export type SettingStackParams = {

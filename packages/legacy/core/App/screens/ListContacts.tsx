@@ -75,34 +75,6 @@ const ListContacts: React.FC<ListContactsProps> = ({ navigation }) => {
       })
     }, [agent?.config.logger, fetchAndSetConnections, t])
   )
-
-  const onPressAddContact = useCallback(() => {
-    navigation.getParent()?.navigate(Stacks.ConnectStack, { screen: Screens.Scan, params: { defaultToConnect: true } })
-  }, [navigation])
-
-  // Set header options based on store preferences
-  useFocusEffect(
-    useCallback(() => {
-      if (store.preferences.useConnectionInviterCapability) {
-        navigation.setOptions({
-          headerRight: () => (
-            <HeaderButton
-              buttonLocation={ButtonLocation.Right}
-              accessibilityLabel={t('Contacts.AddContact')}
-              testID={testIdWithKey('AddContact')}
-              onPress={onPressAddContact}
-              icon="plus-circle-outline"
-            />
-          ),
-        })
-      } else {
-        navigation.setOptions({
-          headerRight: () => false,
-        })
-      }
-    }, [store.preferences.useConnectionInviterCapability, navigation, t, onPressAddContact])
-  )
-
   return (
     <View>
       <FlatList

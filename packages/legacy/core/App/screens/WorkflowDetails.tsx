@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ScrollView, Image, Button, TouchableOpacity } from 'react-native'
-import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
+import { useNavigation, useRoute, RouteProp, useFocusEffect } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -12,6 +12,7 @@ import { useConnectionByOutOfBandId, useOutOfBandById } from '../hooks/connectio
 import { testIdWithKey } from '../utils/testable'
 //import { useServices, TOKENS } from '../container-api'
 import { useWorkflow } from '../contexts/workflow' // Import useWorkflow
+import CustomWorkflowHeader from '../navigators/components/CustomWorkflowHearder'
 
 // Define route params type
 type WorkflowDetailsParam = {
@@ -29,6 +30,7 @@ const WorkflowDetails: React.FC = () => {
   const [displayData, setDisplayData] = useState<any>(null)
   const [workflowName, setWorkflowName] = useState<string>('')
   const [modalWorkflows, setModalWorkflows] = useState<Array<any>>([])
+  const [iconColor, setIconColor] = useState('black')
 
   // Get connection details using the oobRecordId
   const oobRecord = useOutOfBandById(route.params?.oobRecordId)
@@ -41,6 +43,29 @@ const WorkflowDetails: React.FC = () => {
     state: '',
     label: '',
   })
+
+  const handleBackPress = useCallback(() => {
+    navigation.goBack()
+  }, [navigation])
+
+   // Optional: Add button handler if needed
+   const handleAddPress = useCallback(() => {
+    // Your add logic here
+  }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      navigation.setOptions({
+        header: () => (
+          <CustomWorkflowHeader
+            title={connectionDetails.label || modalWorkflows[0]?.name || t('Screens.Channels')}
+            onBackPress={handleBackPress}
+          />
+        ),
+        gestureEnabled: false,
+      })
+    }, [navigation, connectionDetails.label, modalWorkflows, t, handleBackPress, handleAddPress])
+  )
 
   // Update connection details when data is available
   useEffect(() => {

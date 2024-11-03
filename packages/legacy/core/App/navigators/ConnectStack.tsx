@@ -11,6 +11,7 @@ import { testIdWithKey } from '../utils/testable'
 
 import { useDefaultStackOptions } from './defaultStackOptions'
 import { TOKENS, useServices } from '../container-api'
+import Workflows from '../screens/Workflows'
 
 const ConnectStack: React.FC = () => {
   const Stack = createStackNavigator<ConnectStackParams>()
@@ -40,6 +41,7 @@ const ConnectStack: React.FC = () => {
           headerBackTestID: testIdWithKey('Back'),
         }}
       />
+      <Stack.Screen name={Screens.Workflows} component={Workflows} options={{ headerBackTestID: testIdWithKey('Back') }} />
     </Stack.Navigator>
   )
 }

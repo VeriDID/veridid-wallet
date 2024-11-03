@@ -28,10 +28,8 @@ const Scan: React.FC<ScanProps> = ({ navigation, route }) => {
   const [showDisclosureModal, setShowDisclosureModal] = useState<boolean>(true)
   const [qrCodeScanError, setQrCodeScanError] = useState<QrCodeScanError | null>(null)
   const [{ enableImplicitInvitations, enableReuseConnections }, logger] = useServices([TOKENS.CONFIG, TOKENS.UTIL_LOGGER])
-  let defaultToConnect = false
-  if (route?.params && route.params['defaultToConnect']) {
-    defaultToConnect = route.params['defaultToConnect']
-  }
+
+  const defaultToConnect = (route.params as { defaultToConnect?: boolean })?.defaultToConnect || false
 
   const handleInvitation = useCallback(async (value: string): Promise<void> => {
     try {
